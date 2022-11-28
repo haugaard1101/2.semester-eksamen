@@ -1,21 +1,21 @@
 package com.example.bilabonnement.Model;
 
-public class SkadeOgUdbedringsModel {
+public class SOUModel {
 
   private int skadeId;
   private String skadeNavn;
   private int skadePris;
   private int registreringsNummer;
 
-  public SkadeOgUdbedringsModel(int skadeId, String skadeNavn, int skadePris,
-                                int registreringsNummer) {
+  public SOUModel(int skadeId, String skadeNavn, int skadePris,
+                  int registreringsNummer) {
     this.skadeId = skadeId;
     this.skadeNavn = skadeNavn;
     this.skadePris = skadePris;
     this.registreringsNummer = registreringsNummer;
   }
 
-  public SkadeOgUdbedringsModel() {
+  public SOUModel() {
 
   }
 
