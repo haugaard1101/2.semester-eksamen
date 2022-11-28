@@ -1,0 +1,52 @@
+create database BilAbonnement;
+use BilAbonnement;
+Create table Biler(
+                    RegistreringsNummer int auto_increment,
+                    Stelnummer varchar(50),
+                    Mærke varchar(50),
+                    Model varchar(50),
+                    UdstyrsNiveau varchar(50),
+                    UdlejningsStatus ENUM('LEDIG','AKTIV','AFLEVERET'),
+                    Gear ENUM('MANUELT','AUTOMATISK'),
+                    BrændstofType varchar(50),
+                    KM_L int,
+                    CO2_Udledning int,
+                    Pris_pr_Måned int,
+                    primary key (RegistreringsNummer)
+);
+CREATE table LejeAftale (
+                    Navn varchar(50),
+                    Adresse varchar(100),
+                    Postnummer int,
+                    Kommune varchar(50),
+                    TelefonNr int,
+                    CPR varchar(30),
+                    Email varchar(100),
+                    LejeperiodeFra date,
+                    LejeperiodeTil date,
+                    Antal_Måneder int,
+                    Afhentningssted varchar(100),
+                    Afleveringssted varchar(100),
+                    KM_ved_Afhentning int,
+                    AftaleID int auto_increment,
+                    primary key (AftaleID),
+                    MaxKilometer int,
+                    AktueltKørteKilometer int,
+                    AftaleStatus ENUM('INAKTIV','AKTIV','AFLEVERET'),
+                    RegistreringsNummer int,
+                    foreign key (RegistreringsNummer) references Biler(RegistreringsNummer)
+);
+Create table Users (
+                    userID int auto_increment,
+                    userName varchar(50),
+                    password varchar(50),
+                    primary key (userID)
+);
+Create table Skader (
+                    SkadeID int auto_increment,
+                    SkadeNavn varchar(100),
+                    SkadePris int,
+                    primary key (SkadeID),
+                    RegistreringsNummer int,
+                    foreign key (RegistreringsNummer) references Biler(RegistreringsNummer)
+);
