@@ -1,4 +1,4 @@
-package com.Controller;
+package com.example.bilabonnement.Controller;
 
 public class ForretningsudviklerController {
 }
