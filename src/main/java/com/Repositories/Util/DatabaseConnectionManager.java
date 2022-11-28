@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 
 public class DatabaseConnectionManager {
+
   //Variabler
   private static String hostname;
   private static String username;
