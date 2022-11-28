@@ -1,4 +1,4 @@
-package com.Repositories.Util;
+package com.example.bilabonnement.Repositories.Util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
