@@ -1,4 +1,7 @@
 package com.example.bilabonnement.Controller;
 
-public class SkadeOgUdbedringController {
+public class SOUController {
+
+
+
 }
