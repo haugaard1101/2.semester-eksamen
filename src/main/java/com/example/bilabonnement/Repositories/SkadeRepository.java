@@ -14,6 +14,7 @@ import java.util.List;
 
 public class SkadeRepository {
 
+
     private Connection connection = DatabaseConnectionManager.getConnection();
 
     public List<SkadeModel> getSkadeListe() {
@@ -28,7 +29,7 @@ public class SkadeRepository {
                         resultSet.getInt("SkadeID"),
                         resultSet.getString("SkadeNavn"),
                         resultSet.getInt("SkadePris"),
-                        resultSet.getInt("RegistreringsNummer")
+                        resultSet.getString("RegistreringsNummer")
                 ));
             }
         } catch (SQLException e) {
@@ -37,11 +38,13 @@ public class SkadeRepository {
         return skadeListe;
     }
 
-    public List<LejeAftaleModel> getLejeAftaleByReNr() {
+    public List<LejeAftaleModel> getLejeAftaleByRegNr() {
         List<LejeAftaleModel> LejeAftaleListeSkade = new ArrayList<>();
 
+
+
         try {
-            PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale where RegistreringsNummer = ?");
+            PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale");
             ResultSet resultSet = psts.executeQuery();
 
             while (resultSet.next()) {
@@ -62,7 +65,7 @@ public class SkadeRepository {
                         resultSet.getInt("AftaleID"),
                         resultSet.getInt("MaxKilometer"),
                         resultSet.getInt("AktueltKørteKilometer"),
-                        resultSet.getInt("RegistreringsNummer")
+                        resultSet.getString("RegistreringsNummer")
                 ));
             }
         } catch (SQLException e) {

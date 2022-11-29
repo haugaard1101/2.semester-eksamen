@@ -20,14 +20,14 @@ private int kmVedAfhentning;
 private int aftaleId;
 private int maxKilometer;
 private int aktueltKørteKilometer;
-private int registreringsNummer;
+private String registreringsNummer;
 
   public LejeAftaleModel(String navn, String adresse, int postnummer,
                          String kommune, int telefonNr, String cpr, String eMail,
                          Date lejeperiodeFra, Date lejeperiodeTil, int antalMåneder,
                          String afhentningssted, String afleveringssted, int kmVedAfhentning,
                          int aftaleId, int maxKilometer, int aktueltKørteKilometer,
-                         int registreringsNummer) {
+                         String registreringsNummer) {
     this.navn = navn;
     this.adresse = adresse;
     this.postnummer = postnummer;
@@ -179,11 +179,11 @@ private int registreringsNummer;
     this.aktueltKørteKilometer = aktueltKørteKilometer;
   }
 
-  public int getRegistreringsNummer() {
+  public String getRegistreringsNummer() {
     return registreringsNummer;
   }
 
-  public void setRegistreringsNummer(int registreringsNummer) {
+  public void setRegistreringsNummer(String registreringsNummer) {
     this.registreringsNummer = registreringsNummer;
   }
 

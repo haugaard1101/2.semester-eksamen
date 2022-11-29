@@ -5,14 +5,18 @@ public class SkadeModel {
     private int skadeId;
     private String skadeNavn;
     private int skadePris;
-    private int registreringsNummer;
+    private String registreringsNummer;
 
     public SkadeModel(int skadeId, String skadeNavn, int skadePris,
-                      int registreringsNummer) {
+                      String registreringsNummer) {
         this.skadeId = skadeId;
         this.skadeNavn = skadeNavn;
         this.skadePris = skadePris;
         this.registreringsNummer = registreringsNummer;
+    }
+
+    public SkadeModel(String registreringsNummer){
+
     }
 
     public int getSkadeId() {
@@ -39,11 +43,11 @@ public class SkadeModel {
         this.skadePris = skadePris;
     }
 
-    public int getRegistreringsNummer() {
+    public String getRegistreringsNummer() {
         return registreringsNummer;
     }
 
-    public void setRegistreringsNummer(int registreringsNummer) {
+    public void setRegistreringsNummer(String registreringsNummer) {
         this.registreringsNummer = registreringsNummer;
     }
 

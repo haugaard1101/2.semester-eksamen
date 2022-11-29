@@ -25,9 +25,11 @@ public class LoginController {
     int userId = loginService.login(userModel);
 
     if(userId == -1){
-        return "redirect:/login";
+        return "/Login";
 
     }
+
+    //tilføjer en cookie i broswer der hedder userID med int variablen userID
     session.setAttribute("userID", userId);
     return "redirect:/forretningsudvikling";
     }

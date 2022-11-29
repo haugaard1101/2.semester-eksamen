@@ -29,7 +29,7 @@ public class LejeAftaleRepository {
       preparedStatement.setInt(13, lejeAftaleModel.getKmVedAfhentning());
       preparedStatement.setInt(14, lejeAftaleModel.getMaxKilometer());
       preparedStatement.setInt(15, lejeAftaleModel.getAktueltKørteKilometer());
-      preparedStatement.setInt(16, lejeAftaleModel.getRegistreringsNummer());
+      preparedStatement.setString(16, lejeAftaleModel.getRegistreringsNummer());
 
       preparedStatement.executeUpdate();
     } catch (SQLException e) {
@@ -40,7 +40,7 @@ public class LejeAftaleRepository {
       List<LejeAftaleModel> LejeAftaleListe = new ArrayList<>();
 
       try {
-        PreparedStatement psts = connection.prepareStatement("SELECT * FROM LejeAftale where AftaleID = id");
+        PreparedStatement psts = connection.prepareStatement("SELECT * FROM LejeAftale");
         ResultSet resultSet = psts.executeQuery();
 
         while (resultSet.next()) {
@@ -61,7 +61,7 @@ public class LejeAftaleRepository {
               resultSet.getInt("AftaleID"),
               resultSet.getInt("MaxKilometer"),
               resultSet.getInt("AktueltKørteKilometer"),
-              resultSet.getInt("RegistreringsNummer")
+              resultSet.getString("RegistreringsNummer")
               ));
         }
       } catch (SQLException e) {

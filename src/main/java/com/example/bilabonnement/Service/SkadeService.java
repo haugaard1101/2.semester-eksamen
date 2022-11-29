@@ -1,12 +1,19 @@
 package com.example.bilabonnement.Service;
 
+import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Repositories.SkadeRepository;
 import org.springframework.web.context.request.WebRequest;
+
+import java.util.List;
 
 public class SkadeService {
 
     SkadeRepository skadeRepo = new SkadeRepository();
 
+
+    public List<LejeAftaleModel> getLejeAftaleByRegNr(){
+        return skadeRepo.getLejeAftaleByRegNr();
+    }
     public double beregnKmPris(WebRequest request) {
 /*
         Hardcoded

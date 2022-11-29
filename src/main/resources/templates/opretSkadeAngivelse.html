@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret Skade Angivelse</title>
+</head>
+<body>
+
+<table>
+  <tr th:each="LejeKontrakt: ${regNr}">
+    <td th:text="${regNr.Navn}"></td>
+    <td th:text="${regNr.Adresse}"></td>
+    <td th:text="${regNr.Postnummer}"></td>
+    <td th:text="${regNr.Kommune}"></td>
+    <td th:text="${regNr.TelefonNr}"></td>
+    <td th:text="${regNr.CPR}"></td>
+    <td th:text="${regNr.Email}"></td>
+    <td th:text="${regNr.LejeperiodeFra}"></td>
+    <td th:text="${regNr.LejeperiodeTil}"></td>
+    <td th:text="${regNr.Antal_Måneder}"></td>
+    <td th:text="${regNr.Afhentningssted}"></td>
+    <td th:text="${regNr.Aflveringssted}"></td>
+    <td th:text="${regNr.KM_ved_Afhentning}"></td>
+    <td th:text="${regNr.AftaleID}"></td>
+    <td th:text="${regNr.MaxKilometer}"></td>
+    <td th:text="${regNr.AktueltKørteKilometer}"></td>
+    <td th:text="${regNr.RegistreringsNummer}"></td>
+  </tr>
+</table>
+
+</body>
+</html>
