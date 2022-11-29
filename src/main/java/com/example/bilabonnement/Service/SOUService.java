@@ -11,21 +11,11 @@ public class SOUService {
 
     SOURepository souRepo = new SOURepository();
 
-    List<SOUModel> skadeListe = new ArrayList<>();
-/*
-    public void addSkader() {
-        skadeListe.add("Lakfelt", 1500);
-        skadeListe.add("Ridset alufælge", 400);
-        skadeListe.add("Ny forrude", 3000);
-    }
-
- */
-
     public double beregnKmPris(WebRequest request) {
-
-        //Hardcoded
-        int kmVedAfhentning = 1;
-        int kmVedAflevering = 2;
+/*
+        Hardcoded
+        int kmVedAfhentning = 5;
+        int kmVedAflevering = 10;
 
         int kmKørt = kmVedAflevering - kmVedAfhentning;
         int aftalteKm = 3;
@@ -34,18 +24,30 @@ public class SOUService {
             int kmKørtForLangt = kmKørt - aftalteKm;
             return kmKørtForLangt * 0.75;
         } else return 0;
+
+
+        int kmKørt = request.getParameter("kmKørt") - souRepo.getLejeAftaleByReNr().get().getKmVedAfhentning();
+
+        if (kmKørt > souRepo.getLejeAftaleByReNr().get().setMaxKilometer()) {
+            int kmKørtForLangt = kmKørt - souRepo.getLejeAftaleByReNr().get().setMaxKilometer();
+            return kmKørtForLangt * 0.75;
+        } else return 0;
     }
-/*
+
     public double beregnPrisSOU(WebRequest request) {
-        addSkader();
+
+
+        if (beregnKmPris(request) + XXXXXX > 0) {
+
+
+            return beregnKmPris(request) + XXXXXX;
+        } else return 0;
+    }
 
 
 
-
+    */
 
         return 0;
     }
-
- */
-
 }
