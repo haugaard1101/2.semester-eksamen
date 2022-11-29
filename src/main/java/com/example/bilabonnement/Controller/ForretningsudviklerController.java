@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ForretningsudviklerController {
 
-    @GetMapping("/Forretningsudvikling")
+    @GetMapping("/forretningsudvikling")
     public String index(){
-        return "Forretningsudvikling";
+        return "/forretningsudvikling/forretningsudvikling";
     }
 
 }
