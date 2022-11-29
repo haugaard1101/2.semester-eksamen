@@ -12,12 +12,14 @@ public class SOUService {
     SOURepository souRepo = new SOURepository();
 
     List<SOUModel> skadeListe = new ArrayList<>();
-
+/*
     public void addSkader() {
         skadeListe.add("Lakfelt", 1500);
         skadeListe.add("Ridset alufælge", 400);
         skadeListe.add("Ny forrude", 3000);
     }
+
+ */
 
     public double beregnKmPris(WebRequest request) {
 
@@ -33,7 +35,7 @@ public class SOUService {
             return kmKørtForLangt * 0.75;
         } else return 0;
     }
-
+/*
     public double beregnPrisSOU(WebRequest request) {
         addSkader();
 
@@ -43,5 +45,7 @@ public class SOUService {
 
         return 0;
     }
+
+ */
 
 }
