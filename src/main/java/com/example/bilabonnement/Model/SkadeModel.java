@@ -1,14 +1,14 @@
 package com.example.bilabonnement.Model;
 
-public class SOUModel {
+public class SkadeModel {
 
     private int skadeId;
     private String skadeNavn;
     private int skadePris;
     private int registreringsNummer;
 
-    public SOUModel(int skadeId, String skadeNavn, int skadePris,
-                    int registreringsNummer) {
+    public SkadeModel(int skadeId, String skadeNavn, int skadePris,
+                      int registreringsNummer) {
         this.skadeId = skadeId;
         this.skadeNavn = skadeNavn;
         this.skadePris = skadePris;

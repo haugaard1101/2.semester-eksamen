@@ -2,7 +2,7 @@ package com.example.bilabonnement.Repositories;
 
 import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Model.LejeAftaleModel;
-import com.example.bilabonnement.Model.SOUModel;
+import com.example.bilabonnement.Model.SkadeModel;
 import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
 
 import java.sql.Connection;
@@ -12,19 +12,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SOURepository {
+public class SkadeRepository {
 
     private Connection connection = DatabaseConnectionManager.getConnection();
 
-    public List<SOUModel> getSkadeListe() {
-        List<SOUModel> skadeListe = new ArrayList<>();
+    public List<SkadeModel> getSkadeListe() {
+        List<SkadeModel> skadeListe = new ArrayList<>();
 
         try {
             PreparedStatement psts = connection.prepareStatement("SELECT * FROM skader");
             ResultSet resultSet = psts.executeQuery();
 
             while (resultSet.next()) {
-                skadeListe.add(new SOUModel(
+                skadeListe.add(new SkadeModel(
                         resultSet.getInt("SkadeID"),
                         resultSet.getString("SkadeNavn"),
                         resultSet.getInt("SkadePris"),
@@ -38,14 +38,14 @@ public class SOURepository {
     }
 
     public List<LejeAftaleModel> getLejeAftaleByReNr() {
-        List<LejeAftaleModel> LejeAftaleListeSOU = new ArrayList<>();
+        List<LejeAftaleModel> LejeAftaleListeSkade = new ArrayList<>();
 
         try {
             PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale where RegistreringsNummer = ?");
             ResultSet resultSet = psts.executeQuery();
 
             while (resultSet.next()) {
-                LejeAftaleListeSOU.add(new LejeAftaleModel(
+                LejeAftaleListeSkade.add(new LejeAftaleModel(
                         resultSet.getString("Navn"),
                         resultSet.getString("Adresse"),
                         resultSet.getInt("Postnummer"),
@@ -68,7 +68,7 @@ public class SOURepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return LejeAftaleListeSOU;
+        return LejeAftaleListeSkade;
     }
 
     public List<BilModel> getBilByRegistreringsNummer() {

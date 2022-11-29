@@ -1,15 +1,11 @@
 package com.example.bilabonnement.Service;
 
-import com.example.bilabonnement.Model.SOUModel;
-import com.example.bilabonnement.Repositories.SOURepository;
+import com.example.bilabonnement.Repositories.SkadeRepository;
 import org.springframework.web.context.request.WebRequest;
 
-import java.util.ArrayList;
-import java.util.List;
+public class SkadeService {
 
-public class SOUService {
-
-    SOURepository souRepo = new SOURepository();
+    SkadeRepository skadeRepo = new SkadeRepository();
 
     public double beregnKmPris(WebRequest request) {
 /*
