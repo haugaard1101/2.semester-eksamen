@@ -16,6 +16,7 @@ public class SOURepository {
 
     private Connection connection = DatabaseConnectionManager.getConnection();
 
+    /*
     public List<SOUModel> getSkadeListe() {
         List<SOUModel> skadeListe = new ArrayList<>();
 
@@ -36,6 +37,7 @@ public class SOURepository {
         }
         return skadeListe;
     }
+     */
 
     public List<LejeAftaleModel> getLejeAftaleByRegistreringsNummer() {
         List<LejeAftaleModel> LejeAftaleListeSOU = new ArrayList<>();

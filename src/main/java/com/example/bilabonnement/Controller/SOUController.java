@@ -7,7 +7,7 @@ import org.springframework.web.context.request.WebRequest;
 public class SOUController {
 
     SOUService souService = new SOUService();
-    @PostMapping("/SOU")
+    /*@PostMapping("/SOU")
     public String createWish(WebRequest request) {
         souService.beregnPrisSOU(request);
         return "SOU";
@@ -18,6 +18,8 @@ public class SOUController {
         souService.beregnPrisSOU(request);
         return "SOU";
     }
+    
+     */
 
 
 }

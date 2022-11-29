@@ -10,27 +10,38 @@ import java.util.List;
 public class SOUService {
 
     SOURepository souRepo = new SOURepository();
-    private int pris;
 
+    List<SOUModel> skadeListe = new ArrayList<>();
 
-    public int beregnPrisSOU(WebRequest request) {
-        souRepo.getSkadeListe();
-
-
-
-
-
-
-
-        return pris;
+    public void addSkader() {
+        skadeListe.add("Lakfelt", 1500);
+        skadeListe.add("Ridset alufælge", 400);
+        skadeListe.add("Ny forrude", 3000);
     }
 
-    public int beregnKmPris(WebRequest request) {
-        int kmKørtIPeriode;
+    public double beregnKmPris(WebRequest request) {
+
+        //Hardcoded
+        int kmVedAfhentning = 1;
+        int kmVedAflevering = 2;
+
+        int kmKørt = kmVedAflevering - kmVedAfhentning;
+        int aftalteKm = 3;
+
+        if (kmKørt > aftalteKm) {
+            int kmKørtForLangt = kmKørt - aftalteKm;
+            return kmKørtForLangt * 0.75;
+        } else return 0;
+    }
+
+    public double beregnPrisSOU(WebRequest request) {
+        addSkader();
 
 
-        //lejeAftale.getKmVedAfhentning
-        return pris;
+
+
+
+        return 0;
     }
 
 }

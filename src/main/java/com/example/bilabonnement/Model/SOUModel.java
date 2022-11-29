@@ -2,11 +2,17 @@ package com.example.bilabonnement.Model;
 
 public class SOUModel {
 
+  private String skadeNavn;
+  private int skadePris;
+
+/*
   private int skadeId;
   private String skadeNavn;
   private int skadePris;
   private int registreringsNummer;
+ */
 
+/*
   public SOUModel(int skadeId, String skadeNavn, int skadePris,
                   int registreringsNummer) {
     this.skadeId = skadeId;
@@ -14,11 +20,14 @@ public class SOUModel {
     this.skadePris = skadePris;
     this.registreringsNummer = registreringsNummer;
   }
+ */
 
-  public SOUModel() {
-
+  public SOUModel(String skadeNavn, int skadePris) {
+    this.skadeNavn = skadeNavn;
+    this.skadePris = skadePris;
   }
 
+  /*
   public int getSkadeId() {
     return skadeId;
   }
@@ -26,6 +35,7 @@ public class SOUModel {
   public void setSkadeId(int skadeId) {
     this.skadeId = skadeId;
   }
+ */
 
   public String getSkadeNavn() {
     return skadeNavn;
@@ -42,7 +52,7 @@ public class SOUModel {
   public void setSkadePris(int skadePris) {
     this.skadePris = skadePris;
   }
-
+/*
   public int getRegistreringsNummer() {
     return registreringsNummer;
   }
@@ -51,13 +61,15 @@ public class SOUModel {
     this.registreringsNummer = registreringsNummer;
   }
 
+ */
+
   @Override
   public String toString() {
     return "SkadeOgUdbedringsModel{" +
-        "skadeId=" + skadeId +
+       // "skadeId=" + skadeId +
         ", skadeNavn='" + skadeNavn + '\'' +
         ", skadePris=" + skadePris +
-        ", registreringsNummer=" + registreringsNummer +
+     //   ", registreringsNummer=" + registreringsNummer +
         '}';
   }
 }
