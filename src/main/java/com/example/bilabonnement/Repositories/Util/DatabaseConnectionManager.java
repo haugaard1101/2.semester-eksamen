@@ -16,7 +16,7 @@ public class DatabaseConnectionManager {
   //Metoder
 
   public static Connection getConnection(){
-    hostname = "jdbc:mysql://myfirstdatabase.mysql.database.azure.com";
+    hostname = "jdbc:mysql://myfirstdatabase.mysql.database.azure.com/bilabonnement";
     username = "Mathias";
     password = "Kalvin123";
 

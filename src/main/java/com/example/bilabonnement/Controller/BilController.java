@@ -9,4 +9,9 @@ public class BilController {
   public String index(){
     return "Random";
   }
+
+  @GetMapping("/login")
+  public String trylogin(){
+    return "Login";
+  }
 }
