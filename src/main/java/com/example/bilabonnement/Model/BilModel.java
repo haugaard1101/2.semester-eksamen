@@ -4,21 +4,23 @@ public class BilModel {
   private int registreringsNummer;
   private String stelnummer;
   private String mærke;
+  private String model;
   private String udstyrNiveau;
-  private UdlejningsStatusEnum udlejningsStatus;
-  private GearEnum gear;
+  private String udlejningsStatus;
+  private String gear;
   private String brændstofType;
   private int kmL;
   private int co2Udledning;
   private int prisPrMåned;
 
-  public BilModel(int registreringsNummer, String stelnummer, String mærke,
-                  String udstyrNiveau, UdlejningsStatusEnum udlejningsStatus,
-                  GearEnum gear, String brændstofType, int kmL, int co2Udledning,
+  public BilModel(int registreringsNummer, String stelnummer, String mærke, String model,
+                  String udstyrNiveau, String udlejningsStatus,
+                  String gear, String brændstofType, int kmL, int co2Udledning,
                   int prisPrMåned) {
     this.registreringsNummer = registreringsNummer;
     this.stelnummer = stelnummer;
     this.mærke = mærke;
+    this.model = model;
     this.udstyrNiveau = udstyrNiveau;
     this.udlejningsStatus = udlejningsStatus;
     this.gear = gear;
@@ -29,6 +31,14 @@ public class BilModel {
   }
 
   public BilModel() {
+  }
+
+  public String getModel() {
+    return model;
+  }
+
+  public void setModel(String model) {
+    this.model = model;
   }
 
   public int getRegistreringsNummer() {
@@ -63,19 +73,19 @@ public class BilModel {
     this.udstyrNiveau = udstyrNiveau;
   }
 
-  public UdlejningsStatusEnum getUdlejningsStatus() {
+  public String getUdlejningsStatus() {
     return udlejningsStatus;
   }
 
-  public void setUdlejningsStatus(UdlejningsStatusEnum udlejningsStatus) {
+  public void setUdlejningsStatus(String udlejningsStatus) {
     this.udlejningsStatus = udlejningsStatus;
   }
 
-  public GearEnum getGear() {
+  public String getGear() {
     return gear;
   }
 
-  public void setGear(GearEnum gear) {
+  public void setGear(String gear) {
     this.gear = gear;
   }
 

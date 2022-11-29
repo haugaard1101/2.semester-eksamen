@@ -4,8 +4,6 @@ import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Model.SOUModel;
 import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
-import com.example.bilabonnement.Model.UdlejningsStatusEnum;
-import com.example.bilabonnement.Model.GearEnum;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,15 +16,15 @@ public class SOURepository {
 
     private Connection connection = DatabaseConnectionManager.getConnection();
 
-    public List<SOUModel> getSOUById(int id){
-        List<SOUModel> SOUListe = new ArrayList<>();
+    public List<SOUModel> getSkadeListe() {
+        List<SOUModel> skadeListe = new ArrayList<>();
 
         try {
-            PreparedStatement psts = connection.prepareStatement("SELECT * FROM Skader where RegistreringsNummer = id");
+            PreparedStatement psts = connection.prepareStatement("SELECT * FROM skader");
             ResultSet resultSet = psts.executeQuery();
 
             while (resultSet.next()) {
-                SOUListe.add(new SOUModel(
+                skadeListe.add(new SOUModel(
                         resultSet.getInt("SkadeID"),
                         resultSet.getString("SkadeNavn"),
                         resultSet.getInt("SkadePris"),
@@ -36,18 +34,18 @@ public class SOURepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return SOUListe;
+        return skadeListe;
     }
 
-    public List<LejeAftaleModel> getLejeAftaleByRegistreringsNummer(int id){
-        List<LejeAftaleModel> LejeAftaleSOU = new ArrayList<>();
+    public List<LejeAftaleModel> getLejeAftaleByRegistreringsNummer() {
+        List<LejeAftaleModel> LejeAftaleListeSOU = new ArrayList<>();
 
         try {
-            PreparedStatement psts = connection.prepareStatement("SELECT * FROM LejeAftale where RegistreringsNummer = id");
+            PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale where RegistreringsNummer = ?");
             ResultSet resultSet = psts.executeQuery();
 
             while (resultSet.next()) {
-                LejeAftaleSOU.add(new LejeAftaleModel(
+                LejeAftaleListeSOU.add(new LejeAftaleModel(
                         resultSet.getString("Navn"),
                         resultSet.getString("Adresse"),
                         resultSet.getInt("Postnummer"),
@@ -70,14 +68,14 @@ public class SOURepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return LejeAftaleSOU;
+        return LejeAftaleListeSOU;
     }
 
-    public List<BilModel> getBilByRegistreringsNummer(int id){
+    public List<BilModel> getBilByRegistreringsNummer() {
         List<BilModel> BilListe = new ArrayList<>();
 
         try {
-            PreparedStatement psts = connection.prepareStatement("SELECT * FROM Biler where RegistreringsNummer = id");
+            PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
             ResultSet resultSet = psts.executeQuery();
 
             while (resultSet.next()) {
@@ -87,8 +85,8 @@ public class SOURepository {
                         resultSet.getString("Mærke"),
                         resultSet.getString("Model"),
                         resultSet.getString("UdstyrsNiveau"),
-                        resultSet.getENUM("UdlejningsStatus"),
-                        resultSet.getENUM("Gear"),
+                        resultSet.getString("UdlejningsStatus"),
+                        resultSet.getString("Gear"),
                         resultSet.getString("BrændstofType"),
                         resultSet.getInt("KM_L"),
                         resultSet.getInt("CO2_Udledning"),
