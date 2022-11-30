@@ -1,5 +1,6 @@
 package com.example.bilabonnement.Service;
 
+import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Repositories.SkadeRepository;
 import org.springframework.web.context.request.WebRequest;
@@ -10,6 +11,10 @@ import java.util.List;
 public class SkadeService {
 
     SkadeRepository skadeRepo = new SkadeRepository();
+
+    public LejeAftaleModel findEnLejekontrakt(String RegNr){
+        return skadeRepo.findEnLejekontrakt(RegNr);
+    }
 
 /*
     public List<LejeAftaleModel> getLejeAftaleByRegNr(HttpSession session){
@@ -52,5 +57,5 @@ public class SkadeService {
 
     */
 
-     
+
 }
