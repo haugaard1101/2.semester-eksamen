@@ -22,7 +22,6 @@ public class SkadeController {
         return "SkadeRegNr";
     }
 
-
     @PostMapping("/visLejekontrakt")
     public String showContract(WebRequest req, HttpSession session){
         LejeAftaleModel lejeaftale = skadeService.findEnLejekontrakt(req.getParameter("RegNr"));
@@ -37,5 +36,18 @@ public class SkadeController {
     return "opretSkadeAngivelse";
     }
 
+
+
+
+
+
+
+
+
+    @GetMapping("/skadeliste")
+    public String visSkadeListe(Model model) {
+        model.addAttribute("SkadeListe", skadeService.getAllSkader());
+        return "/skade/seOgRedigerSkader";
+    }
 
 }

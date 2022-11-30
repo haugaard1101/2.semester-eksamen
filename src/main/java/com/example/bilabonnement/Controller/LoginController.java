@@ -1,7 +1,6 @@
 package com.example.bilabonnement.Controller;
 
 import com.example.bilabonnement.Model.UserModel;
-import com.example.bilabonnement.Repositories.LoginRepository;
 import com.example.bilabonnement.Service.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

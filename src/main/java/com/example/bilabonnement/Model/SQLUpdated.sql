@@ -92,3 +92,5 @@ INSERT into LejeAftale(Navn, Adresse, Postnummer, Kommune, TelefonNr, CPR, Email
                        AktueltKørteKilometer, RegistreringsNummer)
 values ('Marcus Buhl', 'Hvidovrevej 23', 2520, 'Hvidovre', 25230299, '110301-1874', 'randommail@gmail.com',
         '2021-11-12', '2022-04-12', 6, 'Vanløse bilværksted', 'Vanløse bilværksted', 34000, 1500, 2000, 3);
+INSERT INTO skader (SkadeNavn, SkadePris, RegistreringsNummer)
+values ('skade', 1000, 'AT67550')

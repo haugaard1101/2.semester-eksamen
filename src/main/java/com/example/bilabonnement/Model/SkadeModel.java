@@ -5,18 +5,14 @@ public class SkadeModel {
     private int skadeId;
     private String skadeNavn;
     private int skadePris;
-    private String registreringsNummer;
+    private int IDNumber;
 
     public SkadeModel(int skadeId, String skadeNavn, int skadePris,
-                      String registreringsNummer) {
+                      int IDNumber) {
         this.skadeId = skadeId;
         this.skadeNavn = skadeNavn;
         this.skadePris = skadePris;
-        this.registreringsNummer = registreringsNummer;
-    }
-
-    public SkadeModel(String registreringsNummer){
-
+        this.IDNumber = IDNumber;
     }
 
     public int getSkadeId() {
@@ -43,12 +39,12 @@ public class SkadeModel {
         this.skadePris = skadePris;
     }
 
-    public String getRegistreringsNummer() {
-        return registreringsNummer;
+    public int getIDNumber() {
+        return IDNumber;
     }
 
-    public void setRegistreringsNummer(String registreringsNummer) {
-        this.registreringsNummer = registreringsNummer;
+    public void setIDNumber(int IDNumber) {
+        this.IDNumber = IDNumber;
     }
 
     @Override
@@ -57,7 +53,7 @@ public class SkadeModel {
                 "skadeId=" + skadeId +
                 ", skadeNavn='" + skadeNavn + '\'' +
                 ", skadePris=" + skadePris +
-                ", registreringsNummer=" + registreringsNummer +
+                ", registreringsNummer=" + IDNumber +
                 '}';
     }
 }

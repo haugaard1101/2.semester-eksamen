@@ -2,6 +2,7 @@ package com.example.bilabonnement.Service;
 
 import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Model.LejeAftaleModel;
+import com.example.bilabonnement.Model.SkadeModel;
 import com.example.bilabonnement.Repositories.SkadeRepository;
 import org.springframework.web.context.request.WebRequest;
 
@@ -16,46 +17,7 @@ public class SkadeService {
         return skadeRepo.findEnLejekontrakt(RegNr);
     }
 
-/*
-    public List<LejeAftaleModel> getLejeAftaleByRegNr(HttpSession session){
-        return skadeRepo.getLejeAftaleByRegNr(session);
+    public List<SkadeModel> getAllSkader() {
+        return skadeRepo.getSkadeListe();
     }
-    public double beregnKmPris(WebRequest request) {
-/*
-        Hardcoded
-        int kmVedAfhentning = 5;
-        int kmVedAflevering = 10;
-
-        int kmKørt = kmVedAflevering - kmVedAfhentning;
-        int aftalteKm = 3;
-
-        if (kmKørt > aftalteKm) {
-            int kmKørtForLangt = kmKørt - aftalteKm;
-            return kmKørtForLangt * 0.75;
-        } else return 0;
-
-
-        int kmKørt = request.getParameter("kmKørt") - souRepo.getLejeAftaleByReNr().get().getKmVedAfhentning();
-
-        if (kmKørt > souRepo.getLejeAftaleByReNr().get().setMaxKilometer()) {
-            int kmKørtForLangt = kmKørt - souRepo.getLejeAftaleByReNr().get().setMaxKilometer();
-            return kmKørtForLangt * 0.75;
-        } else return 0;
-    }
-
-    public double beregnPrisSOU(WebRequest request) {
-
-
-        if (beregnKmPris(request) + XXXXXX > 0) {
-
-
-            return beregnKmPris(request) + XXXXXX;
-        } else return 0;
-    }
-
-
-
-    */
-
-
 }
