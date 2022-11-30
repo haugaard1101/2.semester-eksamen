@@ -83,7 +83,7 @@ public class SkadeRepository {
 
             while (resultSet.next()) {
                 BilListe.add(new BilModel(
-                        resultSet.getInt("RegistreringsNummer"),
+                        resultSet.getString("RegistreringsNummer"),
                         resultSet.getString("Stelnummer"),
                         resultSet.getString("Mærke"),
                         resultSet.getString("Model"),

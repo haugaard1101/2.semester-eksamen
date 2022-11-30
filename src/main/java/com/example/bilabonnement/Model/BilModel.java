@@ -1,7 +1,7 @@
 package com.example.bilabonnement.Model;
 
 public class BilModel {
-  private int registreringsNummer;
+  private String registreringsNummer;
   private String stelnummer;
   private String mærke;
   private String model;
@@ -13,7 +13,7 @@ public class BilModel {
   private int co2Udledning;
   private int prisPrMåned;
 
-  public BilModel(int registreringsNummer, String stelnummer, String mærke, String model,
+  public BilModel(String registreringsNummer, String stelnummer, String mærke, String model,
                   String udstyrNiveau, String udlejningsStatus,
                   String gear, String brændstofType, int kmL, int co2Udledning,
                   int prisPrMåned) {
@@ -41,11 +41,11 @@ public class BilModel {
     this.model = model;
   }
 
-  public int getRegistreringsNummer() {
+  public String getRegistreringsNummer() {
     return registreringsNummer;
   }
 
-  public void setRegistreringsNummer(int registreringsNummer) {
+  public void setRegistreringsNummer(String registreringsNummer) {
     this.registreringsNummer = registreringsNummer;
   }
 
