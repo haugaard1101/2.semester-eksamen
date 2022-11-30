@@ -5,6 +5,7 @@ import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Model.SkadeModel;
 import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
 
+import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,17 +39,15 @@ public class SkadeRepository {
         return skadeListe;
     }
 
-    public List<LejeAftaleModel> getLejeAftaleByRegNr() {
-        List<LejeAftaleModel> LejeAftaleListeSkade = new ArrayList<>();
-
-
+    public List<LejeAftaleModel> getLejeAftaleByRegNr(HttpSession session) {
+        List<LejeAftaleModel> skadeLejeAftale = new ArrayList<>();
 
         try {
-            PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale");
+            PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale WHERE ");
             ResultSet resultSet = psts.executeQuery();
 
             while (resultSet.next()) {
-                LejeAftaleListeSkade.add(new LejeAftaleModel(
+                skadeLejeAftale.add(new LejeAftaleModel(
                         resultSet.getString("Navn"),
                         resultSet.getString("Adresse"),
                         resultSet.getInt("Postnummer"),
@@ -71,7 +70,7 @@ public class SkadeRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return LejeAftaleListeSkade;
+        return skadeLejeAftale;
     }
 
     public List<BilModel> getBilByRegistreringsNummer() {

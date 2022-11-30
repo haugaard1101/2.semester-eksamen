@@ -19,4 +19,6 @@ public class ForretningsudviklerController {
         return "/forretningsudvikling/forretningsudvikling";
     }
 
+
+ 
 }

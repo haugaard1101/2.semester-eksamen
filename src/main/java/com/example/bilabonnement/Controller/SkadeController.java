@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 public class SkadeController {
@@ -21,14 +23,14 @@ public class SkadeController {
 
 
     @PostMapping("/findBil")
-    public String skadeRegNr(WebRequest webRequest){
-        skadeService.getLejeAftaleByRegNr();
+    public String skadeRegNr(HttpSession session){
+        skadeService.getLejeAftaleByRegNr(session);
         return "SkadeRegNr";
     }
 
     @GetMapping("/opretSkadeAngivelse")
-    public String skadeAngivelse(Model model){
-    model.addAttribute("regNr",skadeService.getLejeAftaleByRegNr());
+    public String skadeAngivelse(){
+
     return "opretSkadeAngivelse";
     }
 

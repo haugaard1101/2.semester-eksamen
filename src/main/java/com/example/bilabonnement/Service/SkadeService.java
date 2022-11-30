@@ -4,6 +4,7 @@ import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Repositories.SkadeRepository;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class SkadeService {
@@ -11,8 +12,8 @@ public class SkadeService {
     SkadeRepository skadeRepo = new SkadeRepository();
 
 
-    public List<LejeAftaleModel> getLejeAftaleByRegNr(){
-        return skadeRepo.getLejeAftaleByRegNr();
+    public List<LejeAftaleModel> getLejeAftaleByRegNr(HttpSession session){
+        return skadeRepo.getLejeAftaleByRegNr(session);
     }
     public double beregnKmPris(WebRequest request) {
 /*
