@@ -60,11 +60,13 @@
 </nav>
 
 <table class="table table-sm">
+    <thead class="table-dark">
     <tr>
     <th scope="col">IDNumber</th>
     <th scope="col">RegistreringsNummer</th>
     <th scope="col">Stelnummer</th>
     <th scope="col">Mærke</th>
+    </thead>
 </tr>
 
     <tr th:each="biler: ${RentedCars}"> <!-- Det her er et Thymeleaf for each loop,  TR = Tablerow, TD table division(kolonner)-->

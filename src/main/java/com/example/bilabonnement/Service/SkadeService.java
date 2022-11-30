@@ -11,7 +11,7 @@ public class SkadeService {
 
     SkadeRepository skadeRepo = new SkadeRepository();
 
-
+/*
     public List<LejeAftaleModel> getLejeAftaleByRegNr(HttpSession session){
         return skadeRepo.getLejeAftaleByRegNr(session);
     }
@@ -52,6 +52,5 @@ public class SkadeService {
 
     */
 
-        return 0;
-    }
+     
 }

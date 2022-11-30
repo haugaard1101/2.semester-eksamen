@@ -24,7 +24,7 @@ public class SkadeController {
 
     @PostMapping("/findBil")
     public String skadeRegNr(HttpSession session){
-        skadeService.getLejeAftaleByRegNr(session);
+        //skadeService.getLejeAftaleByRegNr(session);
         return "SkadeRegNr";
     }
 
