@@ -27,8 +27,8 @@ public class LejeAftaleRepository {
       preparedStatement.setString(11, lejeAftaleModel.getAfhentningssted());
       preparedStatement.setString(12, lejeAftaleModel.getAfleveringssted());
       preparedStatement.setInt(13, lejeAftaleModel.getKmVedAfhentning());
-      preparedStatement.setInt(14, lejeAftaleModel.getMaxKilometer());
-      preparedStatement.setInt(15, lejeAftaleModel.getAktueltKørteKilometer());
+      preparedStatement.setInt(14, lejeAftaleModel.getAftaleKM());
+      preparedStatement.setInt(15, lejeAftaleModel.getKmVedIndlevering());
       preparedStatement.setString(16, lejeAftaleModel.getRegistreringsNummer());
 
       preparedStatement.executeUpdate();
@@ -45,6 +45,7 @@ public class LejeAftaleRepository {
 
         while (resultSet.next()) {
           LejeAftaleListe.add(new LejeAftaleModel(
+              resultSet.getInt("AftaleID"),
               resultSet.getString("Navn"),
               resultSet.getString("Adresse"),
               resultSet.getInt("Postnummer"),
@@ -57,10 +58,9 @@ public class LejeAftaleRepository {
               resultSet.getInt("Antal_Måneder"),
               resultSet.getString("Afhentningssted"),
               resultSet.getString("Afleveringssted"),
-              resultSet.getInt("KM_ved_Afhentning"),
-              resultSet.getInt("AftaleID"),
-              resultSet.getInt("MaxKilometer"),
-              resultSet.getInt("AktueltKørteKilometer"),
+              resultSet.getInt("KmVedAfhentning"),
+              resultSet.getInt("AftaleKM"),
+              resultSet.getInt("KmVedIndlevering"),
               resultSet.getString("RegistreringsNummer")
               ));
         }

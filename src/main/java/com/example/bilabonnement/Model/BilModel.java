@@ -1,22 +1,21 @@
 package com.example.bilabonnement.Model;
 
 public class BilModel {
+  private int IDNumber;
   private String registreringsNummer;
   private String stelnummer;
   private String mærke;
   private String model;
   private String udstyrNiveau;
-  private String udlejningsStatus;
-  private String gear;
+  private UdlejningsStatusEnum udlejningsStatus;
+  private GearEnum gear;
   private String brændstofType;
   private int kmL;
   private int co2Udledning;
   private int prisPrMåned;
 
-  public BilModel(String registreringsNummer, String stelnummer, String mærke, String model,
-                  String udstyrNiveau, String udlejningsStatus,
-                  String gear, String brændstofType, int kmL, int co2Udledning,
-                  int prisPrMåned) {
+  public BilModel(int IDNumber, String registreringsNummer, String stelnummer, String mærke, String model, String udstyrNiveau, UdlejningsStatusEnum udlejningsStatus, GearEnum gear, String brændstofType, int kmL, int co2Udledning, int prisPrMåned) {
+    this.IDNumber = IDNumber;
     this.registreringsNummer = registreringsNummer;
     this.stelnummer = stelnummer;
     this.mærke = mærke;
@@ -31,6 +30,14 @@ public class BilModel {
   }
 
   public BilModel() {
+  }
+
+  public int getIDNumber() {
+    return IDNumber;
+  }
+
+  public GearEnum getGearEnum(){
+    return gear;
   }
 
   public String getModel() {
@@ -73,19 +80,19 @@ public class BilModel {
     this.udstyrNiveau = udstyrNiveau;
   }
 
-  public String getUdlejningsStatus() {
+  public UdlejningsStatusEnum getUdlejningsStatus() {
     return udlejningsStatus;
   }
 
-  public void setUdlejningsStatus(String udlejningsStatus) {
+  public void setUdlejningsStatus(UdlejningsStatusEnum udlejningsStatus) {
     this.udlejningsStatus = udlejningsStatus;
   }
 
-  public String getGear() {
+  public GearEnum getGear() {
     return gear;
   }
 
-  public void setGear(String gear) {
+  public void setGear(GearEnum gear) {
     this.gear = gear;
   }
 

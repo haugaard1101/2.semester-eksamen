@@ -1,6 +1,7 @@
 create database BilAbonnement;
 use BilAbonnement;
 Create table Biler(
+                    IDNumber int auto_increment;
                     RegistreringsNummer int not null auto_increment,
                     Stelnummer varchar(50),
                     Mærke varchar(50),
