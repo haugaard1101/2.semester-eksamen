@@ -71,6 +71,7 @@ public class LejeAftaleRepository {
 
         while (resultSet.next()) {
           LejeAftaleListe.add(new LejeAftaleModel(
+              resultSet.getInt("AftaleID"),
               resultSet.getString("Navn"),
               resultSet.getString("Adresse"),
               resultSet.getInt("Postnummer"),
@@ -84,10 +85,9 @@ public class LejeAftaleRepository {
               resultSet.getString("Afhentningssted"),
               resultSet.getString("Afleveringssted"),
               resultSet.getInt("KM_ved_Afhentning"),
-              resultSet.getInt("AftaleID"),
               resultSet.getInt("MaxKilometer"),
               resultSet.getInt("AktueltKørteKilometer"),
-              resultSet.getInt("RegistreringsNummer")
+              resultSet.getString("RegistreringsNummer")
               ));
         }
       } catch (SQLException e) {
@@ -104,6 +104,7 @@ public class LejeAftaleRepository {
 
       while (resultSet.next()) {
         LejeAftaleListe.add(new LejeAftaleModel(
+            resultSet.getInt("AftaleID"),
             resultSet.getString("Navn"),
             resultSet.getString("Adresse"),
             resultSet.getInt("Postnummer"),
@@ -117,10 +118,9 @@ public class LejeAftaleRepository {
             resultSet.getString("Afhentningssted"),
             resultSet.getString("Afleveringssted"),
             resultSet.getInt("KM_ved_Afhentning"),
-            resultSet.getInt("AftaleID"),
             resultSet.getInt("MaxKilometer"),
             resultSet.getInt("AktueltKørteKilometer"),
-            resultSet.getInt("RegistreringsNummer")
+            resultSet.getString("RegistreringsNummer")
         ));
       }
     } catch (SQLException e) {

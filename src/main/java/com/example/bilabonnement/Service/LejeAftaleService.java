@@ -14,6 +14,7 @@ public class LejeAftaleService {
 
   public void createLejeAftale(WebRequest request,String command) {
     LejeAftaleModel lejeAftale = new LejeAftaleModel(
+        Integer.parseInt(Objects.requireNonNull(request.getParameter("aftaleId"))),
         request.getParameter("Navn"),
         request.getParameter("Adresse"),
         Integer.parseInt(Objects.requireNonNull(request.getParameter("Postnummer"))),
@@ -27,10 +28,10 @@ public class LejeAftaleService {
         request.getParameter("afhentningssted"),
         request.getParameter("afleveringssted"),
         Integer.parseInt(Objects.requireNonNull(request.getParameter("kmVedAfhentning"))),
-        Integer.parseInt(Objects.requireNonNull(request.getParameter("aftaleId"))),
         Integer.parseInt(Objects.requireNonNull(request.getParameter("maxKilometer"))),
         Integer.parseInt(Objects.requireNonNull(request.getParameter("aktueltKørteKilometer"))),
-        Integer.parseInt(Objects.requireNonNull(request.getParameter("registreringsNummer"))));
+        (request.getParameter("registreringsNummer")));
+
     LejeAftaleRepo.createLejeAftale(lejeAftale,command);
   }
   public List<LejeAftaleModel> getLejeAftaleById(int id){
