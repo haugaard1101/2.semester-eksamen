@@ -2,24 +2,24 @@ package com.example.bilabonnement.Model;
 
 public class SkadeModel {
 
-  private int skadeId;
+  private int SkadeID;
   private String registreringsNummer;
   private String skadeNavn;
   private int skadePris;
 
-  public SkadeModel(int skadeId, String registreringsNummer, String skadeNavn, int skadePris) {
-    this.skadeId = skadeId;
+  public SkadeModel(int SkadeID, String registreringsNummer, String skadeNavn, int skadePris) {
+    this.SkadeID = SkadeID;
     this.registreringsNummer = registreringsNummer;
     this.skadeNavn = skadeNavn;
     this.skadePris = skadePris;
   }
 
-  public int getSkadeId() {
-    return skadeId;
+  public int getSkadeID() {
+    return SkadeID;
   }
 
-  public void setSkadeId(int skadeId) {
-    this.skadeId = skadeId;
+  public void setSkadeID(int skadeID) {
+    this.SkadeID = skadeID;
   }
 
   public String getSkadeNavn() {
@@ -49,7 +49,7 @@ public class SkadeModel {
   @Override
   public String toString() {
     return "SkadeOgUdbedringsModel{" +
-        "skadeId=" + skadeId +
+        "skadeId=" + SkadeID +
         ", registreringsNummer=" + registreringsNummer +
         ", skadeNavn='" + skadeNavn + '\'' +
         ", skadePris=" + skadePris +
