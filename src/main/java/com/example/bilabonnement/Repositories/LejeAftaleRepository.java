@@ -16,34 +16,34 @@ public class LejeAftaleRepository {
     try {
       PreparedStatement preparedStatement;
       if (Objects.equals(command, "create")) {
-        preparedStatement = connection.prepareStatement("insert into LejeAftale (Navn,Adresse,Postnummer,Kommune," +
-            "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,Antal_Måneder,Afhentningssted," +
-            "Afleveringssted,KM_ved_Afhentning,MaxKilometer,AktueltKørteKilometer,RegistreringsNummer) " +
+        preparedStatement = connection.prepareStatement("insert into LejeAftale (RegistreringsNummer,Navn,Adresse,Postnummer,Kommune," +
+            "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,AntalMåneder,Afhentningssted," +
+            "Afleveringssted,KmVedAfhentning,AftaleKM,KmVedIndlevering) " +
             "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
       } else {
-        preparedStatement = connection.prepareStatement("UPDATE LejeAftale (Navn,Adresse,Postnummer,Kommune," +
-            "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,Antal_Måneder,Afhentningssted," +
-            "Afleveringssted,KM_ved_Afhentning,MaxKilometer,AktueltKørteKilometer,RegistreringsNummer) " +
+        preparedStatement = connection.prepareStatement("UPDATE LejeAftale (RegistreringsNummer,Navn,Adresse,Postnummer,Kommune," +
+            "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,AntalMåneder,Afhentningssted,"+
+            "Afleveringssted,KmVedAfhentning,AftaleKM,KmVedIndlevering) " +
             "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
       }
 
-      preparedStatement.setString(1, lejeAftaleModel.getNavn());
-      preparedStatement.setString(2, lejeAftaleModel.getAdresse());
-      preparedStatement.setInt(3, lejeAftaleModel.getPostnummer());
-      preparedStatement.setString(4, lejeAftaleModel.getKommune());
-      preparedStatement.setInt(5, lejeAftaleModel.getTelefonNr());
-      preparedStatement.setString(6, lejeAftaleModel.getCpr());
-      preparedStatement.setString(7, lejeAftaleModel.geteMail());
-      preparedStatement.setDate(8, (Date) lejeAftaleModel.getLejeperiodeFra());
-      preparedStatement.setDate(9, (Date) lejeAftaleModel.getLejeperiodeTil());
-      preparedStatement.setInt(10, lejeAftaleModel.getAntalMåneder());
-      preparedStatement.setString(11, lejeAftaleModel.getAfhentningssted());
-      preparedStatement.setString(12, lejeAftaleModel.getAfleveringssted());
-      preparedStatement.setInt(13, lejeAftaleModel.getKmVedAfhentning());
-      preparedStatement.setInt(14, lejeAftaleModel.getAftaleKM());
-      preparedStatement.setInt(15, lejeAftaleModel.getKmVedIndlevering());
-      preparedStatement.setString(16, lejeAftaleModel.getRegistreringsNummer());
+      preparedStatement.setString(1, lejeAftaleModel.getRegistreringsNummer());
+      preparedStatement.setString(2, lejeAftaleModel.getNavn());
+      preparedStatement.setString(3, lejeAftaleModel.getAdresse());
+      preparedStatement.setInt(4, lejeAftaleModel.getPostnummer());
+      preparedStatement.setString(5, lejeAftaleModel.getKommune());
+      preparedStatement.setInt(6, lejeAftaleModel.getTelefonNr());
+      preparedStatement.setString(7, lejeAftaleModel.getCpr());
+      preparedStatement.setString(8, lejeAftaleModel.geteMail());
+      preparedStatement.setDate(9, (Date) lejeAftaleModel.getLejeperiodeFra());
+      preparedStatement.setDate(10, (Date) lejeAftaleModel.getLejeperiodeTil());
+      preparedStatement.setInt(11, lejeAftaleModel.getAntalMåneder());
+      preparedStatement.setString(12, lejeAftaleModel.getAfhentningssted());
+      preparedStatement.setString(13, lejeAftaleModel.getAfleveringssted());
+      preparedStatement.setInt(14, lejeAftaleModel.getKmVedAfhentning());
+      preparedStatement.setInt(15, lejeAftaleModel.getAftaleKM());
+      preparedStatement.setInt(16, lejeAftaleModel.getKmVedIndlevering());
 
       preparedStatement.executeUpdate();
     } catch (SQLException e) {
@@ -54,7 +54,7 @@ public class LejeAftaleRepository {
 
   public void deleteLejeAftaleListe(int id){
    try{
-     PreparedStatement psts = connection.prepareStatement("DELETE * FROM LejeAftale where AftaleID = ?");
+     PreparedStatement psts = connection.prepareStatement("DELETE * FROM LejeAftale where RegistreringsNummer = ?");
      psts.setInt(1, id);
    }
   catch (SQLException e) {
@@ -65,7 +65,7 @@ public class LejeAftaleRepository {
       List<LejeAftaleModel> LejeAftaleListe = new ArrayList<>();
 
       try {
-        PreparedStatement psts = connection.prepareStatement("SELECT * FROM LejeAftale where AftaleID = ?");
+        PreparedStatement psts = connection.prepareStatement("SELECT * FROM LejeAftale where RegistreringsNummer = ?");
         psts.setInt(1, id);
         ResultSet resultSet = psts.executeQuery();
 
@@ -81,14 +81,14 @@ public class LejeAftaleRepository {
               resultSet.getString("Email"),
               resultSet.getDate("LejeperiodeFra"),
               resultSet.getDate("LejeperiodeTil"),
-              resultSet.getInt("Antal_Måneder"),
+              resultSet.getInt("AntalMåneder"),
               resultSet.getString("Afhentningssted"),
               resultSet.getString("Afleveringssted"),
-              resultSet.getInt("KM_ved_Afhentning"),
-              resultSet.getInt("MaxKilometer"),
-              resultSet.getInt("AktueltKørteKilometer"),
+              resultSet.getInt("KmVedAfhentning"),
+              resultSet.getInt("AftaleKM"),
+              resultSet.getInt("KmVedIndlevering"),
               resultSet.getString("RegistreringsNummer")
-              ));
+                  ));
         }
       } catch (SQLException e) {
         throw new RuntimeException(e);
@@ -114,12 +114,12 @@ public class LejeAftaleRepository {
             resultSet.getString("Email"),
             resultSet.getDate("LejeperiodeFra"),
             resultSet.getDate("LejeperiodeTil"),
-            resultSet.getInt("Antal_Måneder"),
+            resultSet.getInt("AntalMåneder"),
             resultSet.getString("Afhentningssted"),
             resultSet.getString("Afleveringssted"),
-            resultSet.getInt("KM_ved_Afhentning"),
-            resultSet.getInt("MaxKilometer"),
-            resultSet.getInt("AktueltKørteKilometer"),
+            resultSet.getInt("KmVedAfhentning"),
+            resultSet.getInt("AftaleKM"),
+            resultSet.getInt("KmVedIndlevering"),
             resultSet.getString("RegistreringsNummer")
         ));
       }
