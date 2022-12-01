@@ -44,7 +44,7 @@ public class LejeAftaleModel {
 
   public LejeAftaleModel(String navn, String adresse, int postnummer, String kommune, int telefonNr, String cpr, String eMail, Date lejeperiodeFra, Date lejeperiodeTil, int antalMåneder, String afhentningssted, String afleveringssted, int kmVedAfhentning, int aftaleKM, int kmVedIndlevering, String registreringsNummer) {
     this.navn = navn;
-this.adresse = adresse;
+    this.adresse = adresse;
     this.postnummer = postnummer;
     this.kommune = kommune;
     this.telefonNr = telefonNr;
