@@ -16,6 +16,9 @@ public class SkadeService {
     public LejeAftaleModel findEnLejekontrakt(String RegNr){
         return skadeRepo.findEnLejekontrakt(RegNr);
     }
+    public BilModel findEnBil(String RegNr){
+        return skadeRepo.findEnBil(RegNr);
+    }
 
     public List<SkadeModel> getAllSkader() {
         return skadeRepo.getSkadeListe();

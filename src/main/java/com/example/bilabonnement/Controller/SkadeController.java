@@ -1,5 +1,6 @@
 package com.example.bilabonnement.Controller;
 
+import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Service.SkadeService;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,9 @@ public class SkadeController {
     @PostMapping("/visLejekontrakt")
     public String showContract(WebRequest req, Model model){
         LejeAftaleModel lejeaftale = skadeService.findEnLejekontrakt(req.getParameter("RegNr"));
+        BilModel bil = skadeService.findEnBil(req.getParameter("RegNr"));
         model.addAttribute("lejeAftale",lejeaftale);
+        model.addAttribute("Bil",bil);
         return "/skade/registrerSkade";
     }
 

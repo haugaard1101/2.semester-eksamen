@@ -67,4 +67,33 @@ public class SkadeRepository {
     }
     return lejeaftale;
   }
+
+  public BilModel findEnBil(String RegNr) {
+    BilModel bil = null;
+    try {
+      PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where IDNumber = ?");
+      psts.setString(1, RegNr);
+      ResultSet resultSet = psts.executeQuery();
+
+      while (resultSet.next()) {
+        bil = new BilModel(
+            resultSet.getInt("IDNumber"),
+            resultSet.getString("RegistreringsNummer"),
+            resultSet.getString("Stelnummer"),
+            resultSet.getString("Mærke"),
+            resultSet.getString("Model"),
+            resultSet.getString("UdstyrsNiveau"),
+            UdlejningsStatusEnum.valueOf(resultSet.getString("UdlejningsStatus")),
+            GearEnum.valueOf(resultSet.getString("Gear")),
+            resultSet.getString("BrændstofType"),
+            resultSet.getInt("KmL"),
+            resultSet.getInt("CO2_Udledning"),
+            resultSet.getInt("PrisPrMåned")
+        );
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return bil;
+  }
 }
