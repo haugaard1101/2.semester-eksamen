@@ -23,9 +23,9 @@ public class SkadeRepository {
       while (resultSet.next()) {
         skadeListe.add(new SkadeModel(
             resultSet.getInt("SkadeID"),
+            resultSet.getString("RegistreringsNummer"),
             resultSet.getString("SkadeNavn"),
-            resultSet.getInt("SkadePris"),
-            resultSet.getInt("IDNumber")
+            resultSet.getInt("SkadePris")
         ));
       }
     } catch (SQLException e) {
@@ -71,7 +71,7 @@ public class SkadeRepository {
   public BilModel findEnBil(String RegNr) {
     BilModel bil = null;
     try {
-      PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where IDNumber = ?");
+      PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
       psts.setString(1, RegNr);
       ResultSet resultSet = psts.executeQuery();
 

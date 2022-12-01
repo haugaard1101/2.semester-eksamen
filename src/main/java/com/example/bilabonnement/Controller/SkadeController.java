@@ -36,17 +36,10 @@ public class SkadeController {
     return "/skade/opretSkadeAngivelse";
     }
 
-
-
-
-
-
-
-
-
     @GetMapping("/skadeliste")
     public String visSkadeListe(Model model) {
         model.addAttribute("SkadeListe", skadeService.getAllSkader());
+        System.out.println(skadeService.getAllSkader());
         return "/skade/seOgRedigerSkader";
     }
 

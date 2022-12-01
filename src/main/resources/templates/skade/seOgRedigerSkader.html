@@ -62,13 +62,17 @@
 <table class="table table-sm">
     <thead class="table-dark">
     <tr>
+        <th scope="col">SkadeID</th>
+        <th scope="col">RegistreringsNummer</th>
         <th scope="col">SkadeNavn</th>
         <th scope="col">SkadePris</th>
     </thead>
     </tr>
 
     <tr th:each="skader: ${SkadeListe}">
-        <!-- Det her er et Thymeleaf for each loop,  TR = Tablerow, TD table division(kolonner)-->
+        <!-- Det her er et Thymeleaf for each loop,  TR = Tablerow, TD table division(kolonner) -->
+        <td th:text="${skader.SkadeID}"/>
+        <td th:text="${skader.RegistreringsNummer}"/>
         <td th:text="${skader.SkadeNavn}"/>
         <td th:text="${skader.SkadePris}"/>
 

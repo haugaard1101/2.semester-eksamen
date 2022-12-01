@@ -67,6 +67,7 @@
 <table>
   <tr th:text= "${lejeAftale}">
     <td th:text="${lejeaftale.AftaleID}"></td>
+    <td th:text="${lejeaftale.RegistreringsNummer}"></td>
     <td th:text="${lejeaftale.Navn}"></td>
     <td th:text="${lejeaftale.Adresse}"></td>
     <td th:text="${lejeaftale.Postnummer}"></td>
@@ -83,7 +84,24 @@
     <td th:text="${lejeaftale.AftaleID}"></td>
     <td th:text="${lejeaftale.AftaleKM}"></td>
     <td th:text="${lejeaftale.KmVedIndlevering}"></td>
-    <td th:text="${lejeaftale.RegistreringsNummer}"></td>
+  </tr>
+</table>
+
+<table>
+  <tr th:text= "${Bil}">
+    <td th:text="${biler.IDNumber}"></td>
+    <td th:text="${biler.RegistreringsNummer}"></td>
+    <td th:text="${biler.Stelnummer}"></td>
+    <td th:text="${biler.Mærke}"></td>
+    <td th:text="${biler.Model}"></td>
+    <td th:text="${biler.Udstyrsniveau}"></td>
+    <td th:text="${biler.UdlejningsStatus}"></td>
+    <td th:text="${biler.Gear}"></td>
+    <td th:text="${biler.BrændstofType}"></td>
+    <td th:text="${biler.KmL}"></td>
+    <td th:text="${biler.CO2_Udledning}"></td>
+    <td th:text="${biler.PrisPrMåned}"></td>
+
   </tr>
 </table>
 

@@ -29,7 +29,7 @@ Create table Biler
 Create table Skader
 (
     SkadeID             int not null auto_increment,
-    RegistreringsNummer varchar(50) unique,
+    RegistreringsNummer varchar(50),
     SkadeNavn           varchar(100),
     SkadePris           int,
     primary key (SkadeID),

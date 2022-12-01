@@ -2,58 +2,57 @@ package com.example.bilabonnement.Model;
 
 public class SkadeModel {
 
-    private int skadeId;
-    private String skadeNavn;
-    private int skadePris;
-    private int IDNumber;
+  private int skadeId;
+  private String registreringsNummer;
+  private String skadeNavn;
+  private int skadePris;
 
-    public SkadeModel(int skadeId, String skadeNavn, int skadePris,
-                      int IDNumber) {
-        this.skadeId = skadeId;
-        this.skadeNavn = skadeNavn;
-        this.skadePris = skadePris;
-        this.IDNumber = IDNumber;
-    }
+  public SkadeModel(int skadeId, String registreringsNummer, String skadeNavn, int skadePris) {
+    this.skadeId = skadeId;
+    this.registreringsNummer = registreringsNummer;
+    this.skadeNavn = skadeNavn;
+    this.skadePris = skadePris;
+  }
 
-    public int getSkadeId() {
-        return skadeId;
-    }
+  public int getSkadeId() {
+    return skadeId;
+  }
 
-    public void setSkadeId(int skadeId) {
-        this.skadeId = skadeId;
-    }
+  public void setSkadeId(int skadeId) {
+    this.skadeId = skadeId;
+  }
 
-    public String getSkadeNavn() {
-        return skadeNavn;
-    }
+  public String getSkadeNavn() {
+    return skadeNavn;
+  }
 
-    public void setSkadeNavn(String skadeNavn) {
-        this.skadeNavn = skadeNavn;
-    }
+  public void setSkadeNavn(String skadeNavn) {
+    this.skadeNavn = skadeNavn;
+  }
 
-    public int getSkadePris() {
-        return skadePris;
-    }
+  public int getSkadePris() {
+    return skadePris;
+  }
 
-    public void setSkadePris(int skadePris) {
-        this.skadePris = skadePris;
-    }
+  public void setSkadePris(int skadePris) {
+    this.skadePris = skadePris;
+  }
 
-    public int getIDNumber() {
-        return IDNumber;
-    }
+  public String getRegistreringsNummer() {
+    return registreringsNummer;
+  }
 
-    public void setIDNumber(int IDNumber) {
-        this.IDNumber = IDNumber;
-    }
+  public void setRegistreringsNummer(String registreringsNummer) {
+    this.registreringsNummer = registreringsNummer;
+  }
 
-    @Override
-    public String toString() {
-        return "SkadeOgUdbedringsModel{" +
-                "skadeId=" + skadeId +
-                ", skadeNavn='" + skadeNavn + '\'' +
-                ", skadePris=" + skadePris +
-                ", registreringsNummer=" + IDNumber +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "SkadeOgUdbedringsModel{" +
+        "skadeId=" + skadeId +
+        ", registreringsNummer=" + registreringsNummer +
+        ", skadeNavn='" + skadeNavn + '\'' +
+        ", skadePris=" + skadePris +
+        '}';
+  }
 }
