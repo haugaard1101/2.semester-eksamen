@@ -41,9 +41,9 @@ public class LejeAftaleRepository {
       preparedStatement.setString(11, lejeAftaleModel.getAfhentningssted());
       preparedStatement.setString(12, lejeAftaleModel.getAfleveringssted());
       preparedStatement.setInt(13, lejeAftaleModel.getKmVedAfhentning());
-      preparedStatement.setInt(14, lejeAftaleModel.getMaxKilometer());
-      preparedStatement.setInt(15, lejeAftaleModel.getAktueltKørteKilometer());
-      preparedStatement.setInt(16, lejeAftaleModel.getRegistreringsNummer());
+      preparedStatement.setInt(14, lejeAftaleModel.getAftaleKM());
+      preparedStatement.setInt(15, lejeAftaleModel.getKmVedIndlevering());
+      preparedStatement.setString(16, lejeAftaleModel.getRegistreringsNummer());
 
       preparedStatement.executeUpdate();
     } catch (SQLException e) {

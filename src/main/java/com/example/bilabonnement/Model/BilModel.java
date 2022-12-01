@@ -1,9 +1,11 @@
 package com.example.bilabonnement.Model;
 
 public class BilModel {
-  private int registreringsNummer;
+  private int IDNumber;
+  private String registreringsNummer;
   private String stelnummer;
   private String mærke;
+  private String model;
   private String udstyrNiveau;
   private UdlejningsStatusEnum udlejningsStatus;
   private GearEnum gear;
@@ -12,13 +14,12 @@ public class BilModel {
   private int co2Udledning;
   private int prisPrMåned;
 
-  public BilModel(int registreringsNummer, String stelnummer, String mærke,
-                  String udstyrNiveau, UdlejningsStatusEnum udlejningsStatus,
-                  GearEnum gear, String brændstofType, int kmL, int co2Udledning,
-                  int prisPrMåned) {
+  public BilModel(int IDNumber, String registreringsNummer, String stelnummer, String mærke, String model, String udstyrNiveau, UdlejningsStatusEnum udlejningsStatus, GearEnum gear, String brændstofType, int kmL, int co2Udledning, int prisPrMåned) {
+    this.IDNumber = IDNumber;
     this.registreringsNummer = registreringsNummer;
     this.stelnummer = stelnummer;
     this.mærke = mærke;
+    this.model = model;
     this.udstyrNiveau = udstyrNiveau;
     this.udlejningsStatus = udlejningsStatus;
     this.gear = gear;
@@ -31,11 +32,27 @@ public class BilModel {
   public BilModel() {
   }
 
-  public int getRegistreringsNummer() {
+  public int getIDNumber() {
+    return IDNumber;
+  }
+
+  public GearEnum getGearEnum(){
+    return gear;
+  }
+
+  public String getModel() {
+    return model;
+  }
+
+  public void setModel(String model) {
+    this.model = model;
+  }
+
+  public String getRegistreringsNummer() {
     return registreringsNummer;
   }
 
-  public void setRegistreringsNummer(int registreringsNummer) {
+  public void setRegistreringsNummer(String registreringsNummer) {
     this.registreringsNummer = registreringsNummer;
   }
 

@@ -4,16 +4,21 @@ public class UserModel {
 
   private int userId;
   private String userName;
-  private String password;
+  private String userPassword;
 
-  public UserModel(int userId, String userName, String password) {
+  public UserModel(int userId, String userName, String userPassword) {
     this.userId = userId;
     this.userName = userName;
-    this.password = password;
+    this.userPassword = userPassword;
   }
 
   public UserModel() {
 
+  }
+
+  public UserModel(String userName,String userPassword){
+    this.userName = userName;
+    this.userPassword = userPassword;
   }
 
   public int getUserId() {
@@ -32,12 +37,12 @@ public class UserModel {
     this.userName = userName;
   }
 
-  public String getPassword() {
-    return password;
+  public String getUserPassword() {
+    return userPassword;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  public void setUserPassword(String userPassword) {
+    this.userPassword = userPassword;
   }
 
   @Override
@@ -45,7 +50,7 @@ public class UserModel {
     return "UserModel{" +
         "userId=" + userId +
         ", userName='" + userName + '\'' +
-        ", password='" + password + '\'' +
+        ", password='" + userPassword + '\'' +
         '}';
   }
 }
