@@ -65,7 +65,8 @@
         crossorigin="anonymous"></script>
 
 <table>
-  <tr th:each="lejeaftale: ${regNr}">
+  <tr th:text= "${lejeAftale}">
+    <td th:text="${lejeaftale.AftaleID}"></td>
     <td th:text="${lejeaftale.Navn}"></td>
     <td th:text="${lejeaftale.Adresse}"></td>
     <td th:text="${lejeaftale.Postnummer}"></td>
@@ -75,13 +76,13 @@
     <td th:text="${lejeaftale.Email}"></td>
     <td th:text="${lejeaftale.LejeperiodeFra}"></td>
     <td th:text="${lejeaftale.LejeperiodeTil}"></td>
-    <td th:text="${lejeaftale.Antal_Måneder}"></td>
+    <td th:text="${lejeaftale.AntalMåneder}"></td>
     <td th:text="${lejeaftale.Afhentningssted}"></td>
     <td th:text="${lejeaftale.Aflveringssted}"></td>
-    <td th:text="${lejeaftale.KM_ved_Afhentning}"></td>
+    <td th:text="${lejeaftale.KmVedAfhentning}"></td>
     <td th:text="${lejeaftale.AftaleID}"></td>
-    <td th:text="${lejeaftale.MaxKilometer}"></td>
-    <td th:text="${lejeaftale.AktueltKørteKilometer}"></td>
+    <td th:text="${lejeaftale.AftaleKM}"></td>
+    <td th:text="${lejeaftale.KmVedIndlevering}"></td>
     <td th:text="${lejeaftale.RegistreringsNummer}"></td>
   </tr>
 </table>

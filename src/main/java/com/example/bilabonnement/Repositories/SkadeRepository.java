@@ -35,14 +35,14 @@ public class SkadeRepository {
   }
 
   public LejeAftaleModel findEnLejekontrakt(String RegNr) {
-
+    LejeAftaleModel lejeaftale = null;
     try {
       PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale where RegistreringsNummer = ?");
       psts.setString(1, RegNr);
       ResultSet resultSet = psts.executeQuery();
 
       while (resultSet.next()) {
-        return new LejeAftaleModel(
+        lejeaftale = new LejeAftaleModel(
             resultSet.getInt("AftaleID"),
             resultSet.getString("Navn"),
             resultSet.getString("Adresse"),
@@ -53,7 +53,7 @@ public class SkadeRepository {
             resultSet.getString("Email"),
             resultSet.getDate("LejeperiodeFra"),
             resultSet.getDate("LejeperiodeTil"),
-            resultSet.getInt("Antal_Måneder"),
+            resultSet.getInt("AntalMåneder"),
             resultSet.getString("Afhentningssted"),
             resultSet.getString("Afleveringssted"),
             resultSet.getInt("KmVedAfhentning"),
@@ -65,6 +65,6 @@ public class SkadeRepository {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return null;
+    return lejeaftale;
   }
 }
