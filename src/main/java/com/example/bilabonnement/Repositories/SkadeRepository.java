@@ -96,4 +96,14 @@ public class SkadeRepository {
     }
     return bil;
   }
+
+  public void deleteSkade(int ID) {
+    try {
+      PreparedStatement psts = connection.prepareStatement("DELETE * FROM skader where SkadeID = ?");
+      psts.setInt(1, ID);
+      psts.executeQuery();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
 }

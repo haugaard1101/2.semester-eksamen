@@ -23,4 +23,8 @@ public class SkadeService {
     public List<SkadeModel> getAllSkader() {
         return skadeRepo.getSkadeListe();
     }
+
+    public void deleteSkade(int ID){
+        skadeRepo.deleteSkade(ID);
+    }
 }
