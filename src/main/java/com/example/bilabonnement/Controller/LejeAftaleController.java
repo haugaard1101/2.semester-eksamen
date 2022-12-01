@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 public class LejeAftaleController {
   @GetMapping("/Dataregistrering")
-  public String index(HttpSession session){
-    return "index";
+  public String index(){
+    return "Random";
   }
 }
