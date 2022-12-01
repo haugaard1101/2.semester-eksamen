@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
@@ -19,7 +20,7 @@ public class SkadeController {
 
     @GetMapping ("/findBil")
     public String SkadeRegNr () {
-        return "SkadeRegNr";
+        return "/skade/SkadeRegNr";
     }
 
     @PostMapping("/visLejekontrakt")
@@ -27,13 +28,13 @@ public class SkadeController {
         LejeAftaleModel lejeaftale = skadeService.findEnLejekontrakt(req.getParameter("RegNr"));
         System.out.println(lejeaftale);
         session.setAttribute("lejeaftale",lejeaftale);
-        return "registrerSkade";
+        return "/skade/registrerSkade";
     }
 
     @GetMapping("/opretSkadeAngivelse")
     public String skadeAngivelse(){
 
-    return "opretSkadeAngivelse";
+    return "/skade/opretSkadeAngivelse";
     }
 
 
