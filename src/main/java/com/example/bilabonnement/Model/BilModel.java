@@ -1,39 +1,39 @@
 package com.example.bilabonnement.Model;
 
 public class BilModel {
-  private int IDNumber;
+  private int idNumber;
   private String registreringsNummer;
   private String stelnummer;
-  private String mærke;
+  private String maerke;
   private String model;
   private String udstyrNiveau;
   private UdlejningsStatusEnum udlejningsStatus;
   private GearEnum gear;
-  private String brændstofType;
+  private String braendstofType;
   private int kmL;
   private int co2Udledning;
-  private int prisPrMåned;
+  private int prisPrMaaned;
 
-  public BilModel(int IDNumber, String registreringsNummer, String stelnummer, String mærke, String model, String udstyrNiveau, UdlejningsStatusEnum udlejningsStatus, GearEnum gear, String brændstofType, int kmL, int co2Udledning, int prisPrMåned) {
-    this.IDNumber = IDNumber;
+  public BilModel(int idNumber, String registreringsNummer, String stelnummer, String maerke, String model, String udstyrNiveau, UdlejningsStatusEnum udlejningsStatus, GearEnum gear, String braendstofType, int kmL, int co2Udledning, int prisPrMaaned) {
+    this.idNumber = idNumber;
     this.registreringsNummer = registreringsNummer;
     this.stelnummer = stelnummer;
-    this.mærke = mærke;
+    this.maerke = maerke;
     this.model = model;
     this.udstyrNiveau = udstyrNiveau;
     this.udlejningsStatus = udlejningsStatus;
     this.gear = gear;
-    this.brændstofType = brændstofType;
+    this.braendstofType = braendstofType;
     this.kmL = kmL;
     this.co2Udledning = co2Udledning;
-    this.prisPrMåned = prisPrMåned;
+    this.prisPrMaaned = prisPrMaaned;
   }
 
   public BilModel() {
   }
 
-  public int getIDNumber() {
-    return IDNumber;
+  public int getIdNumber() {
+    return idNumber;
   }
 
   public GearEnum getGearEnum(){
@@ -64,12 +64,12 @@ public class BilModel {
     this.stelnummer = stelnummer;
   }
 
-  public String getMærke() {
-    return mærke;
+  public String getMaerke() {
+    return maerke;
   }
 
-  public void setMærke(String mærke) {
-    this.mærke = mærke;
+  public void setMaerke(String maerke) {
+    this.maerke = maerke;
   }
 
   public String getUdstyrNiveau() {
@@ -96,12 +96,12 @@ public class BilModel {
     this.gear = gear;
   }
 
-  public String getBrændstofType() {
-    return brændstofType;
+  public String getBraendstofType() {
+    return braendstofType;
   }
 
-  public void setBrændstofType(String brændstofType) {
-    this.brændstofType = brændstofType;
+  public void setBraendstofType(String braendstofType) {
+    this.braendstofType = braendstofType;
   }
 
   public int getKmL() {
@@ -120,12 +120,12 @@ public class BilModel {
     this.co2Udledning = co2Udledning;
   }
 
-  public int getPrisPrMåned() {
-    return prisPrMåned;
+  public int getPrisPrMaaned() {
+    return prisPrMaaned;
   }
 
-  public void setPrisPrMåned(int prisPrMåned) {
-    this.prisPrMåned = prisPrMåned;
+  public void setPrisPrMaaned(int prisPrMaaned) {
+    this.prisPrMaaned = prisPrMaaned;
   }
 
   @Override
@@ -133,14 +133,14 @@ public class BilModel {
     return "BilModel{" +
         "registreringsNummer=" + registreringsNummer +
         ", stelnummer='" + stelnummer + '\'' +
-        ", mærke='" + mærke + '\'' +
+        ", mærke='" + maerke + '\'' +
         ", udstyrNiveau='" + udstyrNiveau + '\'' +
         ", udlejningsStatus=" + udlejningsStatus +
         ", gear=" + gear +
-        ", brændstofType='" + brændstofType + '\'' +
+        ", brændstofType='" + braendstofType + '\'' +
         ", kmL=" + kmL +
         ", co2Udledning=" + co2Udledning +
-        ", prisPrMåned=" + prisPrMåned +
+        ", prisPrMåned=" + prisPrMaaned +
         '}';
   }
 }

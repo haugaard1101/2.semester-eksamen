@@ -70,9 +70,18 @@
 </tr>
 
     <tr th:each="biler: ${RentedCars}"> <!-- Det her er et Thymeleaf for each loop,  TR = Tablerow, TD table division(kolonner)-->
-        <td th:text="${biler.IDNumber}"/>
-        <td th:text="${biler.RegistreringsNummer}"/>
-        <td th:text="${biler.Stelnummer}"/>
+        <td th:text="${biler.idNumber}"/>
+        <td th:text="${biler.registreringsNummer}"/>
+        <td th:text="${biler.stelnummer}"/>
+        <td th:text="${biler.maerke}"/>
+        <td th:text="${biler.model}"/>
+        <td th:text="${biler.udstyrNiveau}"/>
+        <td th:text="${biler.udlejningsStatus}"/>
+        <td th:text="${biler.gear}"/>
+        <td th:text="${biler.braendstofType}"/>
+        <td th:text="${biler.kmL}"/>
+        <td th:text="${biler.co2Udledning}"/>
+        <td th:text="${biler.prisPrMaaned}"/>
 
     </tr>
 </table>
