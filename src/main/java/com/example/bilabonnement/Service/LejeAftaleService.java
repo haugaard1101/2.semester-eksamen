@@ -14,23 +14,23 @@ public class LejeAftaleService {
 
   public void createLejeAftale(WebRequest request,String command) {
     LejeAftaleModel lejeAftale = new LejeAftaleModel(
-        Integer.parseInt(Objects.requireNonNull(request.getParameter("aftaleId"))),
+       // Integer.valueOf(request.getParameter("aftaleId")),
         request.getParameter("Navn"),
         request.getParameter("Adresse"),
-        Integer.parseInt(Objects.requireNonNull(request.getParameter("Postnummer"))),
+        Integer.parseInt(request.getParameter("Postnummer")),
         request.getParameter("Kommune"),
-        Integer.parseInt(Objects.requireNonNull(request.getParameter("TelefonNr"))),
+        Integer.parseInt(request.getParameter("TelefonNr")),
         request.getParameter("cpr"),
         request.getParameter("eMail"),
-        Date.valueOf(Objects.requireNonNull(request.getParameter("lejeperiodeFra"))),
-        Date.valueOf(Objects.requireNonNull(request.getParameter("lejeperiodeTil"))),
-        Integer.parseInt(Objects.requireNonNull(request.getParameter("antalMåneder"))),
+        request.getParameter("LejeperiodeFra"),
+        request.getParameter("LejeperiodeTil"),
+        request.getParameter("AntalMaaneder"),
         request.getParameter("afhentningssted"),
         request.getParameter("afleveringssted"),
-        Integer.parseInt(Objects.requireNonNull(request.getParameter("kmVedAfhentning"))),
-        Integer.parseInt(Objects.requireNonNull(request.getParameter("maxKilometer"))),
-        Integer.parseInt(Objects.requireNonNull(request.getParameter("aktueltKørteKilometer"))),
-        (request.getParameter("registreringsNummer")));
+        Integer.parseInt((request.getParameter("kmVedAfhentning"))),
+        Integer.parseInt((request.getParameter("AftaleKM"))),
+        Integer.parseInt((request.getParameter("KmVedIndlevering"))),
+        request.getParameter("registreringsNummer"));
 
     LejeAftaleRepo.createLejeAftale(lejeAftale,command);
   }

@@ -1,7 +1,5 @@
 package com.example.bilabonnement.Model;
 
-import java.util.Date;
-
 public class LejeAftaleModel {
 
   private int aftaleId;
@@ -11,10 +9,10 @@ public class LejeAftaleModel {
   private String kommune;
   private int telefonNr;
   private String cpr;
-  private String eMail;
-  private Date lejeperiodeFra;
-  private Date lejeperiodeTil;
-  private int antalMåneder;
+  private String Email;
+  private String LejeperiodeFra;
+  private String LejeperiodeTil;
+  private String AntalMaaneder;
   private String afhentningssted;
   private String afleveringssted;
   private int kmVedAfhentning;
@@ -22,7 +20,7 @@ public class LejeAftaleModel {
   private int kmVedIndlevering;
   private String registreringsNummer;
 
-  public LejeAftaleModel(int aftaleId, String navn, String adresse, int postnummer, String kommune, int telefonNr, String cpr, String eMail, Date lejeperiodeFra, Date lejeperiodeTil, int antalMåneder, String afhentningssted, String afleveringssted, int kmVedAfhentning, int aftaleKM, int kmVedIndlevering, String registreringsNummer) {
+  public LejeAftaleModel(int aftaleId, String navn, String adresse, int postnummer, String kommune, int telefonNr, String cpr, String Email, String lejeperiodeFra, String lejeperiodeTil, String AntalMaaneder, String afhentningssted, String afleveringssted, int kmVedAfhentning, int aftaleKM, int kmVedIndlevering, String registreringsNummer) {
     this.aftaleId = aftaleId;
     this.navn = navn;
     this.adresse = adresse;
@@ -30,10 +28,10 @@ public class LejeAftaleModel {
     this.kommune = kommune;
     this.telefonNr = telefonNr;
     this.cpr = cpr;
-    this.eMail = eMail;
-    this.lejeperiodeFra = lejeperiodeFra;
-    this.lejeperiodeTil = lejeperiodeTil;
-    this.antalMåneder = antalMåneder;
+    this.Email = Email;
+    this.LejeperiodeFra = lejeperiodeFra;
+    this.LejeperiodeTil = lejeperiodeTil;
+    this.AntalMaaneder = AntalMaaneder;
     this.afhentningssted = afhentningssted;
     this.afleveringssted = afleveringssted;
     this.kmVedAfhentning = kmVedAfhentning;
@@ -42,17 +40,17 @@ public class LejeAftaleModel {
     this.registreringsNummer = registreringsNummer;
   }
 
-  public LejeAftaleModel(String navn, String adresse, int postnummer, String kommune, int telefonNr, String cpr, String eMail, Date lejeperiodeFra, Date lejeperiodeTil, int antalMåneder, String afhentningssted, String afleveringssted, int kmVedAfhentning, int aftaleKM, int kmVedIndlevering, String registreringsNummer) {
+  public LejeAftaleModel(String navn, String adresse, int postnummer, String kommune, int telefonNr, String cpr, String Email, String lejeperiodeFra, String lejeperiodeTil, String AntalMaaneder, String afhentningssted, String afleveringssted, int kmVedAfhentning, int aftaleKM, int kmVedIndlevering, String registreringsNummer) {
     this.navn = navn;
     this.adresse = adresse;
     this.postnummer = postnummer;
     this.kommune = kommune;
     this.telefonNr = telefonNr;
     this.cpr = cpr;
-    this.eMail = eMail;
-    this.lejeperiodeFra = lejeperiodeFra;
-    this.lejeperiodeTil = lejeperiodeTil;
-    this.antalMåneder = antalMåneder;
+    this.Email = Email;
+    this.LejeperiodeFra = lejeperiodeFra;
+    this.LejeperiodeTil = lejeperiodeTil;
+    this.AntalMaaneder = AntalMaaneder;
     this.afhentningssted = afhentningssted;
     this.afleveringssted = afleveringssted;
     this.kmVedAfhentning = kmVedAfhentning;
@@ -113,36 +111,37 @@ public class LejeAftaleModel {
     this.cpr = cpr;
   }
 
-  public String geteMail() {
-    return eMail;
+  public String getEmail() {
+    return Email;
   }
 
-  public void seteMail(String eMail) {
-    this.eMail = eMail;
+  public void setEmail(String email) {
+    this.Email = email;
   }
 
-  public Date getLejeperiodeFra() {
-    return lejeperiodeFra;
+
+  public String getLejeperiodeFra() {
+    return LejeperiodeFra;
   }
 
-  public void setLejeperiodeFra(Date lejeperiodeFra) {
-    this.lejeperiodeFra = lejeperiodeFra;
+  public void setLejeperiodeFra(String lejeperiodeFra) {
+    this.LejeperiodeFra = lejeperiodeFra;
   }
 
-  public Date getLejeperiodeTil() {
-    return lejeperiodeTil;
+  public String getLejeperiodeTil() {
+    return LejeperiodeTil;
   }
 
-  public void setLejeperiodeTil(Date lejeperiodeTil) {
-    this.lejeperiodeTil = lejeperiodeTil;
+  public void setLejeperiodeTil(String lejeperiodeTil) {
+    this.LejeperiodeTil = lejeperiodeTil;
   }
 
-  public int getAntalMåneder() {
-    return antalMåneder;
+  public String getAntalMaaneder() {
+    return AntalMaaneder;
   }
 
-  public void setAntalMåneder(int antalMåneder) {
-    this.antalMåneder = antalMåneder;
+  public void setAntalMaaneder(String antalMaaneder) {
+    this.AntalMaaneder = antalMaaneder;
   }
 
   public String getAfhentningssted() {
@@ -210,10 +209,10 @@ public class LejeAftaleModel {
         ", kommune='" + kommune + '\'' +
         ", telefonNr=" + telefonNr +
         ", cpr='" + cpr + '\'' +
-        ", eMail='" + eMail + '\'' +
-        ", lejeperiodeFra=" + lejeperiodeFra +
-        ", lejeperiodeTil=" + lejeperiodeTil +
-        ", antalMåneder=" + antalMåneder +
+        ", eMail='" + Email + '\'' +
+        ", lejeperiodeFra=" + LejeperiodeFra +
+        ", lejeperiodeTil=" + LejeperiodeTil +
+        ", antalMåneder=" + AntalMaaneder +
         ", afhentningssted='" + afhentningssted + '\'' +
         ", afleveringssted='" + afleveringssted + '\'' +
         ", kmVedAfhentning=" + kmVedAfhentning +

@@ -35,10 +35,10 @@ public class LejeAftaleRepository {
       preparedStatement.setString(5, lejeAftaleModel.getKommune());
       preparedStatement.setInt(6, lejeAftaleModel.getTelefonNr());
       preparedStatement.setString(7, lejeAftaleModel.getCpr());
-      preparedStatement.setString(8, lejeAftaleModel.geteMail());
-      preparedStatement.setDate(9, (Date) lejeAftaleModel.getLejeperiodeFra());
-      preparedStatement.setDate(10, (Date) lejeAftaleModel.getLejeperiodeTil());
-      preparedStatement.setInt(11, lejeAftaleModel.getAntalMåneder());
+      preparedStatement.setString(8, lejeAftaleModel.getEmail());
+      preparedStatement.setString(9, lejeAftaleModel.getLejeperiodeFra());
+      preparedStatement.setString(10, lejeAftaleModel.getLejeperiodeTil());
+      preparedStatement.setString(11, lejeAftaleModel.getAntalMaaneder());
       preparedStatement.setString(12, lejeAftaleModel.getAfhentningssted());
       preparedStatement.setString(13, lejeAftaleModel.getAfleveringssted());
       preparedStatement.setInt(14, lejeAftaleModel.getKmVedAfhentning());
@@ -79,9 +79,9 @@ public class LejeAftaleRepository {
               resultSet.getInt("TelefonNr"),
               resultSet.getString("CPR"),
               resultSet.getString("Email"),
-              resultSet.getDate("LejeperiodeFra"),
-              resultSet.getDate("LejeperiodeTil"),
-              resultSet.getInt("AntalMåneder"),
+              resultSet.getString("LejeperiodeFra"),
+              resultSet.getString("LejeperiodeTil"),
+              resultSet.getString("AntalMaaneder"),
               resultSet.getString("Afhentningssted"),
               resultSet.getString("Afleveringssted"),
               resultSet.getInt("KmVedAfhentning"),
@@ -112,9 +112,9 @@ public class LejeAftaleRepository {
             resultSet.getInt("TelefonNr"),
             resultSet.getString("CPR"),
             resultSet.getString("Email"),
-            resultSet.getDate("LejeperiodeFra"),
-            resultSet.getDate("LejeperiodeTil"),
-            resultSet.getInt("AntalMåneder"),
+            resultSet.getString("LejeperiodeFra"),
+            resultSet.getString("LejeperiodeTil"),
+            resultSet.getString("AntalMaaneder"),
             resultSet.getString("Afhentningssted"),
             resultSet.getString("Afleveringssted"),
             resultSet.getInt("KmVedAfhentning"),
