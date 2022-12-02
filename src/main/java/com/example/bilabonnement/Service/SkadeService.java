@@ -6,7 +6,6 @@ import com.example.bilabonnement.Model.SkadeModel;
 import com.example.bilabonnement.Repositories.SkadeRepository;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class SkadeService {
@@ -32,7 +31,7 @@ public class SkadeService {
         SkadeModel skade = new SkadeModel(
             payload.getParameter("RegistreringsNummer"),
             payload.getParameter("SkadeNavn"),
-            Integer.parseInt(payload.getParameter("SkadePris"))
+            payload.getParameter("SkadePris")
         );
         skadeRepo.createSkade(skade);
     }

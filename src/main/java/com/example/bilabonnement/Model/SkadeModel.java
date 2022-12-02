@@ -5,16 +5,16 @@ public class SkadeModel {
   private int SkadeID;
   private String registreringsNummer;
   private String skadeNavn;
-  private int skadePris;
+  private String skadePris;
 
-  public SkadeModel(int SkadeID, String registreringsNummer, String skadeNavn, int skadePris) {
+  public SkadeModel(int SkadeID, String registreringsNummer, String skadeNavn, String skadePris) {
     this.SkadeID = SkadeID;
     this.registreringsNummer = registreringsNummer;
     this.skadeNavn = skadeNavn;
     this.skadePris = skadePris;
   }
 
-  public SkadeModel(String registreringsNummer, String skadeNavn, int skadePris) {
+  public SkadeModel(String registreringsNummer, String skadeNavn, String skadePris) {
     this.registreringsNummer = registreringsNummer;
     this.skadeNavn = skadeNavn;
     this.skadePris = skadePris;
@@ -36,11 +36,11 @@ public class SkadeModel {
     this.skadeNavn = skadeNavn;
   }
 
-  public int getSkadePris() {
+  public String getSkadePris() {
     return skadePris;
   }
 
-  public void setSkadePris(int skadePris) {
+  public void setSkadePris(String skadePris) {
     this.skadePris = skadePris;
   }
 

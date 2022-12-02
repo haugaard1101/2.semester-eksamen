@@ -25,7 +25,7 @@ public class SkadeRepository {
             resultSet.getInt("SkadeID"),
             resultSet.getString("RegistreringsNummer"),
             resultSet.getString("SkadeNavn"),
-            resultSet.getInt("SkadePris")
+            resultSet.getString("SkadePris")
         ));
       }
     } catch (SQLException e) {
@@ -99,9 +99,9 @@ public class SkadeRepository {
 
   public void deleteSkade(int ID) {
     try {
-      PreparedStatement psts = connection.prepareStatement("DELETE * FROM skader where SkadeID = ?");
+      PreparedStatement psts = connection.prepareStatement("DELETE FROM skader where SkadeID = ?");
       psts.setInt(1, ID);
-      psts.executeQuery();
+      psts.execute();
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
@@ -113,7 +113,7 @@ public class SkadeRepository {
       psts.setInt(1, skade.getSkadeID());
       psts.setString(2, skade.getRegistreringsNummer());
       psts.setString(3, skade.getSkadeNavn());
-      psts.setInt(4, skade.getSkadePris());
+      psts.setString(4, skade.getSkadePris());
       psts.executeUpdate();
 
     } catch (SQLException e) {
