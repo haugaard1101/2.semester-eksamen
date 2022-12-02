@@ -27,12 +27,10 @@ public class SkadeService {
         skadeRepo.deleteSkade(ID);
     }
 
-    public void createSkade(WebRequest payload) {
-        SkadeModel skade = new SkadeModel(
-            payload.getParameter("RegistreringsNummer"),
-            payload.getParameter("SkadeNavn"),
-            payload.getParameter("SkadePris")
+    public void createSkade(WebRequest request,String RegNr) {
+        LejeAftaleModel lejeAftaleModel = new LejeAftaleModel(
+            request.getParameter("KmVedIndlevering")
         );
-        skadeRepo.createSkade(skade);
+        skadeRepo.createSkade(lejeAftaleModel, RegNr);
     }
 }

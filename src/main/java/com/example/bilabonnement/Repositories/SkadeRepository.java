@@ -13,6 +13,8 @@ import java.util.List;
 public class SkadeRepository {
   private Connection connection = DatabaseConnectionManager.getConnection();
 
+
+
   public List<SkadeModel> getSkadeListe() {
     List<SkadeModel> skadeListe = new ArrayList<>();
 
@@ -107,13 +109,11 @@ public class SkadeRepository {
     }
   }
 
-  public void createSkade(SkadeModel skade) {
+  public void createSkade(LejeAftaleModel lejeAftaleModel,String RegNr) {
     try {
-      PreparedStatement psts = connection.prepareStatement("INSERT INTO skader (SkadeID, RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?,?,?,?)");
-      psts.setInt(1, skade.getSkadeID());
-      psts.setString(2, skade.getRegistreringsNummer());
-      psts.setString(3, skade.getSkadeNavn());
-      psts.setString(4, skade.getSkadePris());
+      PreparedStatement psts = connection.prepareStatement("UPDATE lejeaftale SET KmVedIndlevering = ? where RegistreringsNummer = ?");
+      psts.setString(1, lejeAftaleModel.getKmVedIndlevering());
+      psts.setString(2, RegNr);
       psts.executeUpdate();
 
     } catch (SQLException e) {

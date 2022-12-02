@@ -55,9 +55,10 @@ public class SkadeController {
 
 
     @PostMapping("/registrerSkade")
-    public String create(WebRequest payload){
-
-        skadeService.createSkade(payload);
+    public String create(WebRequest request){
+        String RegNr = String.valueOf(skadeService.findEnLejekontrakt(request.getParameter("RegNr")));
+        //model.addAttribute("regNr",skadeService);
+        skadeService.createSkade(RegNr);
         return "/skade/seOgRedigerSkader";
     }
 }
