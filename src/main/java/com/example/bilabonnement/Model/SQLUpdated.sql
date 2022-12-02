@@ -48,9 +48,9 @@ CREATE table LejeAftale
     TelefonNr           int,
     CPR                 varchar(30),
     Email               varchar(100),
-    LejeperiodeFra      date,
-    LejeperiodeTil      date,
-    AntalMåneder        int,
+    LejeperiodeFra      varchar(100),
+    LejeperiodeTil      varchar(100),
+    AntalMaaneder       varchar(100),
     Afhentningssted     varchar(100),
     Afleveringssted     varchar(100),
     KmVedAfhentning     int,
@@ -80,17 +80,17 @@ INSERT into Biler (RegistreringsNummer, Stelnummer, Mærke, Model, UdstyrsNiveau
 values ('HF73287',153823, 'Toyota', 'Ultra', 'Premium', 'AFLEVERET', 'AUTOMATISK', 'Diesel', 45, 70, 3999);
 
 INSERT into LejeAftale(RegistreringsNummer, Navn, Adresse, Postnummer, Kommune, TelefonNr, CPR, Email, LejeperiodeFra, LejeperiodeTil,
-                       AntalMåneder, Afhentningssted, Afleveringssted, KmVedAfhentning, AftaleKM,
+                       AntalMaaneder, Afhentningssted, Afleveringssted, KmVedAfhentning, AftaleKM,
                        KmVedIndlevering)
 values ('AT45634', 'Andreas Noget', 'gastonvej 23', 2610, 'Rødovre', 25230232, '101292-1234', 'personensemail@gmail.com',
         '2022-09-12', '2023-02-12', 6, 'Rødovre bilværksted', 'Rødovre bilværksted', 23000, 1500, 1600);
 INSERT into LejeAftale(RegistreringsNummer, Navn, Adresse, Postnummer, Kommune, TelefonNr, CPR, Email, LejeperiodeFra, LejeperiodeTil,
-                       AntalMåneder, Afhentningssted, Afleveringssted, KmVedAfhentning, AftaleKM,
+                       AntalMaaneder, Afhentningssted, Afleveringssted, KmVedAfhentning, AftaleKM,
                        KmVedIndlevering)
 values ('AB12345', 'Benjamin Buhl', 'monkonvej 3', 2310, 'København', 22522232, '101299-4334', 'someotheremail@gmail.com',
         '2022-10-10', '2023-03-10', 6, 'Hvidovre bilværksted', 'Hvidovre bilværksted', 30000, 2000, 1600);
 INSERT into LejeAftale(RegistreringsNummer, Navn, Adresse, Postnummer, Kommune, TelefonNr, CPR, Email, LejeperiodeFra, LejeperiodeTil,
-                       AntalMåneder, Afhentningssted, Afleveringssted, KmVedAfhentning, AftaleKM,
+                       AntalMaaneder, Afhentningssted, Afleveringssted, KmVedAfhentning, AftaleKM,
                        KmVedIndlevering)
 values ('HF73287','Marcus Buhl', 'Hvidovrevej 23', 2520, 'Hvidovre', 25230299, '110301-1874', 'randommail@gmail.com',
         '2021-11-12', '2022-04-12', 6, 'Vanløse bilværksted', 'Vanløse bilværksted', 34000, 1500, 2000);

@@ -29,7 +29,7 @@ public class SkadeService {
     }
 
     public void createSkade(WebRequest payload) {
-        SkadeModel skade = new SkadeModel(Integer.parseInt(payload.getParameter("SkadeID")),
+        SkadeModel skade = new SkadeModel(
             payload.getParameter("RegistreringsNummer"),
             payload.getParameter("SkadeNavn"),
             Integer.parseInt(payload.getParameter("SkadePris"))

@@ -14,6 +14,12 @@ public class SkadeModel {
     this.skadePris = skadePris;
   }
 
+  public SkadeModel(String registreringsNummer, String skadeNavn, int skadePris) {
+    this.registreringsNummer = registreringsNummer;
+    this.skadeNavn = skadeNavn;
+    this.skadePris = skadePris;
+  }
+
   public int getSkadeID() {
     return SkadeID;
   }
