@@ -106,4 +106,18 @@ public class SkadeRepository {
       throw new RuntimeException(e);
     }
   }
+
+  public void createSkade(SkadeModel skade) {
+    try {
+      PreparedStatement psts = connection.prepareStatement("INSERT INTO skader (SkadeID, RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?,?,?,?)");
+      psts.setInt(1, skade.getSkadeID());
+      psts.setString(2, skade.getRegistreringsNummer());
+      psts.setString(3, skade.getSkadeNavn());
+      psts.setInt(4, skade.getSkadePris());
+      psts.executeUpdate();
+
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
 }
