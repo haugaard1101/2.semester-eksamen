@@ -17,20 +17,22 @@ public class LejeAftaleService {
        // Integer.valueOf(request.getParameter("aftaleId")),
         request.getParameter("Navn"),
         request.getParameter("Adresse"),
-        Integer.parseInt(request.getParameter("Postnummer")),
+        request.getParameter("Postnummer"),
         request.getParameter("Kommune"),
-        Integer.parseInt(request.getParameter("TelefonNr")),
-        request.getParameter("cpr"),
-        request.getParameter("eMail"),
+        request.getParameter("TelefonNr"),
+        request.getParameter("CPR"),
+        request.getParameter("Email"),
         request.getParameter("LejeperiodeFra"),
         request.getParameter("LejeperiodeTil"),
         request.getParameter("AntalMaaneder"),
-        request.getParameter("afhentningssted"),
-        request.getParameter("afleveringssted"),
-        Integer.parseInt((request.getParameter("kmVedAfhentning"))),
-        Integer.parseInt((request.getParameter("AftaleKM"))),
-        Integer.parseInt((request.getParameter("KmVedIndlevering"))),
-        request.getParameter("registreringsNummer"));
+        request.getParameter("Afhentningssted"),
+        request.getParameter("Afleveringssted"),
+        request.getParameter("KmVedAfhentning"),
+        request.getParameter("AftaleKM"),
+        request.getParameter("KmVedIndlevering"),
+        request.getParameter("RegistreringsNummer"));
+
+
 
     LejeAftaleRepo.createLejeAftale(lejeAftale,command);
   }

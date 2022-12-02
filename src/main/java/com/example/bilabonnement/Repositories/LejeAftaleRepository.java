@@ -17,13 +17,13 @@ public class LejeAftaleRepository {
       PreparedStatement preparedStatement;
       if (Objects.equals(command, "create")) {
         preparedStatement = connection.prepareStatement("insert into LejeAftale (RegistreringsNummer,Navn,Adresse,Postnummer,Kommune," +
-            "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,AntalMåneder,Afhentningssted," +
+            "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,AntalMaaneder,Afhentningssted," +
             "Afleveringssted,KmVedAfhentning,AftaleKM,KmVedIndlevering) " +
             "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
       } else {
         preparedStatement = connection.prepareStatement("UPDATE LejeAftale (RegistreringsNummer,Navn,Adresse,Postnummer,Kommune," +
-            "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,AntalMåneder,Afhentningssted,"+
+            "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,AntalMaaneder,Afhentningssted,"+
             "Afleveringssted,KmVedAfhentning,AftaleKM,KmVedIndlevering) " +
             "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
       }
@@ -31,19 +31,19 @@ public class LejeAftaleRepository {
       preparedStatement.setString(1, lejeAftaleModel.getRegistreringsNummer());
       preparedStatement.setString(2, lejeAftaleModel.getNavn());
       preparedStatement.setString(3, lejeAftaleModel.getAdresse());
-      preparedStatement.setInt(4, lejeAftaleModel.getPostnummer());
+      preparedStatement.setString(4, lejeAftaleModel.getPostnummer());
       preparedStatement.setString(5, lejeAftaleModel.getKommune());
-      preparedStatement.setInt(6, lejeAftaleModel.getTelefonNr());
-      preparedStatement.setString(7, lejeAftaleModel.getCpr());
+      preparedStatement.setString(6, lejeAftaleModel.getTelefonNr());
+      preparedStatement.setString(7, lejeAftaleModel.getCPR());
       preparedStatement.setString(8, lejeAftaleModel.getEmail());
       preparedStatement.setString(9, lejeAftaleModel.getLejeperiodeFra());
       preparedStatement.setString(10, lejeAftaleModel.getLejeperiodeTil());
       preparedStatement.setString(11, lejeAftaleModel.getAntalMaaneder());
       preparedStatement.setString(12, lejeAftaleModel.getAfhentningssted());
       preparedStatement.setString(13, lejeAftaleModel.getAfleveringssted());
-      preparedStatement.setInt(14, lejeAftaleModel.getKmVedAfhentning());
-      preparedStatement.setInt(15, lejeAftaleModel.getAftaleKM());
-      preparedStatement.setInt(16, lejeAftaleModel.getKmVedIndlevering());
+      preparedStatement.setString(14, lejeAftaleModel.getKmVedAfhentning());
+      preparedStatement.setString(15, lejeAftaleModel.getAftaleKM());
+      preparedStatement.setString(16, lejeAftaleModel.getKmVedIndlevering());
 
       preparedStatement.executeUpdate();
     } catch (SQLException e) {
@@ -74,9 +74,9 @@ public class LejeAftaleRepository {
               resultSet.getInt("AftaleID"),
               resultSet.getString("Navn"),
               resultSet.getString("Adresse"),
-              resultSet.getInt("Postnummer"),
+              resultSet.getString("Postnummer"),
               resultSet.getString("Kommune"),
-              resultSet.getInt("TelefonNr"),
+              resultSet.getString("TelefonNr"),
               resultSet.getString("CPR"),
               resultSet.getString("Email"),
               resultSet.getString("LejeperiodeFra"),
@@ -84,9 +84,9 @@ public class LejeAftaleRepository {
               resultSet.getString("AntalMaaneder"),
               resultSet.getString("Afhentningssted"),
               resultSet.getString("Afleveringssted"),
-              resultSet.getInt("KmVedAfhentning"),
-              resultSet.getInt("AftaleKM"),
-              resultSet.getInt("KmVedIndlevering"),
+              resultSet.getString("KmVedAfhentning"),
+              resultSet.getString("AftaleKM"),
+              resultSet.getString("KmVedIndlevering"),
               resultSet.getString("RegistreringsNummer")
                   ));
         }
@@ -107,9 +107,9 @@ public class LejeAftaleRepository {
             resultSet.getInt("AftaleID"),
             resultSet.getString("Navn"),
             resultSet.getString("Adresse"),
-            resultSet.getInt("Postnummer"),
+            resultSet.getString("Postnummer"),
             resultSet.getString("Kommune"),
-            resultSet.getInt("TelefonNr"),
+            resultSet.getString("TelefonNr"),
             resultSet.getString("CPR"),
             resultSet.getString("Email"),
             resultSet.getString("LejeperiodeFra"),
@@ -117,9 +117,9 @@ public class LejeAftaleRepository {
             resultSet.getString("AntalMaaneder"),
             resultSet.getString("Afhentningssted"),
             resultSet.getString("Afleveringssted"),
-            resultSet.getInt("KmVedAfhentning"),
-            resultSet.getInt("AftaleKM"),
-            resultSet.getInt("KmVedIndlevering"),
+            resultSet.getString("KmVedAfhentning"),
+            resultSet.getString("AftaleKM"),
+            resultSet.getString("KmVedIndlevering"),
             resultSet.getString("RegistreringsNummer")
         ));
       }

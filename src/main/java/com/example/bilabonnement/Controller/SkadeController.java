@@ -43,11 +43,14 @@ public class SkadeController {
         return "/skade/seOgRedigerSkader";
     }
 
+    /*
     @PostMapping("/skadeliste")
     public String deleteSkade(WebRequest request) {
-        skadeService.deleteSkade(Integer.parseInt(request.getParameter("ID")));
+        //skadeService.deleteSkade(Integer.parseInt(((request.getParameter("ID")))));
         return "/skade/seOgRedigerSkader";
     }
+
+     */
 
     @PostMapping("/skadeliste")
     public String create(WebRequest payload){

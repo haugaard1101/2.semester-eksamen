@@ -46,9 +46,9 @@ public class SkadeRepository {
             resultSet.getInt("AftaleID"),
             resultSet.getString("Navn"),
             resultSet.getString("Adresse"),
-            resultSet.getInt("Postnummer"),
+            resultSet.getString("Postnummer"),
             resultSet.getString("Kommune"),
-            resultSet.getInt("TelefonNr"),
+            resultSet.getString("TelefonNr"),
             resultSet.getString("CPR"),
             resultSet.getString("Email"),
             resultSet.getString("LejeperiodeFra"),
@@ -56,9 +56,9 @@ public class SkadeRepository {
             resultSet.getString("AntalMaaneder"),
             resultSet.getString("Afhentningssted"),
             resultSet.getString("Afleveringssted"),
-            resultSet.getInt("KmVedAfhentning"),
-            resultSet.getInt("AftaleKM"),
-            resultSet.getInt("KmVedIndlevering"),
+            resultSet.getString("KmVedAfhentning"),
+            resultSet.getString("AftaleKM"),
+            resultSet.getString("KmVedIndlevering"),
             resultSet.getString("RegistreringsNummer")
         );
       }

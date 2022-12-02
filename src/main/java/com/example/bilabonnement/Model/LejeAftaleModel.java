@@ -3,60 +3,60 @@ package com.example.bilabonnement.Model;
 public class LejeAftaleModel {
 
   private int aftaleId;
-  private String navn;
-  private String adresse;
-  private int postnummer;
-  private String kommune;
-  private int telefonNr;
-  private String cpr;
+  private String Navn;
+  private String Adresse;
+  private String Postnummer;
+  private String Kommune;
+  private String TelefonNr;
+  private String CPR;
   private String Email;
   private String LejeperiodeFra;
   private String LejeperiodeTil;
   private String AntalMaaneder;
-  private String afhentningssted;
-  private String afleveringssted;
-  private int kmVedAfhentning;
-  private int aftaleKM;
-  private int kmVedIndlevering;
-  private String registreringsNummer;
+  private String Afhentningssted;
+  private String Afleveringssted;
+  private String KmVedAfhentning;
+  private String AftaleKM;
+  private String KmVedIndlevering;
+  private String RegistreringsNummer;
 
-  public LejeAftaleModel(int aftaleId, String navn, String adresse, int postnummer, String kommune, int telefonNr, String cpr, String Email, String lejeperiodeFra, String lejeperiodeTil, String AntalMaaneder, String afhentningssted, String afleveringssted, int kmVedAfhentning, int aftaleKM, int kmVedIndlevering, String registreringsNummer) {
-    this.aftaleId = aftaleId;
-    this.navn = navn;
-    this.adresse = adresse;
-    this.postnummer = postnummer;
-    this.kommune = kommune;
-    this.telefonNr = telefonNr;
-    this.cpr = cpr;
+  public LejeAftaleModel(int AftaleId, String Navn, String Adresse, String Postnummer, String Kommune, String TelefonNr, String CPR, String Email, String LejeperiodeFra, String LejeperiodeTil, String AntalMaaneder, String Afhentningssted, String Afleveringssted, String KmVedAfhentning, String AftaleKM, String KmVedIndlevering, String RegistreringsNummer) {
+    this.aftaleId = AftaleId;
+    this.Navn = Navn;
+    this.Adresse = Adresse;
+    this.Postnummer = Postnummer;
+    this.Kommune = Kommune;
+    this.TelefonNr = TelefonNr;
+    this.CPR = CPR;
     this.Email = Email;
-    this.LejeperiodeFra = lejeperiodeFra;
-    this.LejeperiodeTil = lejeperiodeTil;
+    this.LejeperiodeFra = LejeperiodeFra;
+    this.LejeperiodeTil = LejeperiodeTil;
     this.AntalMaaneder = AntalMaaneder;
-    this.afhentningssted = afhentningssted;
-    this.afleveringssted = afleveringssted;
-    this.kmVedAfhentning = kmVedAfhentning;
-    this.aftaleKM = aftaleKM;
-    this.kmVedIndlevering = kmVedIndlevering;
-    this.registreringsNummer = registreringsNummer;
+    this.Afhentningssted = Afhentningssted;
+    this.Afleveringssted = Afleveringssted;
+    this.KmVedAfhentning = KmVedAfhentning;
+    this.AftaleKM = AftaleKM;
+    this.KmVedIndlevering = KmVedIndlevering;
+    this.RegistreringsNummer = RegistreringsNummer;
   }
 
-  public LejeAftaleModel(String navn, String adresse, int postnummer, String kommune, int telefonNr, String cpr, String Email, String lejeperiodeFra, String lejeperiodeTil, String AntalMaaneder, String afhentningssted, String afleveringssted, int kmVedAfhentning, int aftaleKM, int kmVedIndlevering, String registreringsNummer) {
-    this.navn = navn;
-    this.adresse = adresse;
-    this.postnummer = postnummer;
-    this.kommune = kommune;
-    this.telefonNr = telefonNr;
-    this.cpr = cpr;
+  public LejeAftaleModel(String navn, String adresse, String postnummer, String kommune, String telefonNr, String CPR, String Email, String lejeperiodeFra, String lejeperiodeTil, String AntalMaaneder, String afhentningssted, String afleveringssted, String kmVedAfhentning, String aftaleKM, String kmVedIndlevering, String registreringsNummer) {
+    this.Navn = navn;
+    this.Adresse = adresse;
+    this.Postnummer = postnummer;
+    this.Kommune = kommune;
+    this.TelefonNr = telefonNr;
+    this.CPR = CPR;
     this.Email = Email;
     this.LejeperiodeFra = lejeperiodeFra;
     this.LejeperiodeTil = lejeperiodeTil;
     this.AntalMaaneder = AntalMaaneder;
-    this.afhentningssted = afhentningssted;
-    this.afleveringssted = afleveringssted;
-    this.kmVedAfhentning = kmVedAfhentning;
-    this.aftaleKM = aftaleKM;
-    this.kmVedIndlevering = kmVedIndlevering;
-    this.registreringsNummer = registreringsNummer;
+    this.Afhentningssted = afhentningssted;
+    this.Afleveringssted = afleveringssted;
+    this.KmVedAfhentning = kmVedAfhentning;
+    this.AftaleKM = aftaleKM;
+    this.KmVedIndlevering = kmVedIndlevering;
+    this.RegistreringsNummer = registreringsNummer;
   }
 
   public LejeAftaleModel() {
@@ -64,51 +64,51 @@ public class LejeAftaleModel {
   }
 
   public String getNavn() {
-    return navn;
+    return Navn;
   }
 
   public void setNavn(String navn) {
-    this.navn = navn;
+    this.Navn = navn;
   }
 
   public String getAdresse() {
-    return adresse;
+    return Adresse;
   }
 
   public void setAdresse(String adresse) {
-    this.adresse = adresse;
+    this.Adresse = adresse;
   }
 
-  public int getPostnummer() {
-    return postnummer;
+  public String getPostnummer() {
+    return Postnummer;
   }
 
-  public void setPostnummer(int postnummer) {
-    this.postnummer = postnummer;
+  public void setPostnummer(String postnummer) {
+    this.Postnummer = postnummer;
   }
 
   public String getKommune() {
-    return kommune;
+    return Kommune;
   }
 
   public void setKommune(String kommune) {
-    this.kommune = kommune;
+    this.Kommune = kommune;
   }
 
-  public int getTelefonNr() {
-    return telefonNr;
+  public String getTelefonNr() {
+    return TelefonNr;
   }
 
-  public void setTelefonNr(int telefonNr) {
-    this.telefonNr = telefonNr;
+  public void setTelefonNr(String telefonNr) {
+    this.TelefonNr = telefonNr;
   }
 
-  public String getCpr() {
-    return cpr;
+  public String getCPR() {
+    return CPR;
   }
 
-  public void setCpr(String cpr) {
-    this.cpr = cpr;
+  public void setCPR(String CPR) {
+    this.CPR = CPR;
   }
 
   public String getEmail() {
@@ -145,27 +145,27 @@ public class LejeAftaleModel {
   }
 
   public String getAfhentningssted() {
-    return afhentningssted;
+    return Afhentningssted;
   }
 
   public void setAfhentningssted(String afhentningssted) {
-    this.afhentningssted = afhentningssted;
+    this.Afhentningssted = afhentningssted;
   }
 
   public String getAfleveringssted() {
-    return afleveringssted;
+    return Afleveringssted;
   }
 
   public void setAfleveringssted(String afleveringssted) {
-    this.afleveringssted = afleveringssted;
+    this.Afleveringssted = afleveringssted;
   }
 
-  public int getKmVedAfhentning() {
-    return kmVedAfhentning;
+  public String getKmVedAfhentning() {
+    return KmVedAfhentning;
   }
 
-  public void setKmVedAfhentning(int kmVedAfhentning) {
-    this.kmVedAfhentning = kmVedAfhentning;
+  public void setKmVedAfhentning(String kmVedAfhentning) {
+    this.KmVedAfhentning = kmVedAfhentning;
   }
 
   public int getAftaleId() {
@@ -176,50 +176,50 @@ public class LejeAftaleModel {
     this.aftaleId = aftaleId;
   }
 
-  public int getAftaleKM() {
-    return aftaleKM;
+  public String getAftaleKM() {
+    return AftaleKM;
   }
 
-  public void setAftaleKM(int aftaleKM) {
-    this.aftaleKM = aftaleKM;
+  public void setAftaleKM(String aftaleKM) {
+    this.AftaleKM = aftaleKM;
   }
 
-  public int getKmVedIndlevering() {
-    return kmVedIndlevering;
+  public String getKmVedIndlevering() {
+    return KmVedIndlevering;
   }
 
-  public void setKmVedIndlevering(int kmVedIndlevering) {
-    this.kmVedIndlevering = kmVedIndlevering;
+  public void setKmVedIndlevering(String kmVedIndlevering) {
+    this.KmVedIndlevering = kmVedIndlevering;
   }
 
   public String getRegistreringsNummer() {
-    return registreringsNummer;
+    return RegistreringsNummer;
   }
 
   public void setRegistreringsNummer(String registreringsNummer) {
-    this.registreringsNummer = registreringsNummer;
+    this.RegistreringsNummer = registreringsNummer;
   }
 
   @Override
   public String toString() {
     return "LejeAftaleModel{" +
-        "navn='" + navn + '\'' +
-        ", adresse='" + adresse + '\'' +
-        ", postnummer=" + postnummer +
-        ", kommune='" + kommune + '\'' +
-        ", telefonNr=" + telefonNr +
-        ", cpr='" + cpr + '\'' +
+        "navn='" + Navn + '\'' +
+        ", adresse='" + Adresse + '\'' +
+        ", postnummer=" + Postnummer +
+        ", kommune='" + Kommune + '\'' +
+        ", telefonNr=" + TelefonNr +
+        ", cpr='" + CPR + '\'' +
         ", eMail='" + Email + '\'' +
         ", lejeperiodeFra=" + LejeperiodeFra +
         ", lejeperiodeTil=" + LejeperiodeTil +
         ", antalMåneder=" + AntalMaaneder +
-        ", afhentningssted='" + afhentningssted + '\'' +
-        ", afleveringssted='" + afleveringssted + '\'' +
-        ", kmVedAfhentning=" + kmVedAfhentning +
+        ", afhentningssted='" + Afhentningssted + '\'' +
+        ", afleveringssted='" + Afleveringssted + '\'' +
+        ", kmVedAfhentning=" + KmVedAfhentning +
         ", aftaleId=" + aftaleId +
-        ", maxKilometer=" + aftaleKM +
-        ", aktueltKørteKilometer=" + kmVedIndlevering +
-        ", registreringsNummer=" + registreringsNummer +
+        ", maxKilometer=" + AftaleKM +
+        ", aktueltKørteKilometer=" + KmVedIndlevering +
+        ", registreringsNummer=" + RegistreringsNummer +
         '}';
   }
 }
