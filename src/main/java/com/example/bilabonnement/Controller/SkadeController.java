@@ -19,13 +19,17 @@ public class SkadeController {
 
     @GetMapping ("/findBil")
     public String SkadeRegNr () {
+
         return "/skade/SkadeRegNr";
     }
 
     @PostMapping("/visLejekontrakt")
-    public String showContract(WebRequest req, Model model){
+    public String showContract(WebRequest req, Model model, HttpSession session){
         LejeAftaleModel lejeaftale = skadeService.findEnLejekontrakt(req.getParameter("RegNr"));
         BilModel bil = skadeService.findEnBil(req.getParameter("RegNr"));
+        String RegNr = bil.getRegistreringsNummer();
+
+        session.setAttribute("420",RegNr);
         model.addAttribute("lejeAftale",lejeaftale);
         model.addAttribute("Bil",bil);
         return "/skade/registrerSkade";
@@ -55,10 +59,11 @@ public class SkadeController {
 
 
     @PostMapping("/registrerSkade")
-    public String create(WebRequest request){
-        String RegNr = String.valueOf(skadeService.findEnLejekontrakt(request.getParameter("RegNr")));
-        //model.addAttribute("regNr",skadeService);
-        skadeService.createSkade(request,RegNr);
+    public String registrerSkade(HttpSession session,WebRequest request){
+       String asd = (String) session.getAttribute("420");
+        //Skade skade = skadeService.opretEnSkade(req.getParameter("AflæstKM"), req.getParameter("Lakfelt"), req.getParameter("RidsetAlu", req.getParameter("NyForrude")))
+
+        System.out.println(asd);
         return "/skade/seOgRedigerSkader";
     }
 }

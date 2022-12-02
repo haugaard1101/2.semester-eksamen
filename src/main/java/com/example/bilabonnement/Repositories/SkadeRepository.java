@@ -1,5 +1,6 @@
 package com.example.bilabonnement.Repositories;
 
+import com.example.bilabonnement.Controller.SkadeController;
 import com.example.bilabonnement.Model.*;
 import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
 
@@ -70,6 +71,26 @@ public class SkadeRepository {
     return lejeaftale;
   }
 
+
+  public SkadeModel findRegistreringsnummer(String RegNr) {
+
+    SkadeModel skadeModel = null;
+    try {
+      PreparedStatement preparedStatement = connection.prepareStatement("selecet * from lejeaftale where RegistreringsNummer = ?");
+
+      preparedStatement.setString(1, RegNr);
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      while (resultSet.next()) {
+        skadeModel = new SkadeModel(resultSet.getString("RegistreringsNummer"));
+      }
+
+
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    return skadeModel;
+  }
   public BilModel findEnBil(String RegNr) {
     BilModel bil = null;
     try {

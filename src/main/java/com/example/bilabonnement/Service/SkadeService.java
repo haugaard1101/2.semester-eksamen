@@ -27,9 +27,7 @@ public class SkadeService {
         skadeRepo.deleteSkade(ID);
     }
 
-    public void createSkade(WebRequest request,String RegNr) {
-        LejeAftaleModel lejeAftaleModel = new LejeAftaleModel(
-            request.getParameter("KmVedIndlevering"));
+    public void createSkade(String RegNr, LejeAftaleModel lejeAftaleModel) {
         skadeRepo.createSkade(lejeAftaleModel, RegNr);
     }
 }
