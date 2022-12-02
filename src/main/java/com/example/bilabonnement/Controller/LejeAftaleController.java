@@ -17,6 +17,18 @@ public class LejeAftaleController {
     return "dataregistrering/dataregistrering";
   }
 
+  @GetMapping("/seogredigerlejeaftaler")
+  public String seogredigerlejeaftaler(){
+    return "dataregistrering/seogredigerlejeaftaler";
+  }
+
+  @PostMapping("/deleteLegeAftale")
+  public String deleteLegeAftale(WebRequest request){
+    lejeAftaleService.deleteLejeAftale(request.getParameter("RegistreringsNummer"));
+    return "dataregistrering/seogredigerlejeaftaler";
+  }
+
+
   @PostMapping("/sendLejeKontrakt")
   public String sendlejekontrakt(WebRequest request){
     System.out.println(request.getParameter("Navn"));

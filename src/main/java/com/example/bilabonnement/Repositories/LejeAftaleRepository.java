@@ -52,10 +52,11 @@ public class LejeAftaleRepository {
   }
 
 
-  public void deleteLejeAftaleListe(int id){
+  public void deleteLejeAftaleListe(String registreringnummer){
    try{
-     PreparedStatement psts = connection.prepareStatement("DELETE * FROM LejeAftale where RegistreringsNummer = ?");
-     psts.setInt(1, id);
+     PreparedStatement psts = connection.prepareStatement("DELETE FROM LejeAftale where RegistreringsNummer = ?");
+     psts.setString(1, registreringnummer);
+     psts.execute();
    }
   catch (SQLException e) {
     throw new RuntimeException(e);

@@ -42,6 +42,9 @@ public class LejeAftaleService {
   public List<LejeAftaleModel> getAlleLejeAftaler(){
     return LejeAftaleRepo.getAlleLejeAftaler();
   }
+  public void deleteLejeAftale(String registreringnummer){
+      LejeAftaleRepo.deleteLejeAftaleListe(registreringnummer);
+  }
 
 
 }
