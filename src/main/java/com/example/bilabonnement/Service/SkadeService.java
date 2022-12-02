@@ -27,4 +27,13 @@ public class SkadeService {
     public void deleteSkade(int ID){
         skadeRepo.deleteSkade(ID);
     }
+
+    public void createSkade(WebRequest payload) {
+        SkadeModel skade = new SkadeModel(Integer.parseInt(payload.getParameter("SkadeID")),
+            payload.getParameter("RegistreringsNummer"),
+            payload.getParameter("SkadeNavn"),
+            Integer.parseInt(payload.getParameter("SkadePris"))
+        );
+        skadeRepo.createSkade(skade);
+    }
 }
