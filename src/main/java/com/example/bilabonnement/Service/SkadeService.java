@@ -29,8 +29,7 @@ public class SkadeService {
 
     public void createSkade(WebRequest request,String RegNr) {
         LejeAftaleModel lejeAftaleModel = new LejeAftaleModel(
-            request.getParameter("KmVedIndlevering")
-        );
+            request.getParameter("KmVedIndlevering"));
         skadeRepo.createSkade(lejeAftaleModel, RegNr);
     }
 }

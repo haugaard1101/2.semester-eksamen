@@ -58,7 +58,7 @@ public class SkadeController {
     public String create(WebRequest request){
         String RegNr = String.valueOf(skadeService.findEnLejekontrakt(request.getParameter("RegNr")));
         //model.addAttribute("regNr",skadeService);
-        skadeService.createSkade(RegNr);
+        skadeService.createSkade(request,RegNr);
         return "/skade/seOgRedigerSkader";
     }
 }

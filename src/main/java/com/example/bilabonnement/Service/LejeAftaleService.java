@@ -14,7 +14,6 @@ public class LejeAftaleService {
 
   public void createLejeAftale(WebRequest request,String command) {
     LejeAftaleModel lejeAftale = new LejeAftaleModel(
-       // Integer.valueOf(request.getParameter("aftaleId")),
         request.getParameter("Navn"),
         request.getParameter("Adresse"),
         request.getParameter("Postnummer"),
