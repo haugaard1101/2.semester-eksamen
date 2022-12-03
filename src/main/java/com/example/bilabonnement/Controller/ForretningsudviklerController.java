@@ -19,6 +19,13 @@ public class ForretningsudviklerController {
         return "/forretningsudvikling/forretningsudvikling";
     }
 
+    @GetMapping("/KPI")
+    public String showKPI(Model model) {
+        int amountOfRentedCars = service.getAllRentedCars().size();
+        model.addAttribute("AmountOfRentedCars", amountOfRentedCars);
+        return "/forretningsudvikling/KPI";
+    }
+
 
 
 }

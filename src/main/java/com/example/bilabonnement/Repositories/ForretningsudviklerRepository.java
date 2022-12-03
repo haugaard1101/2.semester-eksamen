@@ -48,4 +48,10 @@ public class ForretningsudviklerRepository {
     }
     return rentedCars;
   }
+
+  public int getPriceOfAllRentedCars(){
+    List<Integer> totalPriceOfRentedCars = new ArrayList<>();
+
+    return 0;
+  }
 }

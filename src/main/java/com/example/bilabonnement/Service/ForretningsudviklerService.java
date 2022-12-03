@@ -12,4 +12,9 @@ public class ForretningsudviklerService {
   public List<BilModel> getAllRentedCars(){
     return repo.getAllRentedCars();
   }
+
+  public int getAmountRentedCars(){
+//
+    return 0;
+  }
 }
