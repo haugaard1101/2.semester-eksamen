@@ -2,6 +2,7 @@ package com.example.bilabonnement.Controller;
 
 import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Model.LejeAftaleModel;
+import com.example.bilabonnement.Model.SkadeModel;
 import com.example.bilabonnement.Service.SkadeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,7 @@ public class SkadeController {
         BilModel bil = skadeService.findEnBil(req.getParameter("RegNr"));
         String RegNr = bil.getRegistreringsNummer();
 
-        session.setAttribute("420",RegNr);
+        session.setAttribute("registreringsnummerPåBil",RegNr);
         model.addAttribute("lejeAftale",lejeaftale);
         model.addAttribute("Bil",bil);
         return "/skade/registrerSkade";
@@ -60,10 +61,10 @@ public class SkadeController {
 
     @PostMapping("/registrerSkade")
     public String registrerSkade(HttpSession session,WebRequest request){
-       String asd = (String) session.getAttribute("420");
+       String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
+       String aflæstKm = request.getParameter("KmVedIndlevering");
         //Skade skade = skadeService.opretEnSkade(req.getParameter("AflæstKM"), req.getParameter("Lakfelt"), req.getParameter("RidsetAlu", req.getParameter("NyForrude")))
-
-        System.out.println(asd);
+        skadeService.createSkade(RegNr,aflæstKm);
         return "/skade/seOgRedigerSkader";
     }
 }

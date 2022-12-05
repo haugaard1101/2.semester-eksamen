@@ -130,10 +130,11 @@ public class SkadeRepository {
     }
   }
 
-  public void createSkade(LejeAftaleModel lejeAftaleModel,String RegNr) {
+  public void createSkade(String RegNr, String aflæstKm) {
     try {
+
       PreparedStatement psts = connection.prepareStatement("UPDATE lejeaftale SET KmVedIndlevering = ? where RegistreringsNummer = ?");
-      psts.setString(1, lejeAftaleModel.getKmVedIndlevering());
+      psts.setString(1, aflæstKm);
       psts.setString(2, RegNr);
       psts.executeUpdate();
 
