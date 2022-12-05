@@ -35,8 +35,8 @@ public class LejeAftaleService {
 
     LejeAftaleRepo.createLejeAftale(lejeAftale,command);
   }
-  public List<LejeAftaleModel> getLejeAftaleById(int id){
-    return LejeAftaleRepo.getLejeAftaleById(id);
+  public List<LejeAftaleModel> getLejeAftaleById(String registreringsnummer){
+    return LejeAftaleRepo.getLejeAftaleById(registreringsnummer);
   }
   public List<LejeAftaleModel> getAlleLejeAftaler(){
     return LejeAftaleRepo.getAlleLejeAftaler();

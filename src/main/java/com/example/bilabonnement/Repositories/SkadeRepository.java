@@ -1,6 +1,5 @@
 package com.example.bilabonnement.Repositories;
 
-import com.example.bilabonnement.Controller.SkadeController;
 import com.example.bilabonnement.Model.*;
 import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
 
@@ -34,6 +33,34 @@ public class SkadeRepository {
             throw new RuntimeException(e);
         }
         return skadeListe;
+    }
+
+    //finder og lægger prisen af skader sammen på en bestemt lejeaftale
+    public int getPriceOnSkader(String RegNr) {
+        int skadeRegning = 0;
+        List<SkadeModel> skader = new ArrayList<>();
+        try {
+            PreparedStatement psts = connection.prepareStatement("SELECT * FROM skader WHERE RegistreringsNummer = ?");
+            psts.setString(1, RegNr);
+            ResultSet resultSet = psts.executeQuery();
+
+            while (resultSet.next()) {
+                skader.add(new SkadeModel(
+                        resultSet.getInt("SkadeID"),
+                        resultSet.getString("RegistreringsNummer"),
+                        resultSet.getString("SkadeNavn"),
+                        resultSet.getString("SkadePris")
+                ));
+            }
+
+            for (SkadeModel skadeModel : skader) {
+                skadeRegning += Integer.parseInt(String.valueOf(skadeModel.getSkadePris()));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return skadeRegning;
     }
 
     public LejeAftaleModel findEnLejekontrakt(String RegNr) {
@@ -111,7 +138,7 @@ public class SkadeRepository {
 
     public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
         PreparedStatement psts;
-        
+
         try {
             if (!aflæstKm.equals("")) {
                 psts = connection.prepareStatement("UPDATE lejeaftale SET KmVedIndlevering = ? where RegistreringsNummer = ?");
