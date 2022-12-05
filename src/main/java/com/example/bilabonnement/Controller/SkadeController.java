@@ -62,8 +62,11 @@ public class SkadeController {
     public String registrerSkade(HttpSession session,WebRequest request){
        String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
        String aflæstKm = request.getParameter("KmVedIndlevering");
-        //Skade skade = skadeService.opretEnSkade(req.getParameter("AflæstKM"), req.getParameter("Lakfelt"), req.getParameter("RidsetAlu", req.getParameter("NyForrude")))
-        skadeService.createSkade(RegNr,aflæstKm);
+
+       String lakfelt = request.getParameter("Lakfelt");
+       String ridsetAlufælgerequest = request.getParameter("Ridset alufælge");
+       String nyForrude = request.getParameter("Ny forrude");
+        skadeService.createSkade(RegNr,aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
         return "/skade/seOgRedigerSkader";
     }
 }

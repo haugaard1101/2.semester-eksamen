@@ -27,7 +27,7 @@ public class SkadeService {
         skadeRepo.deleteSkade(ID);
     }
 
-    public void createSkade(String RegNr, String aflæstKm) {
-        skadeRepo.createSkade(RegNr, aflæstKm);
+    public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
+        skadeRepo.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
     }
 }
