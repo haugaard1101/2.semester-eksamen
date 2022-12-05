@@ -12,24 +12,47 @@
 
 <nav th:insert="fragments/nav.html"> </nav>
 
-<!--  <input type="text" name="RegistreringsNummer"> -->
+<h3 align="center">Registrer en lejekontrkt</h3>
+<br>
 
-    <form action="/lejeaftaleliste" method="Post">
+<form action="/lejeaftaleliste" method="Post">
+
+<!--  <input type="text" name="RegistreringsNummer"> -->
+<div class="container-sm">
+    <div class ="row">
+
         <br>
-        <label for="RegistreringsNummer">RegistreringsNummer</label><br>
-        <input type="text" name="RegistreringsNummer">
+
+        <div class="col-12">
+        <label for="RegistreringsNummer"></label>
+        <input type="text" placeholder="Registreringsnummer" class="form-control" name="RegistreringsNummer" >
+        </div>
+
+
+        <div class="col-6">
+        <label for="Navn"></label>
+        <input type="text" placeholder="Fulde navn" class="form-control" name="Navn">
+        </div>
+
+
         <br>
-        <label for="Navn">Navn</label> <br>
-        <input type="text" name="Navn">
+        <div class="col-6">
+        <label for="Adresse"></label> <br>
+        <input type="text" placeholder="Adresse" class="form-control" name="Adresse">
+        </div>
         <br>
-        <label for="Adresse">Adresse</label> <br>
-        <input type="text" name="Adresse">
+
+        <div class="col-6">
+        <label for="Postnummer"></label> <br>
+        <input type="text" placeholder="Postnummer" class="form-control" name="Postnummer">
+        </div>
+
         <br>
-        <label for="Postnummer">Postnummer</label> <br>
-        <input type="text" name="Postnummer">
-        <br>
-        <label for="Kommune">Kommune</label> <br>
-        <input type="text" name="Kommune">
+        <div class="col-6">
+        <label for="Kommune"></label> <br>
+        <input type="text" placeholder="Kommune" class="form-control" name="Kommune">
+        </div>
+
         <br>
         <label for="TelefonNr">TelefonNr</label> <br>
         <input type="text" name="TelefonNr">
@@ -61,14 +84,14 @@
         <label for="AftaleKM">AftaleKM</label> <br>
         <input type="text" name="AftaleKM"><br>
 
-        <!--
-        <label for="KmVedIndlevering">KmVedIndlevering</label> <br>
-        <input type="text" name="KmVedIndlevering"> -->
-
-
         <br>
         <button>Registrer lejekontrakt</button>
+        </div>
+
     </form>
+</div>
+</div>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
