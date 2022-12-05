@@ -29,5 +29,6 @@ public class SkadeService {
 
     public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
         skadeRepo.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
+        System.out.println(lakfelt + ridsetAlufælgerequest + nyForrude);
     }
 }
