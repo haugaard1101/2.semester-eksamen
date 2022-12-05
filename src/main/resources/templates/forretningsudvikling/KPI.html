@@ -8,61 +8,14 @@
     <link rel="stylesheet" href="templates/forretningsudvikling/Fstylesheet.css">
 </head>
 <body>
-<nav class="navbar sticky-top navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="Logo.png" alt="Logo" width="220" height="50">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Dataregistrering
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Registrer Lejeaftale</a></li>
-                        <li><a class="dropdown-item" href="#">Se og rediger lejeaftaler</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Skade/Udbedring
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Registrer skade</a></li>
-                        <li><a class="dropdown-item" href="#">Se og rediger skaderapporter</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle " href="#" aria-current="page" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Forretningsudvikling
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="forretningsudvikling">Udlejede biler</a></li>
-                        <li><a class="dropdown-item" href="KPI">KPI'er</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <a class="nav-link" href="#">Log ud</a>
-    </div>
-</nav>
+<nav th:insert="fragments/nav.html"> </nav>
 
 <div class="container border pt-5">
     <div class="row" style="height: 500px">
         <div class="col-4 border d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
-
+                <img src="https://cdn-icons-png.flaticon.com/512/4502/4502336.png" class="card-img-top mx-auto d-block" style="max-width: 80%; height: auto;">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Antal udlejede biler</h5>
                     <p class="card-text">Antallet af biler med status sat some AKTIV.</p>
@@ -72,10 +25,11 @@
         </div>
         <div class="col-4 border d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
+                <img src="https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/price-tag-icon.png" class="card-img-top mx-auto d-block" style="max-width: 80%; height: auto;">
                 <div class="card-body">
-                    <h5 class="card-title fw-bold">Sammenlagt pris på nuværende udlejede biler</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title fw-bold">Pris: udlejede biler</h5>
+                    <p class="card-text">Her finder du den sammenlagte pris på alle udlejede biler. Med "pris" menes en månedlige takst for udlejning hver bil har fastsat.</p>
+
                 </div>
             </div>
         </div>
