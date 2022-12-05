@@ -43,12 +43,10 @@ public class SkadeService {
             kmRegning = ((kmVedIndlevering - kmVedAflevering) - aftaleKM) * 0.75;
 
             regning = kmRegning + skadeRegning;
-            System.out.println("med km" + skadeRegning + kmRegning);
 
 
         } else {
             regning = skadeRegning;
-            System.out.println("uden km" + skadeRegning);
         }
 
         System.out.println(regning);

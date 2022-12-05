@@ -35,6 +35,7 @@ public class SkadeRepository {
         return skadeListe;
     }
 
+    //finder og lægger prisen af skader sammen på en bestemt lejeaftale
     public int getPriceOnSkader(String RegNr) {
         int skadeRegning = 0;
         List<SkadeModel> skader = new ArrayList<>();
