@@ -110,24 +110,29 @@ public class SkadeRepository {
     }
 
     public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
+        PreparedStatement psts;
+        
         try {
-
-            PreparedStatement psts = connection.prepareStatement("UPDATE lejeaftale SET KmVedIndlevering = ? where RegistreringsNummer = ?");
-            psts.setString(1, aflæstKm);
-            psts.setString(2, RegNr);
-            psts.executeUpdate();
-
-            if (lakfelt.equals("Lakfelt")) {
+            if (!aflæstKm.equals("")) {
+                psts = connection.prepareStatement("UPDATE lejeaftale SET KmVedIndlevering = ? where RegistreringsNummer = ?");
+                psts.setString(1, aflæstKm);
+                psts.setString(2, RegNr);
+                psts.executeUpdate();
+            }
+            if (!(lakfelt == null)) {
                 psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'lakfelt', 1500)");
                 psts.setString(1, RegNr);
+                psts.execute();
             }
-            if (ridsetAlufælgerequest.equals("Ridset alufælge")) {
+            if (!(ridsetAlufælgerequest == null)) {
                 psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'ridset alufælge', 400)");
                 psts.setString(1, RegNr);
+                psts.execute();
             }
-            if (nyForrude.equals("Ny forrude")) {
+            if (!(nyForrude == null)) {
                 psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'ny forrude', 3000)");
                 psts.setString(1, RegNr);
+                psts.execute();
             }
 
         } catch (SQLException e) {
