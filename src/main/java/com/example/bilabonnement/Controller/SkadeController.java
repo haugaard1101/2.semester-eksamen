@@ -17,7 +17,7 @@ public class SkadeController {
 
     SkadeService skadeService = new SkadeService();
 
-    @GetMapping ("/findBil")
+    @GetMapping ("/registrerskade")
     public String SkadeRegNr () {
 
         return "/skade/SkadeRegNr";
