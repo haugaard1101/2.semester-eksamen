@@ -25,9 +25,9 @@ public class LejeAftaleRepository {
         preparedStatement = connection.prepareStatement("UPDATE LejeAftale (RegistreringsNummer,Navn,Adresse,Postnummer,Kommune," +
             "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,AntalMaaneder,Afhentningssted,"+
             "Afleveringssted,KmVedAfhentning,AftaleKM,KmVedIndlevering) " +
-            "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            "where RegistreringsNummer = ? values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        preparedStatement.setString(1, lejeAftaleModel.getRegistreringsNummer());
       }
-
       preparedStatement.setString(1, lejeAftaleModel.getRegistreringsNummer());
       preparedStatement.setString(2, lejeAftaleModel.getNavn());
       preparedStatement.setString(3, lejeAftaleModel.getAdresse());
@@ -100,12 +100,13 @@ public class LejeAftaleRepository {
     List<LejeAftaleModel> LejeAftaleListe = new ArrayList<>();
 
     try {
-      PreparedStatement psts = connection.prepareStatement("SELECT * FROM LejeAftale");
+      PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale");
       ResultSet resultSet = psts.executeQuery();
 
       while (resultSet.next()) {
         LejeAftaleListe.add(new LejeAftaleModel(
-            resultSet.getInt("AftaleID"),
+            resultSet.getInt("aftaleId"),
+            resultSet.getString("RegistreringsNummer"),
             resultSet.getString("Navn"),
             resultSet.getString("Adresse"),
             resultSet.getString("Postnummer"),
@@ -120,9 +121,8 @@ public class LejeAftaleRepository {
             resultSet.getString("Afleveringssted"),
             resultSet.getString("KmVedAfhentning"),
             resultSet.getString("AftaleKM"),
-            resultSet.getString("KmVedIndlevering"),
-            resultSet.getString("RegistreringsNummer")
-        ));
+            resultSet.getString("KmVedIndlevering")
+            ));
       }
     } catch (SQLException e) {
       throw new RuntimeException(e);
