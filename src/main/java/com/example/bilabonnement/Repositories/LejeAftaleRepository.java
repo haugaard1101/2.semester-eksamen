@@ -62,12 +62,12 @@ public class LejeAftaleRepository {
     throw new RuntimeException(e);
     }
   }
-  public List<LejeAftaleModel> getLejeAftaleById(int id){
+  public List<LejeAftaleModel> getLejeAftaleById(String registreringsnummer){
       List<LejeAftaleModel> LejeAftaleListe = new ArrayList<>();
 
       try {
         PreparedStatement psts = connection.prepareStatement("SELECT * FROM LejeAftale where RegistreringsNummer = ?");
-        psts.setInt(1, id);
+        psts.setString(1, registreringsnummer);
         ResultSet resultSet = psts.executeQuery();
 
         while (resultSet.next()) {
