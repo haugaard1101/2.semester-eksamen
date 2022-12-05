@@ -17,10 +17,10 @@ public class SkadeController {
 
     SkadeService skadeService = new SkadeService();
 
-    @GetMapping ("/findBil")
+    @GetMapping ("/indtastregistreringsnummer")
     public String SkadeRegNr () {
 
-        return "/skade/SkadeRegNr";
+        return "/skade/indtastRegNr";
     }
 
     @PostMapping("/visLejekontrakt")
@@ -29,7 +29,7 @@ public class SkadeController {
         BilModel bil = skadeService.findEnBil(req.getParameter("RegNr"));
         String RegNr = bil.getRegistreringsNummer();
 
-        session.setAttribute("420",RegNr);
+        session.setAttribute("registreringsnummerPåBil",RegNr);
         model.addAttribute("lejeAftale",lejeaftale);
         model.addAttribute("Bil",bil);
         return "/skade/registrerSkade";
@@ -60,10 +60,13 @@ public class SkadeController {
 
     @PostMapping("/registrerSkade")
     public String registrerSkade(HttpSession session,WebRequest request){
-       String asd = (String) session.getAttribute("420");
-        //Skade skade = skadeService.opretEnSkade(req.getParameter("AflæstKM"), req.getParameter("Lakfelt"), req.getParameter("RidsetAlu", req.getParameter("NyForrude")))
+       String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
+       String aflæstKm = request.getParameter("KmVedIndlevering");
 
-        System.out.println(asd);
+       String lakfelt = request.getParameter("Lakfelt");
+       String ridsetAlufælgerequest = request.getParameter("Ridset alufælge");
+       String nyForrude = request.getParameter("Ny forrude");
+        skadeService.createSkade(RegNr,aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
         return "/skade/seOgRedigerSkader";
     }
 }
