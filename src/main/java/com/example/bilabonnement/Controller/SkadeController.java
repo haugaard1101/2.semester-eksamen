@@ -2,7 +2,6 @@ package com.example.bilabonnement.Controller;
 
 import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Model.LejeAftaleModel;
-import com.example.bilabonnement.Model.SkadeModel;
 import com.example.bilabonnement.Service.SkadeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +17,10 @@ public class SkadeController {
 
     SkadeService skadeService = new SkadeService();
 
-    @GetMapping ("/registrerskade")
+    @GetMapping ("/indtastregistreringsnummer")
     public String SkadeRegNr () {
 
-        return "/skade/SkadeRegNr";
+        return "/skade/indtastRegNr";
     }
 
     @PostMapping("/visLejekontrakt")
