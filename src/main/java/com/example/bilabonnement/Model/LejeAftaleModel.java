@@ -20,9 +20,8 @@ public class LejeAftaleModel {
   private String KmVedIndlevering;
   private String RegistreringsNummer;
 
-  public LejeAftaleModel(int AftaleId,String RegistreringsNummer, String Navn, String Adresse, String Postnummer, String Kommune, String TelefonNr, String CPR, String Email, String LejeperiodeFra, String LejeperiodeTil, String AntalMaaneder, String Afhentningssted, String Afleveringssted, String KmVedAfhentning, String AftaleKM, String KmVedIndlevering) {
+  public LejeAftaleModel(int AftaleId, String Navn, String Adresse, String Postnummer, String Kommune, String TelefonNr, String CPR, String Email, String LejeperiodeFra, String LejeperiodeTil, String AntalMaaneder, String Afhentningssted, String Afleveringssted, String KmVedAfhentning, String AftaleKM, String KmVedIndlevering, String RegistreringsNummer) {
     this.aftaleId = AftaleId;
-    this.RegistreringsNummer = RegistreringsNummer;
     this.Navn = Navn;
     this.Adresse = Adresse;
     this.Postnummer = Postnummer;
@@ -38,9 +37,10 @@ public class LejeAftaleModel {
     this.KmVedAfhentning = KmVedAfhentning;
     this.AftaleKM = AftaleKM;
     this.KmVedIndlevering = KmVedIndlevering;
+    this.RegistreringsNummer = RegistreringsNummer;
   }
 
-  public LejeAftaleModel(String navn, String adresse, String postnummer, String kommune, String telefonNr, String CPR, String Email, String lejeperiodeFra, String lejeperiodeTil, String AntalMaaneder, String afhentningssted, String afleveringssted, String kmVedAfhentning, String aftaleKM, String kmVedIndlevering, String RegistreringsNummer) {
+  public LejeAftaleModel(String navn, String adresse, String postnummer, String kommune, String telefonNr, String CPR, String Email, String lejeperiodeFra, String lejeperiodeTil, String AntalMaaneder, String afhentningssted, String afleveringssted, String kmVedAfhentning, String aftaleKM, String kmVedIndlevering, String registreringsNummer) {
     this.Navn = navn;
     this.Adresse = adresse;
     this.Postnummer = postnummer;
@@ -56,7 +56,7 @@ public class LejeAftaleModel {
     this.KmVedAfhentning = kmVedAfhentning;
     this.AftaleKM = aftaleKM;
     this.KmVedIndlevering = kmVedIndlevering;
-    this.RegistreringsNummer = RegistreringsNummer;
+    this.RegistreringsNummer = registreringsNummer;
   }
 
   public LejeAftaleModel() {
