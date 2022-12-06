@@ -4,10 +4,7 @@ import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Model.SkadeModel;
 import com.example.bilabonnement.Repositories.SkadeRepository;
-import org.springframework.web.context.request.WebRequest;
 
-import javax.script.ScriptContext;
-import javax.swing.text.html.HTML;
 import java.util.List;
 
 public class SkadeService {
@@ -30,7 +27,7 @@ public class SkadeService {
         skadeRepo.deleteSkade(ID);
     }
 
-    public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude, WebRequest request) {
+    public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
         skadeRepo.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
 
         //regningen på overkørte KM og skader
@@ -47,16 +44,10 @@ public class SkadeService {
 
             regning = kmRegning + skadeRegning;
 
-            request.setAttribute("skadeRegning", String.valueOf(skadeRegning), ScriptContext.GLOBAL_SCOPE);
-            request.setAttribute("kmRegning", String.valueOf(kmRegning), ScriptContext.GLOBAL_SCOPE);
-            request.setAttribute("regning", String.valueOf(regning), ScriptContext.GLOBAL_SCOPE);
+
 
         } else {
             regning = skadeRegning;
-
-            request.setAttribute("skadeRegning", String.valueOf(skadeRegning), ScriptContext.GLOBAL_SCOPE);
-            request.setAttribute("kmRegning", "0", ScriptContext.GLOBAL_SCOPE);
-            request.setAttribute("regning", String.valueOf(regning), ScriptContext.GLOBAL_SCOPE);
 
         }
 

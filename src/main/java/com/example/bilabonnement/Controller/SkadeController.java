@@ -64,7 +64,7 @@ public class SkadeController {
         String lakfelt = request.getParameter("Lakfelt");
         String ridsetAlufælgerequest = request.getParameter("Ridset alufælge");
         String nyForrude = request.getParameter("Ny forrude");
-        skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude, request);
+        skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
 
         return "/skade/seOgRedigerSkader";
     }
