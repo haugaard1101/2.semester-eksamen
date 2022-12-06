@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.script.ScriptContext;
 import javax.servlet.http.HttpSession;
 
 
@@ -17,27 +18,27 @@ public class SkadeController {
 
     SkadeService skadeService = new SkadeService();
 
-    @GetMapping ("/indtastregistreringsnummer")
-    public String SkadeRegNr () {
+    @GetMapping("/indtastregistreringsnummer")
+    public String SkadeRegNr() {
 
         return "/skade/indtastRegNr";
     }
 
     @PostMapping("/visLejekontrakt")
-    public String showContract(WebRequest req, Model model, HttpSession session){
+    public String showContract(WebRequest req, Model model, HttpSession session) {
         LejeAftaleModel lejeaftale = skadeService.findEnLejekontrakt(req.getParameter("RegNr"));
         BilModel bil = skadeService.findEnBil(req.getParameter("RegNr"));
         String RegNr = bil.getRegistreringsNummer();
 
-        session.setAttribute("registreringsnummerPåBil",RegNr);
-        model.addAttribute("lejeAftale",lejeaftale);
-        model.addAttribute("Bil",bil);
+        session.setAttribute("registreringsnummerPåBil", RegNr);
+        model.addAttribute("lejeAftale", lejeaftale);
+        model.addAttribute("Bil", bil);
         return "/skade/registrerSkade";
     }
 
     @GetMapping("/opretSkadeAngivelse")
-    public String skadeAngivelse(){
-    return "/skade/opretSkadeAngivelse";
+    public String skadeAngivelse() {
+        return "/skade/opretSkadeAngivelse";
     }
 
     @GetMapping("/skadeliste")
@@ -56,17 +57,15 @@ public class SkadeController {
     }
 
 
-
-
     @PostMapping("/registrerSkade")
-    public String registrerSkade(HttpSession session,WebRequest request){
-       String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
-       String aflæstKm = request.getParameter("KmVedIndlevering");
+    public String registrerSkade(HttpSession session, WebRequest request) {
+        String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
+        String aflæstKm = request.getParameter("KmVedIndlevering");
+        String lakfelt = request.getParameter("Lakfelt");
+        String ridsetAlufælgerequest = request.getParameter("Ridset alufælge");
+        String nyForrude = request.getParameter("Ny forrude");
+        skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude, request);
 
-       String lakfelt = request.getParameter("Lakfelt");
-       String ridsetAlufælgerequest = request.getParameter("Ridset alufælge");
-       String nyForrude = request.getParameter("Ny forrude");
-        skadeService.createSkade(RegNr,aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
         return "/skade/seOgRedigerSkader";
     }
 }
