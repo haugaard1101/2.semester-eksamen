@@ -53,7 +53,7 @@ public class SkadeController {
     public String deleteSkade(WebRequest request) {
         int x = Integer.parseInt(request.getParameter("SkadeID"));
         skadeService.deleteSkade(x);
-        return "/skade/seOgRedigerSkader";
+        return "redirect:/skadeliste";
     }
 
 
