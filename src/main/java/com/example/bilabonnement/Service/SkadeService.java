@@ -53,4 +53,26 @@ public class SkadeService {
 
         System.out.println(regning);
     }
+
+    public double showBill(String RegNr){
+        //regningen på overkørte KM og skader
+        double regning;
+        double kmRegning;
+        double skadeRegning = skadeRepo.getPriceOnSkader(RegNr);
+        double kmVedIndlevering = Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getKmVedIndlevering());
+        double kmVedAflevering = Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getKmVedAfhentning());
+        double aftaleKM = Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getAftaleKM());
+
+        if (kmVedIndlevering - kmVedAflevering > aftaleKM) {
+
+            kmRegning = ((kmVedIndlevering - kmVedAflevering) - aftaleKM) * 0.75;
+
+            regning = kmRegning + skadeRegning;
+
+        } else {
+            regning = skadeRegning;
+        }
+
+        return regning;
+    }
 }
