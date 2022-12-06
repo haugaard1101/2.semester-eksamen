@@ -1,11 +1,14 @@
 package com.example.bilabonnement.Controller;
 
+import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Service.LejeAftaleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
+
+import java.util.List;
 
 
 @Controller
@@ -31,7 +34,8 @@ public class LejeAftaleController {
     return "dataregistrering/opdaterlejeaftale";
   }
   @GetMapping("/lejeaftaleliste")
-  public String lejeaftaleliste(){
+  public String lejeaftaleliste(Model model){
+    model.addAttribute("LejeAftale", lejeAftaleService.getAlleLejeAftaler());
     return "dataregistrering/lejeaftaleliste";
   }
   @PostMapping("/lejeaftalefundet")
@@ -54,7 +58,9 @@ public class LejeAftaleController {
   @PostMapping("/opdaterlejeaftale")
   public String opdaterlejeaftale(WebRequest request,Model model){
     lejeAftaleService.createLejeAftale(request,"");
+    List<LejeAftaleModel> s1 = lejeAftaleService.getAlleLejeAftaler();
     model.addAttribute("LejeAftale", lejeAftaleService.getAlleLejeAftaler());
+    //model.addAttribute("aftaleID", s1.get(0).)
     return "dataregistrering/opdaterlejeaftale";
   }
 }

@@ -25,8 +25,8 @@ public class LejeAftaleRepository {
         preparedStatement = connection.prepareStatement("UPDATE LejeAftale (RegistreringsNummer,Navn,Adresse,Postnummer,Kommune," +
             "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,AntalMaaneder,Afhentningssted,"+
             "Afleveringssted,KmVedAfhentning,AftaleKM,KmVedIndlevering) " +
-            "where RegistreringsNummer = ? values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        preparedStatement.setString(1, lejeAftaleModel.getRegistreringsNummer());
+            "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) where RegistreringsNummer = ?");
+        preparedStatement.setString(17, lejeAftaleModel.getRegistreringsNummer());
       }
       preparedStatement.setString(1, lejeAftaleModel.getRegistreringsNummer());
       preparedStatement.setString(2, lejeAftaleModel.getNavn());
