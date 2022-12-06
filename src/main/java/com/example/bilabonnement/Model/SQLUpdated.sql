@@ -2,12 +2,9 @@ use
 BilAbonnement;
 
 DROP table lejeaftale;
-
 DROP table skader;
 DROP table users;
 DROP table biler;
-
-
 
 Create table Biler
 (
@@ -17,7 +14,7 @@ Create table Biler
     Mærke               varchar(50),
     Model               varchar(50),
     UdstyrsNiveau       varchar(50),
-    UdlejningsStatus    ENUM ('LEDIG','AKTIV','AFLEVERET'),
+    UdlejningsStatus    ENUM ('LEDIG','AKTIV','AFLEVERET','SKADET'),
     Gear                ENUM ('MANUELT','AUTOMATISK'),
     BrændstofType       varchar(50),
     KmL                 int,
@@ -95,7 +92,14 @@ INSERT into LejeAftale(RegistreringsNummer, Navn, Adresse, Postnummer, Kommune, 
 values ('HF73287','Marcus Buhl', 'Hvidovrevej 23', 2520, 'Hvidovre', 25230299, '110301-1874', 'randommail@gmail.com',
         '2021-11-12', '2022-04-12', 6, 'Vanløse bilværksted', 'Vanløse bilværksted', 34000, 1500, 2000);
 INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris)
-values ('HF73287', 'skade', 1000)
+values ('HF73287', 'skade', 1000);
+
+INSERT into Biler (RegistreringsNummer, Stelnummer, Mærke, Model, UdstyrsNiveau, UdlejningsStatus, Gear, BrændstofType, KmL, CO2_Udledning,
+                       PrisPrMåned)
+values ('TA75209',293495, 'VW', 'Tiguan', 'Premium', 'AKTIV', 'MANUELT', 'Diesel', 15, 30, 5000);
+INSERT into biler (RegistreringsNummer, Stelnummer, Mærke, Model, UdstyrsNiveau, UdlejningsStatus, Gear, BrændstofType, KmL, CO2_Udledning,
+                   PrisPrMåned)
+values ('VA45266',183894, 'Toyota', 'Aygo', 'Basic', 'AKTIV', 'MANUELT', 'Benzin', 40, 66, 2000);
 
 
 Insert into Biler (RegistreringsNummer, Stelnummer, Mærke, Model, UdstyrsNiveau, UdlejningsStatus, Gear, BrændstofType, KmL, CO2_Udledning,
