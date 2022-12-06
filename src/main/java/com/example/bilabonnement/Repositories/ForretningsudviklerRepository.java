@@ -14,44 +14,68 @@ import java.util.List;
 
 public class ForretningsudviklerRepository {
 
-  private Connection conn = DatabaseConnectionManager.getConnection();
+    private Connection conn = DatabaseConnectionManager.getConnection();
 
 
-  public List<BilModel> getAllRentedCars() {
-    List<BilModel> rentedCars = new ArrayList<>();
+    public List<BilModel> getAllRentedCars() {
+        List<BilModel> rentedCars = new ArrayList<>();
 
-    try {
-      // Her laver vi variable der kan udføre en SQL statement i databasen
-      PreparedStatement psts = conn.prepareStatement("SELECT * FROM biler where UdlejningsStatus = 'AKTIV'");
-      // Nu beder vi databasen om at execute den SQL commando og gemmer resultatet i en "ResultSet" klasse variabel.
-      ResultSet resultSet = psts.executeQuery();
+        try {
+            // Her laver vi variable der kan udføre en SQL statement i databasen
+            PreparedStatement psts = conn.prepareStatement("SELECT * FROM biler where UdlejningsStatus = 'AKTIV'");
+            // Nu beder vi databasen om at execute den SQL commando og gemmer resultatet i en "ResultSet" klasse variabel.
+            ResultSet resultSet = psts.executeQuery();
 
-      // Nu looper vi sættet igennem for hver student, og laver en ny student med constructoren for hver student, med vores variabler vi kan finde i sættet som vi indsætter i constructoren.
-      while (resultSet.next()) {
-        rentedCars.add(new BilModel(
-            resultSet.getInt("IDNumber"),
-            resultSet.getString("RegistreringsNummer"),
-            resultSet.getString("Stelnummer"),
-            resultSet.getString("Mærke"),
-            resultSet.getString("Model"),
-            resultSet.getString("UdstyrsNiveau"),
-            UdlejningsStatusEnum.valueOf(resultSet.getString("UdlejningsStatus")),
-            GearEnum.valueOf(resultSet.getString("Gear")),
-            resultSet.getString("BrændstofType"),
-            resultSet.getInt("KmL"),
-            resultSet.getInt("CO2_Udledning"),
-            resultSet.getInt("PrisPrMåned")
-            ));
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
+            // Nu looper vi sættet igennem for hver student, og laver en ny student med constructoren for hver student, med vores variabler vi kan finde i sættet som vi indsætter i constructoren.
+            while (resultSet.next()) {
+                rentedCars.add(new BilModel(
+                        resultSet.getInt("IDNumber"),
+                        resultSet.getString("RegistreringsNummer"),
+                        resultSet.getString("Stelnummer"),
+                        resultSet.getString("Mærke"),
+                        resultSet.getString("Model"),
+                        resultSet.getString("UdstyrsNiveau"),
+                        UdlejningsStatusEnum.valueOf(resultSet.getString("UdlejningsStatus")),
+                        GearEnum.valueOf(resultSet.getString("Gear")),
+                        resultSet.getString("BrændstofType"),
+                        resultSet.getInt("KmL"),
+                        resultSet.getInt("CO2_Udledning"),
+                        resultSet.getInt("PrisPrMåned")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rentedCars;
     }
-    return rentedCars;
-  }
 
-  public int getPriceOfAllRentedCars(){
-    List<Integer> totalPriceOfRentedCars = new ArrayList<>();
+    public int getPriceOfAllRentedCars() {
+        List<BilModel> rentedCars = new ArrayList<>();
+        rentedCars = getAllRentedCars();
+        List<Integer> priceOfRentedCars = new ArrayList<>();
+        for (BilModel car : rentedCars) {
+            priceOfRentedCars.add(car.getPrisPrMaaned());
+        }
+        int sum = 0;
 
-    return 0;
-  }
+        for (int price : priceOfRentedCars) {
+            sum = sum + price;
+        }
+        return sum;
+    }
+
+    public int getCO2OfAllRentedCars() {
+        List<BilModel> rentedCars = new ArrayList<>();
+        rentedCars = getAllRentedCars();
+        List<Integer> CO2OfRentedCars = new ArrayList<>();
+        for (BilModel car : rentedCars) {
+            CO2OfRentedCars.add(car.getCo2Udledning());
+        }
+        int sum = 0;
+
+        for (int price : CO2OfRentedCars) {
+            sum = sum + price;
+        }
+        return sum;
+    }
 }

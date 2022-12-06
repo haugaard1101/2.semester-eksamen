@@ -16,6 +16,7 @@ public class ForretningsudviklerController {
     @GetMapping("/forretningsudvikling")
     public String showRentedCars(Model model){
         model.addAttribute("RentedCars", service.getAllRentedCars());
+        model.addAttribute("amountOfCars", service.getAllRentedCars().size());
         return "/forretningsudvikling/forretningsudvikling";
     }
 
@@ -23,6 +24,9 @@ public class ForretningsudviklerController {
     public String showKPI(Model model) {
         int amountOfRentedCars = service.getAllRentedCars().size();
         model.addAttribute("AmountOfRentedCars", amountOfRentedCars);
+        model.addAttribute("priceRentedCars", service.getPriceRentedCars());
+        model.addAttribute("CO2OfRentedCars", service.getCO2RentedCars());
+        System.out.println(service.getPriceRentedCars());
         return "/forretningsudvikling/KPI";
     }
 

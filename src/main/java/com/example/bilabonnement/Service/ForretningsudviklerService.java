@@ -13,8 +13,11 @@ public class ForretningsudviklerService {
     return repo.getAllRentedCars();
   }
 
-  public int getAmountRentedCars(){
-//
-    return 0;
+  public int getPriceRentedCars(){
+    return repo.getPriceOfAllRentedCars();
+  }
+
+  public int getCO2RentedCars(){
+    return repo.getCO2OfAllRentedCars();
   }
 }

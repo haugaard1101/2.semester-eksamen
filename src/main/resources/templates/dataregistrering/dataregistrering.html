@@ -12,63 +12,121 @@
 
 <nav th:insert="fragments/nav.html"> </nav>
 
+<h3 align="center">Registrer en lejekontrkt</h3>
+<br>
+
+<form action="/lejeaftaleliste" method="Post">
+
 <!--  <input type="text" name="RegistreringsNummer"> -->
+<div class="container">
+    <div class ="row">
 
-    <form action="/lejeaftaleliste" method="Post">
-        <br>
-        <label for="RegistreringsNummer">RegistreringsNummer</label><br>
-        <input type="text" name="RegistreringsNummer">
-        <br>
-        <label for="Navn">Navn</label> <br>
-        <input type="text" name="Navn">
-        <br>
-        <label for="Adresse">Adresse</label> <br>
-        <input type="text" name="Adresse">
-        <br>
-        <label for="Postnummer">Postnummer</label> <br>
-        <input type="text" name="Postnummer">
-        <br>
-        <label for="Kommune">Kommune</label> <br>
-        <input type="text" name="Kommune">
-        <br>
-        <label for="TelefonNr">TelefonNr</label> <br>
-        <input type="text" name="TelefonNr">
-        <br>
-        <label for="CPR">CPR</label> <br>
-        <input type="text" name="CPR">
-        <br>
-        <label for="Email">Email</label> <br>
-        <input type="text" name="Email">
-        <br>
-        <label for="LejeperiodeFra">LejeperiodeFra</label> <br>
-        <input type="text" name="LejeperiodeFra">
-        <br><br>
-        <label for="LejeperiodeTil">LejeperiodeTil</label> <br>
-        <input type="text" name="LejeperiodeTil"><br>
-
-        <label for="AntalMaaneder">AntalMaaneder</label> <br>
-        <input type="text" name="AntalMaaneder"><br>
-
-        <label for="Afhentningssted">Afhentningssted</label> <br>
-        <input type="text" name="Afhentningssted"><br>
-
-        <label for="Afleveringssted">Afleveringssted</label> <br>
-        <input type="text" name="Afleveringssted"><br>
-
-        <label for="KmVedAfhentning">KmVedAfhentning</label> <br>
-        <input type="text" name="KmVedAfhentning"><br>
-
-        <label for="AftaleKM">AftaleKM</label> <br>
-        <input type="text" name="AftaleKM"><br>
-
-        <!--
-        <label for="KmVedIndlevering">KmVedIndlevering</label> <br>
-        <input type="text" name="KmVedIndlevering"> -->
+        <div class="col-12">
+        <label for="RegistreringsNummer"></label>
+        <input type="text" placeholder="Registreringsnummer" class="form-control" name="RegistreringsNummer" >
+        </div>
 
 
-        <br>
-        <button>Registrer lejekontrakt</button>
-    </form>
+        <div class="col-6">
+        <label for="Navn"></label>
+        <input type="text" placeholder="Fulde navn" class="form-control" name="Navn">
+        </div>
+
+        <div class="col-6">
+        <label for="CPR"></label>
+        <input type="text" class="form-control" placeholder="CPR" name="CPR">
+        </div>
+
+        <div class="col-6">
+        <label for="Email"></label>
+        <input type="text" class="form-control" placeholder="E-mail" name="Email">
+        </div>
+
+        <div class="col-6">
+        <label for="TelefonNr"></label>
+        <input type="text" class = "form-control" placeholder="Telefon nummer" name="TelefonNr">
+        </div>
+
+    </div>
+<br>
+<br>
+
+    <div class="container">
+        <div class ="row">
+
+        <div class="col-4">
+        <label for="Adresse"></label>
+        <input type="text" placeholder="Adresse" class="form-control" name="Adresse">
+        </div>
+
+
+        <div class="col-4">
+        <label for="Postnummer"></label>
+        <input type="text" placeholder="Postnummer" class="form-control" name="Postnummer">
+        </div>
+
+
+        <div class="col-4">
+        <label for="Kommune"></label> <br>
+        <input type="text" placeholder="Kommune" class="form-control" name="Kommune">
+        </div>
+
+
+
+        <div class="col-6">
+        <label for="LejeperiodeFra"></label>
+        <input type="text" class="form-control" placeholder="Lejeperiode begynder" name="LejeperiodeFra">
+        </div>
+
+        <div class="col-6">
+        <label for="LejeperiodeTil"></label> <br>
+        <input type="text" class="form-control" placeholder="Lejeperiode slutter" name="LejeperiodeTil">
+        </div>
+
+        <div class="col-12">
+        <label for="AntalMaaneder"></label> <br>
+        <input type="text" class="form-control" placeholder="Antal måneder bilen er udlejet i" name="AntalMaaneder">
+        </div>
+
+            <div class="col-6">
+        <label for="Afhentningssted"></label>
+        <input type="text" class="form-control" placeholder="Afhentningssted" name="Afhentningssted">
+            </div>
+
+            <div class="col-6">
+            <label for="Afleveringssted"></label>
+        <input type="text" class="form-control" placeholder="Afleveringssted" name="Afleveringssted">
+            </div>
+
+            <div class="col-6">
+
+            <label for="KmVedAfhentning"></label> <br>
+        <input type="text" class="form-control" placeholder="Km ved afhentning" name="KmVedAfhentning"><br>
+            </div>
+                <div class="col-6">
+
+                <label for="AftaleKM"></label>
+        <input type="text" class="form-control" placeholder="Aftalt antal KM" name="AftaleKM">
+                </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+    <div class="container" align="center">
+        <div class="row">
+            <div class="col-sm">
+    <button type="button" class="btn btn-primary">Registrer lejekontrakt</button>
+
+
+</div>
+</div>
+</div>
+
+</form>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
