@@ -66,6 +66,14 @@ public class SkadeController {
         String nyForrude = request.getParameter("Ny forrude");
         skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
 
-        return "/skade/seOgRedigerSkader";
+        return "/skade/registrerSkade";
+    }
+
+    @GetMapping("/registrerSkade")
+    public String showBill(HttpSession session, Model model) {
+        String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
+        model.addAttribute("bill", skadeService.showBill(RegNr));
+        System.out.println(skadeService.showBill(RegNr));
+        return "/skade/registrerSkade";
     }
 }
