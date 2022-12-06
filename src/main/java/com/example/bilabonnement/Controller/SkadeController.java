@@ -53,7 +53,7 @@ public class SkadeController {
     public String deleteSkade(WebRequest request) {
         int x = Integer.parseInt(request.getParameter("SkadeID"));
         skadeService.deleteSkade(x);
-        return "/skade/seOgRedigerSkader";
+        return "redirect:/skadeliste";
     }
 
 
@@ -64,8 +64,16 @@ public class SkadeController {
         String lakfelt = request.getParameter("Lakfelt");
         String ridsetAlufælgerequest = request.getParameter("Ridset alufælge");
         String nyForrude = request.getParameter("Ny forrude");
-        skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude, request);
+        skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
 
-        return "/skade/seOgRedigerSkader";
+        return "/skade/registrerSkade";
+    }
+
+    @GetMapping("/registrerSkade")
+    public String showBill(HttpSession session, Model model) {
+        String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
+        model.addAttribute("bill", skadeService.showBill(RegNr));
+        System.out.println(skadeService.showBill(RegNr));
+        return "/skade/registrerSkade";
     }
 }

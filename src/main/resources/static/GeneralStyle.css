@@ -9,8 +9,6 @@
     color: #1892c3;
 }
 
-.table td.fit,
-.table th.fit {
-    white-space: nowrap;
-    width: 1%;
+#CustomFooter{
+    padding-top: 270px;
 }
