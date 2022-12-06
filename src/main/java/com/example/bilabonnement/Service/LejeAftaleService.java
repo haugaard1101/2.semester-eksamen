@@ -12,6 +12,11 @@ public class LejeAftaleService {
 
   LejeAftaleRepository LejeAftaleRepo = new LejeAftaleRepository();
 
+
+  public String updateSingleValue(String registreringsnummer, int kmVedIndlevering){
+     LejeAftaleRepo.updateSingleValue(registreringsnummer, kmVedIndlevering);
+     return registreringsnummer;
+  }
   public void createLejeAftale(WebRequest request,String command) {
     LejeAftaleModel lejeAftale = new LejeAftaleModel(
         request.getParameter("Navn"),

@@ -67,7 +67,12 @@ public class LejeAftaleModel {
     this.KmVedIndlevering = kmVedIndlevering;
     }
 
-    public String getNavn() {
+  public LejeAftaleModel(String KmVedIndlevering, String RegistreringsNummer) {
+    this.KmVedIndlevering = KmVedIndlevering;
+    this.RegistreringsNummer = RegistreringsNummer;
+  }
+
+  public String getNavn() {
     return Navn;
   }
 

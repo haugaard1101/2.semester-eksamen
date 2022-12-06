@@ -11,6 +11,20 @@ import java.util.Objects;
 public class LejeAftaleRepository {
   private Connection connection = DatabaseConnectionManager.getConnection();
 
+  public void updateSingleValue(String registreringnummer, int kmVedIndlevering){
+
+      try {
+        PreparedStatement psts = connection.prepareStatement("UPDATE LejeAftale SET KmVedIndlevering = ? where RegistreringsNummer = ?");
+        psts.setInt(1,kmVedIndlevering);
+        System.out.println("kmvedindlevering i repo " +kmVedIndlevering);
+        psts.setString(2,registreringnummer);
+        System.out.println("registreringsnummer i repo " + registreringnummer);
+        psts.execute();
+
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+  }
   public void createLejeAftale(LejeAftaleModel lejeAftaleModel,String command) {
 
     try {
