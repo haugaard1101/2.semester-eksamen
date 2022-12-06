@@ -21,6 +21,8 @@
     </thead>
     </tr>
 
+
+    <div class="container-sm">
     <tr th:each="skader: ${SkadeListe}">
         <!-- Det her er et Thymeleaf for each loop,  TR = Tablerow, TD table division(kolonner) -->
         <td th:text="${skader.SkadeID}"/>
@@ -30,7 +32,7 @@
 
     </tr>
 </table>
-
+</div>
 <form action="/skadeliste" method="Post">
     <label for="SkadeID">SkadeID</label> <br>
     <input type="text" name="SkadeID"><br>
