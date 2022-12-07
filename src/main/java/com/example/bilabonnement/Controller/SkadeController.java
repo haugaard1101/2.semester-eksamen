@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.script.ScriptContext;
 import javax.servlet.http.HttpSession;
 
 
@@ -24,7 +23,7 @@ public class SkadeController {
     return "/skade/indtastRegNr";
   }
 
-  @PostMapping("/visLejekontrakt")
+  @PostMapping("/registrerskade")
   public String showContract(WebRequest req, Model model, HttpSession session) {
     LejeAftaleModel lejeaftale = skadeService.findEnLejekontrakt(req.getParameter("RegNr"));
     BilModel bil = skadeService.findEnBil(req.getParameter("RegNr"));
@@ -33,40 +32,46 @@ public class SkadeController {
     session.setAttribute("registreringsnummerPåBil", RegNr);
     model.addAttribute("lejeAftale", lejeaftale);
     model.addAttribute("Bil", bil);
-    return "/skade/registrerSkade";
+
+    return "/skade/registrerskade";
   }
 
-  @GetMapping("/skadeliste")
-  public String visSkadeListe(Model model) {
-    model.addAttribute("SkadeListe", skadeService.getAllSkader());
-    System.out.println(skadeService.getAllSkader());
-    return "/skade/seOgRedigerSkader";
-  }
-
-  @PostMapping("/skadeliste")
-  public String deleteSkade(WebRequest request) {
-    int x = Integer.parseInt(request.getParameter("SkadeID"));
-    skadeService.deleteSkade(x);
-    return "redirect:/skadeliste";
-  }
-
-  @PostMapping("/registrerSkade")
-  public String registrerSkade(HttpSession session, WebRequest request) {
+  @PostMapping("/registrerskade2")
+  public String registrerSkade(HttpSession session, WebRequest request, Model model) {
     String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
     String aflæstKm = request.getParameter("KmVedIndlevering");
     String lakfelt = request.getParameter("Lakfelt");
     String ridsetAlufælgerequest = request.getParameter("Ridset alufælge");
     String nyForrude = request.getParameter("Ny forrude");
     skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
+    model.addAttribute("regning", skadeService.showBill(RegNr));
 
-    return "/skade/registrerSkade";
+    return "/skade/visregning";
   }
 
-  @GetMapping("/registrerSkade")
+  @GetMapping("/visregning")
   public String showBill(HttpSession session, Model model) {
     String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
-    model.addAttribute("bill", skadeService.showBill(RegNr));
-    System.out.println(skadeService.showBill(RegNr));
-    return "/skade/registrerSkade";
+    System.out.println("her tjekker vi i controlleren" +  RegNr );
+    System.out.println("helloooo" + skadeService.showBill(RegNr));
+    model.addAttribute("regning", skadeService.showBill(RegNr));
+    System.out.println("hello" );
+    return "/skade/visregning";
   }
+
+  @GetMapping("/skadeliste")
+  public String visSkadeListe(Model model) {
+    model.addAttribute("SkadeListe", skadeService.getAllSkader());
+    return "/skade/seOgRedigerSkader";
+  }
+
+
+  @PostMapping("/sletskade")
+  public String deleteSkade(WebRequest request) {
+    int x = Integer.parseInt(request.getParameter("SkadeID"));
+    skadeService.deleteSkade(x);
+    return "redirect:/skadeliste";
+  }
+
+
 }

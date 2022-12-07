@@ -27,33 +27,15 @@ public class SkadeService {
     skadeRepo.deleteSkade(ID);
   }
 
-  public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
+    public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
     skadeRepo.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
+    showBill(RegNr);
 
-    //regningen på overkørte KM og skader
-    double regning;
-    double kmRegning;
-    double skadeRegning = skadeRepo.getPriceOnSkader(RegNr);
-    double kmVedIndlevering = Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getKmVedIndlevering());
-    double kmVedAflevering = Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getKmVedAfhentning());
-    double aftaleKM = Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getAftaleKM());
-
-    if (kmVedIndlevering - kmVedAflevering > aftaleKM) {
-
-      kmRegning = ((kmVedIndlevering - kmVedAflevering) - aftaleKM) * 0.75;
-
-      regning = kmRegning + skadeRegning;
-
-    } else {
-      regning = skadeRegning;
-
-    }
-
-    System.out.println(regning);
   }
 
   //udregner og viser hvad kunden skal betale
-  public double showBill(String RegNr) {
+  public int showBill(String RegNr) {
+    System.out.println("her tjekker vi om regnnr kommer med op i serivide" +RegNr);
     //regningen på overkørte KM og skader
     double regning;
     double kmRegning;
@@ -71,7 +53,7 @@ public class SkadeService {
     } else {
       regning = skadeRegning;
     }
-
-    return regning;
+    System.out.println("her printer vi fra showbill i service" + regning);
+    return (int) regning;
   }
 }

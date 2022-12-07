@@ -51,9 +51,7 @@ public class LejeAftaleController {
   @PostMapping("/updatingsinglevalue")
   public String updatingsinglevalue(WebRequest request){
     int x = Integer.parseInt(Objects.requireNonNull(request.getParameter("KmVedIndlevering")));
-    System.out.printf("kmvedindlevering i controller " +  String.valueOf(x));
-    String y = lejeAftaleService.updateSingleValue(request.getParameter("RegistreringsNummer"),x);
-    System.out.println("registreringsnummer i controller " + y);
+    lejeAftaleService.updateSingleValue(request.getParameter("RegistreringsNummer"),x);
     return "dataregistrering/updatesinglevalue";
   }
   @PostMapping("/lejeaftalefundet")
