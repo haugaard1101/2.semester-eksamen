@@ -17,12 +17,15 @@ public class SkadeController {
 
   SkadeService skadeService = new SkadeService();
 
+  //viser siden til indtastRegNr.html
   @GetMapping("/indtastregistreringsnummer")
-  public String SkadeRegNr() {
-
+  public String SkadeRegNr(Model model) {
+    model.addAttribute("ReturnedCars", skadeService.getAllReturnedCars());
+    model.addAttribute("amountOfReturnedCars", skadeService.getAllReturnedCars().size());
     return "/skade/indtastRegNr";
   }
 
+  //postmapping til indtastRegNr.html
   @PostMapping("/registrerskade")
   public String showContract(WebRequest req, Model model, HttpSession session) {
     LejeAftaleModel lejeaftale = skadeService.findEnLejekontrakt(req.getParameter("RegNr"));
@@ -36,6 +39,7 @@ public class SkadeController {
     return "/skade/registrerskade";
   }
 
+  //postmapping til registrerskade.html
   @PostMapping("/registrerskade2")
   public String registrerSkade(HttpSession session, WebRequest request, Model model) {
     String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
@@ -49,6 +53,7 @@ public class SkadeController {
     return "/skade/visregning";
   }
 
+  //viser siden til visregning.html
   @GetMapping("/visregning")
   public String showBill(HttpSession session, Model model) {
     String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
@@ -59,13 +64,14 @@ public class SkadeController {
     return "/skade/visregning";
   }
 
+  //viser siden til seOgRedigerSkader.html
   @GetMapping("/skadeliste")
   public String visSkadeListe(Model model) {
     model.addAttribute("SkadeListe", skadeService.getAllSkader());
     return "/skade/seOgRedigerSkader";
   }
 
-
+//postmapping til seOgRedigerSkader.html
   @PostMapping("/sletskade")
   public String deleteSkade(WebRequest request) {
     int x = Integer.parseInt(request.getParameter("SkadeID"));

@@ -35,7 +35,7 @@ public class SkadeRepository {
     return skadeListe;
   }
 
-  //finder og lægger prisen af skader sammen på en bestemt lejeaftale
+  //finder og lægger prisen af skader sammen på et bestemt registreringsnummer
   public int getPriceOnSkader(String RegNr) {
     int skadeRegning = 0;
     List<SkadeModel> skader = new ArrayList<>();
@@ -139,7 +139,7 @@ public class SkadeRepository {
     }
   }
 
-  //oprette en skade og ændre KM ved indlevering på en bil (den burde nok også ændre KM ved aflevering, så den er opdateret til næste gang bilen udlejes
+  //oprette en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
   public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
     PreparedStatement psts;
 
@@ -165,9 +165,46 @@ public class SkadeRepository {
         psts.setString(1, RegNr);
         psts.execute();
       }
+      if (!(lakfelt == null) || !(ridsetAlufælgerequest == null) || !(nyForrude == null)) {
+        psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'SKADET' where registreringsNummer = ?");
+        psts.setString(1, RegNr);
+        psts.execute();
+      }
 
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public List<BilModel> getAllReturnedCars() {
+    List<BilModel> returnedCars = new ArrayList<>();
+
+    try {
+      // Her laver vi variable der kan udføre en SQL statement i databasen
+      PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where UdlejningsStatus = 'AFLEVERET'");
+      // Nu beder vi databasen om at execute den SQL commando og gemmer resultatet i en "ResultSet" klasse variabel.
+      ResultSet resultSet = psts.executeQuery();
+
+      // Nu looper vi sættet igennem for hver student, og laver en ny student med constructoren for hver student, med vores variabler vi kan finde i sættet som vi indsætter i constructoren.
+      while (resultSet.next()) {
+        returnedCars.add(new BilModel(
+            resultSet.getInt("IDNumber"),
+            resultSet.getString("RegistreringsNummer"),
+            resultSet.getString("Stelnummer"),
+            resultSet.getString("Mærke"),
+            resultSet.getString("Model"),
+            resultSet.getString("UdstyrsNiveau"),
+            UdlejningsStatusEnum.valueOf(resultSet.getString("UdlejningsStatus")),
+            GearEnum.valueOf(resultSet.getString("Gear")),
+            resultSet.getString("BrændstofType"),
+            resultSet.getInt("KmL"),
+            resultSet.getInt("CO2_Udledning"),
+            resultSet.getInt("PrisPrMåned")
+        ));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return returnedCars;
   }
 }
