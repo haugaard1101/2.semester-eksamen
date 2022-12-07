@@ -1,6 +1,5 @@
 package com.example.bilabonnement.Controller;
 
-import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Service.LejeAftaleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,12 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
-import java.util.List;
 import java.util.Objects;
 
 
 @Controller
-public class LejeAftaleController {
+public class Dataregistreringscontroller {
 
   LejeAftaleService lejeAftaleService = new LejeAftaleService();
 

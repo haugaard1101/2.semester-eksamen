@@ -1,0 +1,17 @@
+#overtekstTilCheckbokse{
+    font-weight: bold;
+}
+.card-body {
+    background-color: #f8f9fa;
+    max-height: 445px;
+    overflow-y: auto;
+    display:inline-block;
+}
+
+.card-header{
+    color: #1892c3;
+}
+
+#CustomFooter{
+    padding-top: 270px;
+}
