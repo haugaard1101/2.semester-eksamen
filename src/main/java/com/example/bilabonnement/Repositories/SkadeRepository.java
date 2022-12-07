@@ -139,7 +139,7 @@ public class SkadeRepository {
     }
   }
 
-  //oprette en skade og ændre KM ved indlevering på en bil
+  //oprette en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
   public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
     PreparedStatement psts;
 
@@ -162,6 +162,11 @@ public class SkadeRepository {
       }
       if (!(nyForrude == null)) {
         psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'ny forrude', 3000)");
+        psts.setString(1, RegNr);
+        psts.execute();
+      }
+      if (!(lakfelt == null) || !(ridsetAlufælgerequest == null) || !(nyForrude == null)) {
+        psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'SKADET' where registreringsNummer = ?");
         psts.setString(1, RegNr);
         psts.execute();
       }

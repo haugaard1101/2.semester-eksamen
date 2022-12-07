@@ -31,7 +31,7 @@ public class SkadeService {
     skadeRepo.deleteSkade(ID);
   }
 
-  //oprette en skade og ændre KM ved indlevering på en bil
+  //oprette en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
     public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
     skadeRepo.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
     showBill(RegNr);
