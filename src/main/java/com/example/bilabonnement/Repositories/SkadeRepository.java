@@ -12,7 +12,8 @@ import java.util.List;
 
 public class SkadeRepository {
   private Connection connection = DatabaseConnectionManager.getConnection();
-    
+
+  //viser alle skader
   public List<SkadeModel> getSkadeListe() {
     List<SkadeModel> skadeListe = new ArrayList<>();
 
@@ -62,6 +63,7 @@ public class SkadeRepository {
     return skadeRegning;
   }
 
+  //finder og viser en lejeaftale udfra RegNr
   public LejeAftaleModel findEnLejekontrakt(String RegNr) {
     LejeAftaleModel lejeaftale = null;
     try {
@@ -96,6 +98,7 @@ public class SkadeRepository {
     return lejeaftale;
   }
 
+  //finder og viser en bil udfra RegNr
   public BilModel findEnBil(String RegNr) {
     BilModel bil = null;
     try {
@@ -125,6 +128,7 @@ public class SkadeRepository {
     return bil;
   }
 
+  //sletter en skader udfra skadeID
   public void deleteSkade(int ID) {
     try {
       PreparedStatement psts = connection.prepareStatement("DELETE FROM skader where SkadeID = ?");
@@ -135,6 +139,7 @@ public class SkadeRepository {
     }
   }
 
+  //oprette en skade og ændre KM ved indlevering på en bil (den burde nok også ændre KM ved aflevering, så den er opdateret til næste gang bilen udlejes
   public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
     PreparedStatement psts;
 

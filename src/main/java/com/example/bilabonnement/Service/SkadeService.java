@@ -52,6 +52,7 @@ public class SkadeService {
     System.out.println(regning);
   }
 
+  //udregner og viser hvad kunden skal betale
   public double showBill(String RegNr) {
     //regningen på overkørte KM og skader
     double regning;
