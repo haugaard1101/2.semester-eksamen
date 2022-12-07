@@ -5,6 +5,7 @@ import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Model.SkadeModel;
 import com.example.bilabonnement.Repositories.SkadeRepository;
 
+import java.util.Collection;
 import java.util.List;
 
 public class SkadeService {
@@ -59,5 +60,9 @@ public class SkadeService {
     }
     System.out.println("her printer vi fra showbill i service" + regning);
     return (int) regning;
+  }
+
+  public List<BilModel> getAllReturnedCars() {
+    return skadeRepo.getAllReturnedCars();
   }
 }
