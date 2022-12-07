@@ -35,7 +35,7 @@ public class SkadeRepository {
     return skadeListe;
   }
 
-  //finder og lægger prisen af skader sammen på en bestemt lejeaftale
+  //finder og lægger prisen af skader sammen på et bestemt registreringsnummer
   public int getPriceOnSkader(String RegNr) {
     int skadeRegning = 0;
     List<SkadeModel> skader = new ArrayList<>();
@@ -139,7 +139,7 @@ public class SkadeRepository {
     }
   }
 
-  //oprette en skade og ændre KM ved indlevering på en bil (den burde nok også ændre KM ved aflevering, så den er opdateret til næste gang bilen udlejes
+  //oprette en skade og ændre KM ved indlevering på en bil
   public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
     PreparedStatement psts;
 
