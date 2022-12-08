@@ -1,14 +1,14 @@
 package com.example.bilabonnement.Repositories;
 
-import com.example.bilabonnement.Model.*;
-import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
+    import com.example.bilabonnement.Model.*;
+    import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+    import java.sql.Connection;
+    import java.sql.PreparedStatement;
+    import java.sql.ResultSet;
+    import java.sql.SQLException;
+    import java.util.ArrayList;
+    import java.util.List;
 
 public class SkadeRepository {
   private Connection connection = DatabaseConnectionManager.getConnection();
@@ -137,26 +137,26 @@ public class SkadeRepository {
         RegNr = s.getRegistreringsNummer();
       }
     }
-      try {
-        psts = connection.prepareStatement("DELETE FROM skader where SkadeID = ?");
-        psts.setInt(1, ID);
-        psts.execute();
-      } catch (SQLException e) {
-        throw new RuntimeException(e);
-      }
+    try {
+      psts = connection.prepareStatement("DELETE FROM skader where SkadeID = ?");
+      psts.setInt(1, ID);
+      psts.execute();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
 
-      for (int i = 0; i < getSkadeListe().size(); i++) {
-        if (!getSkadeListe().contains(RegNr)) {
-          try {
-            psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
-            psts.setString(1, RegNr);
-            psts.execute();
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
+    for (int i = 0; i < getSkadeListe().size(); i++) {
+      if (!getSkadeListe().contains(RegNr)) {
+        try {
+          psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
+          psts.setString(1, RegNr);
+          psts.execute();
+        } catch (SQLException e) {
+          throw new RuntimeException(e);
         }
       }
     }
+  }
 
 
   //oprette en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
@@ -226,10 +226,8 @@ public class SkadeRepository {
             resultSet.getInt("PrisPrMåned")
         ));
       }
-    } catch (Exception e) {
-      System.out.println("wtf repo");
-
-      throw new RuntimeException(e);
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
     return returnedCars;
   }
