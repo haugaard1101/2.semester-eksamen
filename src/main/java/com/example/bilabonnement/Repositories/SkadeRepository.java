@@ -169,6 +169,10 @@ public class SkadeRepository {
         psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'SKADET' where registreringsNummer = ?");
         psts.setString(1, RegNr);
         psts.execute();
+      } else {
+        psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
+        psts.setString(1, RegNr);
+        psts.execute();
       }
 
     } catch (SQLException e) {
