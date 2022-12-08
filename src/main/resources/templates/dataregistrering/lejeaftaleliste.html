@@ -66,12 +66,14 @@
 </div>
 
 </table>
-<form action="/deleteLegeAftale" method="Post">
-    <br>
-    <label for="RegistreringsNummer">RegistreringsNummer Til Sletning</label>
-    <input type="text" name="RegistreringsNummer">
 
+<h6 class="fw-bold">RegistreringsNummer Til Sletning</h6>
+<form action="/deleteLegeAftale" method="Post">
+    <input type="text" placeholder="RegistreringsNummer" name="RegistreringsNummer"><br>
+    <br>
+    <button class="btn btn-primary"> Slet Lejeaftale</button>
 </form>
+
 
 <footer th:insert="fragments/BilabonnementFooter.html"> </footer>
 
