@@ -171,7 +171,7 @@
         <div class="col-4">
             <div class="card h-100" style="width: 26rem; text-align: left">
                 <div class="card-header">
-                    <h5 class="card-title fw-bold">Opret skade</h5>
+                    <h5 class="card-title fw-bold">Bilsyn</h5>
                 </div>
                 <div class="card-body">
                     <form action="/registrerskade2" method="Post">
@@ -190,8 +190,10 @@
 
                         <input type="checkbox" name="Ny forrude" value="true">
                         <label for="Ny forrude"> Ny forrude</label><br><br>
+                        <button class="btn btn-primary"> Se regning</button>
+                        <br>
+                        <em>*Hvis ingen skader er sat som markeret, vil bilens udlejningstatus blive sat som ledig</em>
 
-                        <button class="btn btn-primary"> Opret skade</button>
                     </form>
                 </div>
             </div>

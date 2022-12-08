@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 
 
 @Controller
@@ -28,27 +29,35 @@ public class SkadeController {
   //postmapping til indtastRegNr.html
   @PostMapping("/registrerskade")
   public String showContract(WebRequest req, Model model, HttpSession session) {
-    LejeAftaleModel lejeaftale = skadeService.findEnLejekontrakt(req.getParameter("RegNr"));
-    BilModel bil = skadeService.findEnBil(req.getParameter("RegNr"));
-    String RegNr = bil.getRegistreringsNummer();
+    try{
+      LejeAftaleModel lejeaftale = skadeService.findEnLejekontrakt(req.getParameter("RegNr"));
+      BilModel bil = skadeService.findEnBil(req.getParameter("RegNr"));
+      String RegNr = bil.getRegistreringsNummer();
 
-    session.setAttribute("registreringsnummerPåBil", RegNr);
-    model.addAttribute("lejeAftale", lejeaftale);
-    model.addAttribute("Bil", bil);
-
-    return "/skade/registrerskade";
+      session.setAttribute("registreringsnummerPåBil", RegNr);
+      model.addAttribute("lejeAftale", lejeaftale);
+      model.addAttribute("Bil", bil);
+    }catch (Exception e){
+      //System.out.println("wtf controller");
+      return "redirect:/skade/fejlsideskade";
+    }
+      return "/skade/registrerskade";
   }
 
   //postmapping til registrerskade.html
   @PostMapping("/registrerskade2")
   public String registrerSkade(HttpSession session, WebRequest request, Model model) {
-    String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
-    String aflæstKm = request.getParameter("KmVedIndlevering");
-    String lakfelt = request.getParameter("Lakfelt");
-    String ridsetAlufælgerequest = request.getParameter("Ridset alufælge");
-    String nyForrude = request.getParameter("Ny forrude");
-    skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
-    model.addAttribute("regning", skadeService.showBill(RegNr));
+    try{
+      String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
+      String aflæstKm = request.getParameter("KmVedIndlevering");
+      String lakfelt = request.getParameter("Lakfelt");
+      String ridsetAlufælgerequest = request.getParameter("Ridset alufælge");
+      String nyForrude = request.getParameter("Ny forrude");
+      skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
+      model.addAttribute("regning", skadeService.showBill(RegNr));
+    }catch (Exception e){
+      return "redirect:fejlside";
+    }
 
     return "/skade/visregning";
   }
@@ -57,10 +66,7 @@ public class SkadeController {
   @GetMapping("/visregning")
   public String showBill(HttpSession session, Model model) {
     String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
-    System.out.println("her tjekker vi i controlleren" +  RegNr );
-    System.out.println("helloooo" + skadeService.showBill(RegNr));
     model.addAttribute("regning", skadeService.showBill(RegNr));
-    System.out.println("hello" );
     return "/skade/visregning";
   }
 
@@ -74,8 +80,12 @@ public class SkadeController {
 //postmapping til seOgRedigerSkader.html
   @PostMapping("/sletskade")
   public String deleteSkade(WebRequest request) {
-    int x = Integer.parseInt(request.getParameter("SkadeID"));
-    skadeService.deleteSkade(x);
+    try{
+      int x = Integer.parseInt(request.getParameter("SkadeID"));
+      skadeService.deleteSkade(x);
+    }catch (Exception e){
+      return "redirect:fejlside";
+    }
     return "redirect:/skadeliste";
   }
 

@@ -1,21 +1,22 @@
 package com.example.bilabonnement.Repositories;
 
-import com.example.bilabonnement.Model.*;
-import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
+    import com.example.bilabonnement.Model.*;
+    import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+    import java.sql.Connection;
+    import java.sql.PreparedStatement;
+    import java.sql.ResultSet;
+    import java.sql.SQLException;
+    import java.util.ArrayList;
+    import java.util.LinkedList;
+    import java.util.List;
 
 public class SkadeRepository {
   private Connection connection = DatabaseConnectionManager.getConnection();
 
   //viser alle skader
   public List<SkadeModel> getSkadeListe() {
-    List<SkadeModel> skadeListe = new ArrayList<>();
+    List<SkadeModel> skadeListe = new LinkedList<>();
 
     try {
       PreparedStatement psts = connection.prepareStatement("SELECT * FROM skader");
@@ -130,14 +131,34 @@ public class SkadeRepository {
 
   //sletter en skader udfra skadeID
   public void deleteSkade(int ID) {
+    PreparedStatement psts;
+    String RegNr = null;
+    for (SkadeModel s : getSkadeListe()) {
+      if (s.getSkadeID() == ID) {
+        RegNr = s.getRegistreringsNummer();
+      }
+    }
     try {
-      PreparedStatement psts = connection.prepareStatement("DELETE FROM skader where SkadeID = ?");
+      psts = connection.prepareStatement("DELETE FROM skader where SkadeID = ?");
       psts.setInt(1, ID);
       psts.execute();
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
+
+    for (int i = 0; i < getSkadeListe().size(); i++) {
+      if (!getSkadeListe().contains(RegNr)) {
+        try {
+          psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
+          psts.setString(1, RegNr);
+          psts.execute();
+        } catch (SQLException e) {
+          throw new RuntimeException(e);
+        }
+      }
+    }
   }
+
 
   //oprette en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
   public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
