@@ -25,7 +25,11 @@ public class BilController {
   }
   @PostMapping("/opdatererbilstatus")
   public String opdatererbilstatus(WebRequest request){
-   bilService.updateSingleValue(request.getParameter("RegistreringsNummer"), UdlejningsStatusEnum.valueOf(request.getParameter("UdlejningsStatus").toUpperCase()));
+      try{
+        bilService.updateSingleValue(request.getParameter("RegistreringsNummer"), UdlejningsStatusEnum.valueOf(request.getParameter("UdlejningsStatus").toUpperCase()));
+      }catch (Exception e){
+        return "redirect:fejlside";
+      }
     return "biler/opdaterbilstatus";
   }
 }

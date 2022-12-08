@@ -202,8 +202,10 @@ public class SkadeRepository {
             resultSet.getInt("PrisPrMåned")
         ));
       }
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (Exception e) {
+      System.out.println("wtf repo");
+
+      throw new RuntimeException(e);
     }
     return returnedCars;
   }

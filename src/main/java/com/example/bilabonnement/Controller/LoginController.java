@@ -17,8 +17,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(HttpSession session, WebRequest webRequest){
-
-    //Get info fra username og password felt fra html siden
+         //Get info fra username og password felt fra html siden
     UserModel userModel = new UserModel(webRequest.getParameter("userName"),webRequest.getParameter("userPassword"));
         System.out.println(userModel);
     int userId = loginService.login(userModel);
@@ -27,7 +26,6 @@ public class LoginController {
         return "/Login";
 
     }
-
     //tilføjer en cookie i broswer der hedder userID med int variablen userID
     session.setAttribute("userID", userId);
     return "redirect:/forretningsudvikling";

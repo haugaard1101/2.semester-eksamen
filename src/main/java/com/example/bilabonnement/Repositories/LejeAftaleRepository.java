@@ -61,7 +61,7 @@ public class LejeAftaleRepository {
 
       preparedStatement.executeUpdate();
     } catch (SQLException e) {
-      e.printStackTrace();
+      throw new RuntimeException();
     }
   }
 
