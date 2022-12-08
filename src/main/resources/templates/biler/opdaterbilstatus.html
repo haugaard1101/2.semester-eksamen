@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Forretningsudvikling</title>
+    <title>Skade og udbedring</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -10,24 +10,31 @@
 </head>
 <body>
 
-<nav th:insert="fragments/nav.html"> </nav>
+<nav th:insert="fragments/nav.html"></nav>
 
-<h1 hello ></h1>
+<h1 hello></h1>
 <!--  <input type="text" name="RegistreringsNummer"> -->
 
-<form action="/opdatererbilstatus" method="Post">
+<div class="container pt-4" align="center" style="width: 500px">
     <br>
-    <label for="UdlejningsStatus">UdlejningsStatus Nye Værdi</label>
-    <input type="text" name="UdlejningsStatus">
+    <br>
+    <br>
 
-    <label for="RegistreringsNummer">RegistreringsNummer til Bilen</label>
-    <input type="text" name="RegistreringsNummer">
+    <form action="/opdatererbilstatus" method="Post">
+        <h5 class="fw-bold">Indtast registreringsnummer og<br>
+            den ønskede nye udlejningsstatus
+        </h5>
+        <br>
+        <div class="mb-3">
+            <input type="text" style="text-align:center" placeholder="RegistreringsNummer" name="RegistreringsNummer">
+        </div>
+        <div class="mb-3">
+            <input type="text" style="text-align:center" placeholder="UdlejningsStatus" name="UdlejningsStatus"> <br>
+        </div>
 
-    <button class="btn btn-primary">Registrer lejekontrakt</button>
-
-
-
-</form>
+        <button class="btn btn-primary">Registrer lejekontrakt</button>
+    </form>
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
