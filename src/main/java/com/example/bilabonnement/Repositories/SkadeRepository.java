@@ -130,14 +130,34 @@ public class SkadeRepository {
 
   //sletter en skader udfra skadeID
   public void deleteSkade(int ID) {
-    try {
-      PreparedStatement psts = connection.prepareStatement("DELETE FROM skader where SkadeID = ?");
-      psts.setInt(1, ID);
-      psts.execute();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
+    PreparedStatement psts;
+    String RegNr = null;
+    for (SkadeModel s : getSkadeListe()) {
+      if (s.getSkadeID() == ID) {
+        RegNr = s.getRegistreringsNummer();
+      }
     }
-  }
+      try {
+        psts = connection.prepareStatement("DELETE FROM skader where SkadeID = ?");
+        psts.setInt(1, ID);
+        psts.execute();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+
+      for (int i = 0; i < getSkadeListe().size(); i++) {
+        if (!getSkadeListe().contains(RegNr)) {
+          try {
+            psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
+            psts.setString(1, RegNr);
+            psts.execute();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        }
+      }
+    }
+
 
   //oprette en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
   public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
