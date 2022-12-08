@@ -13,12 +13,12 @@ public class SkadeService {
   SkadeRepository skadeRepo = new SkadeRepository();
 
   //finder og viser en lejeaftale udfra RegNr
-  public LejeAftaleModel findEnLejekontrakt(String RegNr) {
+  public LejeAftaleModel findEnLejekontrakt(String RegNr) throws Exception{
     return skadeRepo.findEnLejekontrakt(RegNr);
   }
 
   //finder og viser en bil udfra RegNr
-  public BilModel findEnBil(String RegNr) {
+  public BilModel findEnBil(String RegNr) throws Exception {
     return skadeRepo.findEnBil(RegNr);
   }
 
@@ -33,14 +33,14 @@ public class SkadeService {
   }
 
   //oprette en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
-    public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
+    public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) throws Exception {
     skadeRepo.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
     showBill(RegNr);
 
   }
 
   //udregner og viser hvad kunden skal betale
-  public int showBill(String RegNr) {
+  public int showBill(String RegNr) throws Exception{
     System.out.println("her tjekker vi om regnnr kommer med op i serivide" +RegNr);
     double regning;
     double kmRegning;

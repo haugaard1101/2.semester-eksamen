@@ -18,11 +18,18 @@ public class SkadeController {
 
   SkadeService skadeService = new SkadeService();
 
+  @GetMapping("/fejlsideskade")
+  public String fejlsideskade(){
+    return "skade/fejlsideskade";
+  }
+
   //viser siden til indtastRegNr.html
   @GetMapping("/indtastregistreringsnummer")
   public String SkadeRegNr(Model model) {
-    model.addAttribute("ReturnedCars", skadeService.getAllReturnedCars());
-    model.addAttribute("amountOfReturnedCars", skadeService.getAllReturnedCars().size());
+
+      model.addAttribute("ReturnedCars", skadeService.getAllReturnedCars());
+      model.addAttribute("amountOfReturnedCars", skadeService.getAllReturnedCars().size());
+
     return "/skade/indtastRegNr";
   }
 
@@ -38,8 +45,8 @@ public class SkadeController {
       model.addAttribute("lejeAftale", lejeaftale);
       model.addAttribute("Bil", bil);
     }catch (Exception e){
-      //System.out.println("wtf controller");
-      return "redirect:/skade/fejlsideskade";
+      System.out.println("wtf controller");
+      return "redirect:fejlsideskade";
     }
       return "/skade/registrerskade";
   }
@@ -56,7 +63,7 @@ public class SkadeController {
       skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
       model.addAttribute("regning", skadeService.showBill(RegNr));
     }catch (Exception e){
-      return "redirect:fejlside";
+      return "redirect:fejlsideskade";
     }
 
     return "/skade/visregning";
@@ -64,7 +71,7 @@ public class SkadeController {
 
   //viser siden til visregning.html
   @GetMapping("/visregning")
-  public String showBill(HttpSession session, Model model) {
+  public String showBill(HttpSession session, Model model) throws Exception {
     String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
     model.addAttribute("regning", skadeService.showBill(RegNr));
     return "/skade/visregning";
@@ -84,8 +91,9 @@ public class SkadeController {
       int x = Integer.parseInt(request.getParameter("SkadeID"));
       skadeService.deleteSkade(x);
     }catch (Exception e){
-      return "redirect:fejlside";
+      return "redirect:fejlsideskade";
     }
+    System.out.println("skadeliste wtf");
     return "redirect:/skadeliste";
   }
 

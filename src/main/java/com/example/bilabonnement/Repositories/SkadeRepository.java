@@ -65,7 +65,7 @@ public class SkadeRepository {
   }
 
   //finder og viser en lejeaftale udfra RegNr
-  public LejeAftaleModel findEnLejekontrakt(String RegNr) {
+  public LejeAftaleModel findEnLejekontrakt(String RegNr) throws Exception{
     LejeAftaleModel lejeaftale = null;
     try {
       PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale where RegistreringsNummer = ?");
@@ -100,7 +100,7 @@ public class SkadeRepository {
   }
 
   //finder og viser en bil udfra RegNr
-  public BilModel findEnBil(String RegNr) {
+  public BilModel findEnBil(String RegNr) throws Exception {
     BilModel bil = null;
     try {
       PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
@@ -145,20 +145,7 @@ public class SkadeRepository {
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
-
-    for (int i = 0; i < getSkadeListe().size(); i++) {
-      if (!getSkadeListe().contains(RegNr)) {
-        try {
-          psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
-          psts.setString(1, RegNr);
-          psts.execute();
-        } catch (SQLException e) {
-          throw new RuntimeException(e);
-        }
-      }
-    }
   }
-
 
   //oprette en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
   public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
@@ -201,7 +188,7 @@ public class SkadeRepository {
     }
   }
 
-  public List<BilModel> getAllReturnedCars() {
+  public List<BilModel> getAllReturnedCars()   {
     List<BilModel> returnedCars = new ArrayList<>();
 
     try {
@@ -227,8 +214,8 @@ public class SkadeRepository {
             resultSet.getInt("PrisPrMåned")
         ));
       }
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (Exception e) {
+      System.out.println("wtf repo");
     }
     return returnedCars;
   }

@@ -10,25 +10,31 @@ import org.springframework.web.context.request.WebRequest;
 
 @Controller
 public class BilController {
-
+//Instantiering af bilservice, så den kan kaldes op i controlleren
   BilService bilService = new BilService();
-
-
+//Getmapping til fejlside for biler specifikt
+  @GetMapping("/fejlsidebil")
+  public String fejlsidebil(){
+    return "biler/fejlsidebil";
+  }
+//Getmapping til login siden
     @GetMapping("/login")
   public String trylogin(){
     return "Login";
   }
-
+//Getmapping til selve bilstatussiden
   @GetMapping("/opdaterbilstatus")
   public String opdaterbilstatus(){
     return "biler/opdaterbilstatus";
   }
+  //Postmapping det kalder på metoden til at opdatere en bils udlejningsstatus
+  //Postmapping har try catch til at redirect til en fejl-informationsside, hvis en error eller exception skulle ske
   @PostMapping("/opdatererbilstatus")
   public String opdatererbilstatus(WebRequest request){
       try{
         bilService.updateSingleValue(request.getParameter("RegistreringsNummer"), UdlejningsStatusEnum.valueOf(request.getParameter("UdlejningsStatus").toUpperCase()));
       }catch (Exception e){
-        return "redirect:fejlside";
+        return "redirect:fejlsidebil";
       }
     return "biler/opdaterbilstatus";
   }
