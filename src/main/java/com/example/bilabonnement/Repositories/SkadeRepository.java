@@ -16,7 +16,7 @@ public class SkadeRepository {
 
   //viser alle skader
   public List<SkadeModel> getSkadeListe() {
-    List<SkadeModel> skadeListe = new LinkedList<>();
+    List<SkadeModel> skadeListe = new ArrayList<>();
 
     try {
       PreparedStatement psts = connection.prepareStatement("SELECT * FROM skader");
