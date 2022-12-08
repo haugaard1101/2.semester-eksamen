@@ -1,6 +1,9 @@
 package com.example.bilabonnement.Repositories;
 
+import com.example.bilabonnement.Model.BilModel;
+import com.example.bilabonnement.Model.GearEnum;
 import com.example.bilabonnement.Model.LejeAftaleModel;
+import com.example.bilabonnement.Model.UdlejningsStatusEnum;
 import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
 
 import java.sql.*;
@@ -142,6 +145,38 @@ public class LejeAftaleRepository {
       throw new RuntimeException(e);
     }
     return LejeAftaleListe;
+  }
+
+  public List<BilModel> getAllLedigeBiler(){
+
+    List<BilModel> ledigeBiler = new ArrayList<>();
+
+    try {
+
+      PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where UdlejningsStatus = 'LEDIG'");
+
+      ResultSet resultSet = psts.executeQuery();
+
+      while (resultSet.next()) {
+        ledigeBiler.add(new BilModel(
+                resultSet.getInt("IDNumber"),
+                resultSet.getString("RegistreringsNummer"),
+                resultSet.getString("Stelnummer"),
+                resultSet.getString("Mærke"),
+                resultSet.getString("Model"),
+                resultSet.getString("UdstyrsNiveau"),
+                UdlejningsStatusEnum.valueOf(resultSet.getString("UdlejningsStatus")),
+                GearEnum.valueOf(resultSet.getString("Gear")),
+                resultSet.getString("BrændstofType"),
+                resultSet.getInt("KmL"),
+                resultSet.getInt("CO2_Udledning"),
+                resultSet.getInt("PrisPrMåned")
+        ));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return ledigeBiler;
   }
 }
 

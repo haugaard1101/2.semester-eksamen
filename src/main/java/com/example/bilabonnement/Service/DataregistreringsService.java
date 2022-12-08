@@ -1,5 +1,6 @@
 package com.example.bilabonnement.Service;
 
+import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Repositories.LejeAftaleRepository;
 import org.springframework.web.context.request.WebRequest;
@@ -46,6 +47,10 @@ public class DataregistreringsService {
   }
   public void deleteLejeAftale(String registreringnummer){
       LejeAftaleRepo.deleteLejeAftaleListe(registreringnummer);
+  }
+
+  public List<BilModel> getAllLedigeBiler(){
+    return LejeAftaleRepo.getAllLedigeBiler();
   }
 
 

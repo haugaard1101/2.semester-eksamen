@@ -13,7 +13,7 @@ public class ForretningsudviklerController {
 
     ForretningsudviklerService service = new ForretningsudviklerService();
 
-    @GetMapping("/forretningsudvikling")
+    @GetMapping("/udlejedebiler")
     public String showRentedCars(Model model){
         model.addAttribute("RentedCars", service.getAllRentedCars());
         model.addAttribute("amountOfCars", service.getAllRentedCars().size());

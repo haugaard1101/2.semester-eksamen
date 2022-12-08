@@ -12,3 +12,13 @@
 #CustomFooter{
     padding-top: 270px;
 }
+
+.anyClass {
+    height:450px;
+    overflow-y: scroll;
+}
+
+.doubleAnyClass {
+    height:450px;
+    overflow: Auto;
+}

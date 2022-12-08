@@ -26,7 +26,6 @@ public class ForretningsudviklerRepository {
             // Nu beder vi databasen om at execute den SQL commando og gemmer resultatet i en "ResultSet" klasse variabel.
             ResultSet resultSet = psts.executeQuery();
 
-            // Nu looper vi sættet igennem for hver student, og laver en ny student med constructoren for hver student, med vores variabler vi kan finde i sættet som vi indsætter i constructoren.
             while (resultSet.next()) {
                 rentedCars.add(new BilModel(
                         resultSet.getInt("IDNumber"),
