@@ -8,6 +8,7 @@ package com.example.bilabonnement.Repositories;
     import java.sql.ResultSet;
     import java.sql.SQLException;
     import java.util.ArrayList;
+    import java.util.LinkedList;
     import java.util.List;
 
 public class SkadeRepository {
@@ -15,7 +16,7 @@ public class SkadeRepository {
 
   //viser alle skader
   public List<SkadeModel> getSkadeListe() {
-    List<SkadeModel> skadeListe = new ArrayList<>();
+    List<SkadeModel> skadeListe = new LinkedList<>();
 
     try {
       PreparedStatement psts = connection.prepareStatement("SELECT * FROM skader");
