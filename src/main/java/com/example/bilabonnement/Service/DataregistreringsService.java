@@ -4,11 +4,9 @@ import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Repositories.LejeAftaleRepository;
 import org.springframework.web.context.request.WebRequest;
 
-import java.sql.Date;
 import java.util.List;
-import java.util.Objects;
 
-public class LejeAftaleService {
+public class DataregistreringsService {
 
   LejeAftaleRepository LejeAftaleRepo = new LejeAftaleRepository();
 

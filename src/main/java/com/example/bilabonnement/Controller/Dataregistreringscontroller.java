@@ -1,6 +1,6 @@
 package com.example.bilabonnement.Controller;
 
-import com.example.bilabonnement.Service.LejeAftaleService;
+import com.example.bilabonnement.Service.DataregistreringsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +13,7 @@ import java.util.Objects;
 @Controller
 public class Dataregistreringscontroller {
 
-  LejeAftaleService lejeAftaleService = new LejeAftaleService();
+  DataregistreringsService dataregistreringsService = new DataregistreringsService();
 
 
   @GetMapping("/dataregistrering")
@@ -35,7 +35,7 @@ public class Dataregistreringscontroller {
   }
   @GetMapping("/lejeaftaleliste")
   public String lejeaftaleliste(Model model){
-    model.addAttribute("LejeAftale", lejeAftaleService.getAlleLejeAftaler());
+    model.addAttribute("LejeAftale", dataregistreringsService.getAlleLejeAftaler());
     return "dataregistrering/lejeaftaleliste";
   }
   @GetMapping("/updatesinglevalue")
@@ -45,7 +45,7 @@ public class Dataregistreringscontroller {
   @PostMapping("/deleteLegeAftale")
   public String deleteLegeAftale(WebRequest request){
     try{
-      lejeAftaleService.deleteLejeAftale(request.getParameter("RegistreringsNummer"));
+      dataregistreringsService.deleteLejeAftale(request.getParameter("RegistreringsNummer"));
     }catch (Exception e){
       return "redirect:fejlside";
     }
@@ -55,7 +55,7 @@ public class Dataregistreringscontroller {
   public String updatingsinglevalue(WebRequest request){
     try{
       int x = Integer.parseInt(Objects.requireNonNull(request.getParameter("KmVedIndlevering")));
-      lejeAftaleService.updateSingleValue(request.getParameter("RegistreringsNummer"),x);
+      dataregistreringsService.updateSingleValue(request.getParameter("RegistreringsNummer"),x);
     }catch (Exception e){
       return "redirect:fejlside";
     }
@@ -64,7 +64,7 @@ public class Dataregistreringscontroller {
   @PostMapping("/lejeaftalefundet")
   public String findLejeaftale(WebRequest request,Model model){
     try{
-      model.addAttribute("LejeAftale", lejeAftaleService.getLejeAftaleById(request.getParameter("RegistreringsNummer")));
+      model.addAttribute("LejeAftale", dataregistreringsService.getLejeAftaleById(request.getParameter("RegistreringsNummer")));
     }catch (Exception e){
       return "redirect:fejlside";
     }
@@ -73,8 +73,8 @@ public class Dataregistreringscontroller {
   @PostMapping("/lejeaftaleliste")
   public String sendlejekontrakt(WebRequest request,Model model){
     try{
-      lejeAftaleService.createLejeAftale(request,"create");
-      model.addAttribute("LejeAftale", lejeAftaleService.getAlleLejeAftaler());
+      dataregistreringsService.createLejeAftale(request,"create");
+      model.addAttribute("LejeAftale", dataregistreringsService.getAlleLejeAftaler());
 
     }catch (Exception e){
       return "redirect:fejlside";
@@ -84,12 +84,19 @@ public class Dataregistreringscontroller {
   @PostMapping("/opdaterlejeaftale")
   public String opdaterlejeaftale(WebRequest request,Model model){
     try{
-      lejeAftaleService.createLejeAftale(request,"");
-      model.addAttribute("LejeAftale", lejeAftaleService.getAlleLejeAftaler());
+      dataregistreringsService.createLejeAftale(request,"");
+      model.addAttribute("LejeAftale", dataregistreringsService.getAlleLejeAftaler());
     }catch (Exception e){
       return "redirect:fejlside";
     }
 
     return "dataregistrering/opdaterlejeaftale";
   }
+
+//  @GetMapping("/seledigebiler")
+//  public String showRentedCars(Model model){
+//    model.addAttribute("RentedCars", service.getAllRentedCars());
+//    model.addAttribute("amountOfCars", service.getAllRentedCars().size());
+//    return "/forretningsudvikling/forretningsudvikling";
+//  }
 }
