@@ -81,8 +81,9 @@ public class SkadeService {
 
     //retunerer prisen på overkørte KM
     public double kmRegning(String RegNr) {
-
-        return ((kmVedIndlevering(RegNr) - kmVedAflevering(RegNr)) - aftaleKM(RegNr)) * 0.75;
+        if (kmVedIndlevering(RegNr) - kmVedAflevering(RegNr) > aftaleKM(RegNr)) {
+            return ((kmVedIndlevering(RegNr) - kmVedAflevering(RegNr)) - aftaleKM(RegNr)) * 0.75;
+        } else return 0;
     }
 
     //retunerer aftalte KM
