@@ -28,6 +28,6 @@ public class LoginController {
     }
     //tilføjer en cookie i broswer der hedder userID med int variablen userID
     session.setAttribute("userID", userId);
-    return "redirect:/forretningsudvikling";
+    return "redirect:/dataregistrering";
     }
 }
