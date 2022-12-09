@@ -145,6 +145,18 @@ public class SkadeRepository {
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
+
+    for (int i = 0; i < getSkadeListe().size(); i++) {
+      if (!getSkadeListe().contains(RegNr)) {
+        try {
+          psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
+          psts.setString(1, RegNr);
+          psts.execute();
+        } catch (SQLException e) {
+          throw new RuntimeException(e);
+        }
+      }
+    }
   }
 
   //oprette en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
