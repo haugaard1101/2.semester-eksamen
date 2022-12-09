@@ -40,7 +40,7 @@ public class SkadeService {
     }
 
     //udregner og viser hvad kunden skal betale
-    public int showBill(String RegNr) throws Exception {
+    public int showBill(String RegNr) {
         System.out.println("her tjekker vi om regnnr kommer med op i service" + RegNr);
         double regning;
 
@@ -55,6 +55,7 @@ public class SkadeService {
         return (int) regning;
     }
 
+    // returnere alle 'Afleveret biler' fra databasen
     public List<BilModel> getAllReturnedCars() {
         return skadeRepo.getAllReturnedCars();
     }
@@ -96,5 +97,5 @@ public class SkadeService {
     public double skadeRegning(String RegNr) {
         return skadeRepo.getPriceOnSkader(RegNr);
     }
-    
+
 }
