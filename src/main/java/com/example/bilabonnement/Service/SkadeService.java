@@ -12,12 +12,12 @@ public class SkadeService {
     SkadeRepository skadeRepo = new SkadeRepository();
 
     //retunerer og viser en lejeaftale udfra RegNr
-    public LejeAftaleModel findEnLejekontrakt(String RegNr) throws Exception {
+    public LejeAftaleModel findEnLejekontrakt(String RegNr) {
         return skadeRepo.findEnLejekontrakt(RegNr);
     }
 
     //retunerer og viser en bil udfra RegNr
-    public BilModel findEnBil(String RegNr) throws Exception {
+    public BilModel findEnBil(String RegNr) {
         return skadeRepo.findEnBil(RegNr);
     }
 
@@ -33,13 +33,13 @@ public class SkadeService {
     }
     */
 
-    //sletter en skader udfra skadeID
+    //sletter en skade udfra skadeID, derefter sætter den automatisk bilens status til 'Ledig', hvis det var den sidste skade på bilen
     public void deleteSkade(int ID) {
         skadeRepo.deleteSkade(ID);
     }
 
     //opretter en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
-    public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) throws Exception {
+    public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
         skadeRepo.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
         showBill(RegNr);
 
