@@ -107,7 +107,6 @@ public class Dataregistreringscontroller {
 
     return "dataregistrering/opdaterlejeaftale";
   }
-
   @GetMapping("/seledigebiler")
   public String getAllLedigeBiler(Model model) {
     model.addAttribute("LedigeBiler", dataregistreringsService.getAllLedigeBiler());

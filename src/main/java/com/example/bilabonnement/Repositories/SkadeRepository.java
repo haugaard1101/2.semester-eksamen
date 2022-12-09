@@ -58,168 +58,167 @@ public class SkadeRepository {
                 skadeRegning += Integer.parseInt(String.valueOf(skadeModel.getSkadePris()));
             }
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return skadeRegning;
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    return skadeRegning;
+  }
+
+  //finder og viser en lejeaftale udfra RegNr
+  public LejeAftaleModel findEnLejekontrakt(String RegNr) throws Exception {
+    LejeAftaleModel lejeaftale = null;
+    try {
+      PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale where RegistreringsNummer = ?");
+      psts.setString(1, RegNr);
+      ResultSet resultSet = psts.executeQuery();
+
+      while (resultSet.next()) {
+        lejeaftale = new LejeAftaleModel(
+            resultSet.getInt("AftaleID"),
+            resultSet.getString("Navn"),
+            resultSet.getString("Adresse"),
+            resultSet.getString("Postnummer"),
+            resultSet.getString("Kommune"),
+            resultSet.getString("TelefonNr"),
+            resultSet.getString("CPR"),
+            resultSet.getString("Email"),
+            resultSet.getString("LejeperiodeFra"),
+            resultSet.getString("LejeperiodeTil"),
+            resultSet.getString("AntalMaaneder"),
+            resultSet.getString("Afhentningssted"),
+            resultSet.getString("Afleveringssted"),
+            resultSet.getString("KmVedAfhentning"),
+            resultSet.getString("AftaleKM"),
+            resultSet.getString("KmVedIndlevering"),
+            resultSet.getString("RegistreringsNummer")
+        );
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return lejeaftale;
+  }
+
+  //finder og viser en bil udfra RegNr
+  public BilModel findEnBil(String RegNr) throws Exception {
+    BilModel bil = null;
+    try {
+      PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
+      psts.setString(1, RegNr);
+      ResultSet resultSet = psts.executeQuery();
+
+      while (resultSet.next()) {
+        bil = new BilModel(
+            resultSet.getInt("IDNumber"),
+            resultSet.getString("RegistreringsNummer"),
+            resultSet.getString("Stelnummer"),
+            resultSet.getString("Mærke"),
+            resultSet.getString("Model"),
+            resultSet.getString("UdstyrsNiveau"),
+            UdlejningsStatusEnum.valueOf(resultSet.getString("UdlejningsStatus")),
+            GearEnum.valueOf(resultSet.getString("Gear")),
+            resultSet.getString("BrændstofType"),
+            resultSet.getInt("KmL"),
+            resultSet.getInt("CO2_Udledning"),
+            resultSet.getInt("PrisPrMåned")
+        );
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return bil;
+  }
+
+  //sletter en skader udfra skadeID
+  public void deleteSkade(int ID) {
+    PreparedStatement psts;
+    String RegNr = null;
+
+    for (SkadeModel s : getSkadeListe()) {
+      if (s.getSkadeID() == ID) {
+        RegNr = s.getRegistreringsNummer();
+      }
+    }
+    try {
+      psts = connection.prepareStatement("DELETE FROM skader where SkadeID = ?");
+      psts.setInt(1, ID);
+      psts.execute();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
     }
 
-    //retunerer og viser en lejeaftale udfra RegNr
-    public LejeAftaleModel findEnLejekontrakt(String RegNr) throws Exception {
-        LejeAftaleModel lejeaftale = null;
-        try {
-            PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale where RegistreringsNummer = ?");
-            psts.setString(1, RegNr);
-            ResultSet resultSet = psts.executeQuery();
+    List<SkadeModel> skadeListeMedRegNr = new ArrayList<>();
+    try {
+      PreparedStatement psts2 = connection.prepareStatement("SELECT * FROM skader where RegistreringsNummer = ?");
+      psts2.setString(1, RegNr);
+      ResultSet resultSet = psts2.executeQuery();
 
-            while (resultSet.next()) {
-                lejeaftale = new LejeAftaleModel(
-                        resultSet.getInt("AftaleID"),
-                        resultSet.getString("Navn"),
-                        resultSet.getString("Adresse"),
-                        resultSet.getString("Postnummer"),
-                        resultSet.getString("Kommune"),
-                        resultSet.getString("TelefonNr"),
-                        resultSet.getString("CPR"),
-                        resultSet.getString("Email"),
-                        resultSet.getString("LejeperiodeFra"),
-                        resultSet.getString("LejeperiodeTil"),
-                        resultSet.getString("AntalMaaneder"),
-                        resultSet.getString("Afhentningssted"),
-                        resultSet.getString("Afleveringssted"),
-                        resultSet.getString("KmVedAfhentning"),
-                        resultSet.getString("AftaleKM"),
-                        resultSet.getString("KmVedIndlevering"),
-                        resultSet.getString("RegistreringsNummer")
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return lejeaftale;
+      while (resultSet.next()) {
+        skadeListeMedRegNr.add(new SkadeModel(
+            resultSet.getInt("SkadeID"),
+            resultSet.getString("RegistreringsNummer"),
+            resultSet.getString("SkadeNavn"),
+            resultSet.getString("SkadePris")
+        ));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
 
-    //retunerer og viser en bil udfra RegNr
-    public BilModel findEnBil(String RegNr) throws Exception {
-        BilModel bil = null;
-        try {
-            PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
-            psts.setString(1, RegNr);
-            ResultSet resultSet = psts.executeQuery();
 
-            while (resultSet.next()) {
-                bil = new BilModel(
-                        resultSet.getInt("IDNumber"),
-                        resultSet.getString("RegistreringsNummer"),
-                        resultSet.getString("Stelnummer"),
-                        resultSet.getString("Mærke"),
-                        resultSet.getString("Model"),
-                        resultSet.getString("UdstyrsNiveau"),
-                        UdlejningsStatusEnum.valueOf(resultSet.getString("UdlejningsStatus")),
-                        GearEnum.valueOf(resultSet.getString("Gear")),
-                        resultSet.getString("BrændstofType"),
-                        resultSet.getInt("KmL"),
-                        resultSet.getInt("CO2_Udledning"),
-                        resultSet.getInt("PrisPrMåned")
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return bil;
+    if (skadeListeMedRegNr.size() == 0) {
+      try {
+        psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
+        psts.setString(1, RegNr);
+        psts.execute();
+
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
     }
+  }
 
-    //sletter en skader udfra skadeID
-    public void deleteSkade(int ID) {
-        PreparedStatement psts;
-        String RegNr = null;
+  //oprette en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
+  public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
+    PreparedStatement psts;
 
-        for (SkadeModel s : getSkadeListe()) {
-            if (s.getSkadeID() == ID) {
-                RegNr = s.getRegistreringsNummer();
-            }
-        }
-        try {
-            psts = connection.prepareStatement("DELETE FROM skader where SkadeID = ?");
-            psts.setInt(1, ID);
-            psts.execute();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    try {
+      if (!aflæstKm.equals("")) {
+        psts = connection.prepareStatement("UPDATE lejeaftale SET KmVedIndlevering = ? where RegistreringsNummer = ?");
+        psts.setString(1, aflæstKm);
+        psts.setString(2, RegNr);
+        psts.executeUpdate();
+      }
+      if (!(lakfelt == null)) {
+        psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'lakfelt', 1500)");
+        psts.setString(1, RegNr);
+        psts.execute();
+      }
+      if (!(ridsetAlufælgerequest == null)) {
+        psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'ridset alufælge', 400)");
+        psts.setString(1, RegNr);
+        psts.execute();
+      }
+      if (!(nyForrude == null)) {
+        psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'ny forrude', 3000)");
+        psts.setString(1, RegNr);
+        psts.execute();
+      }
+      if (!(lakfelt == null) || !(ridsetAlufælgerequest == null) || !(nyForrude == null)) {
+        psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'SKADET' where registreringsNummer = ?");
+        psts.setString(1, RegNr);
+        psts.execute();
+      } else {
+        psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
+        psts.setString(1, RegNr);
+        psts.execute();
+      }
 
-        List<SkadeModel> skadeListeMedRegNr = new ArrayList<>();
-        try {
-            PreparedStatement psts2 = connection.prepareStatement("SELECT * FROM skader where RegistreringsNummer = ?");
-            psts2.setString(1, RegNr);
-            ResultSet resultSet = psts2.executeQuery();
-
-            while (resultSet.next()) {
-                skadeListeMedRegNr.add(new SkadeModel(
-                        resultSet.getInt("SkadeID"),
-                        resultSet.getString("RegistreringsNummer"),
-                        resultSet.getString("SkadeNavn"),
-                        resultSet.getString("SkadePris")
-                ));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        if (skadeListeMedRegNr.size() == 0) {
-            try {
-                psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
-                psts.setString(1, RegNr);
-                psts.execute();
-
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
     }
+  }
 
-    //opretter en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
-    public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
-        PreparedStatement psts;
-
-        try {
-            if (!aflæstKm.equals("")) {
-                psts = connection.prepareStatement("UPDATE lejeaftale SET KmVedIndlevering = ? where RegistreringsNummer = ?");
-                psts.setString(1, aflæstKm);
-                psts.setString(2, RegNr);
-                psts.executeUpdate();
-            }
-            if (!(lakfelt == null)) {
-                psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'lakfelt', 1500)");
-                psts.setString(1, RegNr);
-                psts.execute();
-            }
-            if (!(ridsetAlufælgerequest == null)) {
-                psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'ridset alufælge', 400)");
-                psts.setString(1, RegNr);
-                psts.execute();
-            }
-            if (!(nyForrude == null)) {
-                psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'ny forrude', 3000)");
-                psts.setString(1, RegNr);
-                psts.execute();
-            }
-            if (!(lakfelt == null) || !(ridsetAlufælgerequest == null) || !(nyForrude == null)) {
-                psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'SKADET' where registreringsNummer = ?");
-                psts.setString(1, RegNr);
-                psts.execute();
-            } else {
-                psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
-                psts.setString(1, RegNr);
-                psts.execute();
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-/*
-  // retunerer alle 'Afleveret biler' fra databasen
   public List<BilModel> getAllReturnedCars() {
     List<BilModel> returnedCars = new ArrayList<>();
 
@@ -251,6 +250,4 @@ public class SkadeRepository {
     }
     return returnedCars;
   }
-  */
-
 }
