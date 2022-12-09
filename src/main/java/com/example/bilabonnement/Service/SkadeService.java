@@ -12,17 +12,17 @@ public class SkadeService {
 
     SkadeRepository skadeRepo = new SkadeRepository();
 
-    //finder og viser en lejeaftale udfra RegNr
+    //retunerer og viser en lejeaftale udfra RegNr
     public LejeAftaleModel findEnLejekontrakt(String RegNr) throws Exception {
         return skadeRepo.findEnLejekontrakt(RegNr);
     }
 
-    //finder og viser en bil udfra RegNr
+    //retunerer og viser en bil udfra RegNr
     public BilModel findEnBil(String RegNr) throws Exception {
         return skadeRepo.findEnBil(RegNr);
     }
 
-    //viser alle skader
+    //retunerer alle skader fra databasen
     public List<SkadeModel> getAllSkader() {
         return skadeRepo.getSkadeListe();
     }
@@ -32,14 +32,14 @@ public class SkadeService {
         skadeRepo.deleteSkade(ID);
     }
 
-    //oprette en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
+    //opretter en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
     public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) throws Exception {
         skadeRepo.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
         showBill(RegNr);
 
     }
 
-    //udregner og viser hvad kunden skal betale
+    //udregner og retunerer hvad kunden skal betale
     public int showBill(String RegNr) {
         System.out.println("her tjekker vi om regnnr kommer med op i service" + RegNr);
         double regning;
@@ -54,13 +54,14 @@ public class SkadeService {
         System.out.println("her printer vi fra showbill i service" + regning);
         return (int) regning;
     }
-
-    // returnere alle 'Afleveret biler' fra databasen
+/*
+    // retunerer alle 'Afleveret biler' fra databasen
     public List<BilModel> getAllReturnedCars() {
         return skadeRepo.getAllReturnedCars();
     }
+ */
 
-    //KM ved indlevering
+    //retunerer KM ved indlevering
     public double kmVedIndlevering(String RegNr) {
         try {
             return Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getKmVedIndlevering());
@@ -69,7 +70,7 @@ public class SkadeService {
         }
     }
 
-    //KM ved aflevering
+    //retunerer KM ved aflevering
     public double kmVedAflevering(String RegNr) {
         try {
             return Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getKmVedAfhentning());
@@ -78,13 +79,13 @@ public class SkadeService {
         }
     }
 
-    //prisen på overkørte KM
+    //retunerer prisen på overkørte KM
     public double kmRegning(String RegNr) {
 
         return ((kmVedIndlevering(RegNr) - kmVedAflevering(RegNr)) - aftaleKM(RegNr)) * 0.75;
     }
 
-    //aftalte KM
+    //retunerer aftalte KM
     public double aftaleKM(String RegNr) {
         try {
             return Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getAftaleKM());
@@ -93,7 +94,7 @@ public class SkadeService {
         }
     }
 
-    //prisen på skader
+    //retunerer prisen på skader
     public double skadeRegning(String RegNr) {
         return skadeRepo.getPriceOnSkader(RegNr);
     }

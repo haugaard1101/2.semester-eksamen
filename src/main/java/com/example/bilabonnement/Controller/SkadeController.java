@@ -18,7 +18,7 @@ public class SkadeController {
 
     SkadeService skadeService = new SkadeService();
 
-    //viser fejlside til fejlsideskade
+    //viser fejlside til fejlsideskade.html
     @GetMapping("/fejlsideskade")
     public String fejlsideskade() {
         return "skade/fejlsideskade";
