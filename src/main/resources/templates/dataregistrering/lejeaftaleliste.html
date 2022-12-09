@@ -14,67 +14,69 @@
 <nav th:insert="fragments/nav.html"></nav>
 
 <div class="container pt-4">
-    <H1>Liste over udlejede biler </H1>
-    <div class="doubleAnyClass">
-        <table class="table table-sm border table-hover text-nowrap">
-            <thead class="table-light">
-            <tr class="text-nowrap">
-                <th scope="col">AftaleID</th>
-                <th scope="col">RegistreringsNummer</th>
-                <th scope="col">Navn</th>
-                <th scope="col">Adresse</th>
-                <th scope="col">Postnummer</th>
-                <th scope="col">Kommune</th>
-                <th scope="col">TelefonNr</th>
-                <th scope="col">CPR</th>
-                <th scope="col">Email</th>
-                <th scope="col">Lejeperiode Fra</th>
-                <th scope="col">Lejeperiode Til</th>
-                <th scope="col">Antal Måneder</th>
-                <th scope="col">Afhentningssted</th>
-                <th scope="col">Afleveringssted</th>
-                <th scope="col">Km Ved Afhentning</th>
-                <th scope="col">Aftale KM</th>
-                <th scope="col">Km Ved Indlevering</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="lejeaftale: ${LejeAftale}">
-                <!-- Det her er et Thymeleaf for each loop,  TR = Tablerow, TD table division(kolonner)-->
-                <td th:text="${lejeaftale.aftaleId}"/>
-                <td th:text="${lejeaftale.RegistreringsNummer}"/>
-                <td th:text="${lejeaftale.Navn}"/>
-                <td th:text="${lejeaftale.Adresse}"/>
-                <td th:text="${lejeaftale.Postnummer}"/>
-                <td th:text="${lejeaftale.Kommune}"/>
-                <td th:text="${lejeaftale.TelefonNr}"/>
-                <td th:text="${lejeaftale.CPR}"/>
-                <td th:text="${lejeaftale.Email}"/>
-                <td th:text="${lejeaftale.LejeperiodeFra}"/>
-                <td th:text="${lejeaftale.LejeperiodeTil}"/>
-                <td th:text="${lejeaftale.AntalMaaneder}"/>
-                <td th:text="${lejeaftale.Afhentningssted}"/>
-                <td th:text="${lejeaftale.Afleveringssted}"/>
-                <td th:text="${lejeaftale.KmVedAfhentning}"/>
-                <td th:text="${lejeaftale.AftaleKM}"/>
-                <td th:text="${lejeaftale.KmVedIndlevering}"/>
-            </tr>
-        </table>
-        </tbody>
+    <div class="row" style="height: 500px">
+        <div class="col-10">
+            <H1>Liste over udlejede biler </H1>
+            <div class="doubleAnyClass">
+                <table class="table table-sm border table-hover text-nowrap">
+                    <thead class="table-light">
+                    <tr class="text-nowrap">
+                        <th scope="col">AftaleID</th>
+                        <th scope="col">RegistreringsNummer</th>
+                        <th scope="col">Navn</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Postnummer</th>
+                        <th scope="col">Kommune</th>
+                        <th scope="col">TelefonNr</th>
+                        <th scope="col">CPR</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Lejeperiode Fra</th>
+                        <th scope="col">Lejeperiode Til</th>
+                        <th scope="col">Antal Måneder</th>
+                        <th scope="col">Afhentningssted</th>
+                        <th scope="col">Afleveringssted</th>
+                        <th scope="col">Km Ved Afhentning</th>
+                        <th scope="col">Aftale KM</th>
+                        <th scope="col">Km Ved Indlevering</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="lejeaftale: ${LejeAftale}">
+                        <!-- Det her er et Thymeleaf for each loop,  TR = Tablerow, TD table division(kolonner)-->
+                        <td th:text="${lejeaftale.aftaleId}"/>
+                        <td th:text="${lejeaftale.RegistreringsNummer}"/>
+                        <td th:text="${lejeaftale.Navn}"/>
+                        <td th:text="${lejeaftale.Adresse}"/>
+                        <td th:text="${lejeaftale.Postnummer}"/>
+                        <td th:text="${lejeaftale.Kommune}"/>
+                        <td th:text="${lejeaftale.TelefonNr}"/>
+                        <td th:text="${lejeaftale.CPR}"/>
+                        <td th:text="${lejeaftale.Email}"/>
+                        <td th:text="${lejeaftale.LejeperiodeFra}"/>
+                        <td th:text="${lejeaftale.LejeperiodeTil}"/>
+                        <td th:text="${lejeaftale.AntalMaaneder}"/>
+                        <td th:text="${lejeaftale.Afhentningssted}"/>
+                        <td th:text="${lejeaftale.Afleveringssted}"/>
+                        <td th:text="${lejeaftale.KmVedAfhentning}"/>
+                        <td th:text="${lejeaftale.AftaleKM}"/>
+                        <td th:text="${lejeaftale.KmVedIndlevering}"/>
+                    </tr>
+                </table>
+                </tbody>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <br>
+            <br>
+            <h6 class="fw-bold">RegistreringsNummer Til Sletning</h6>
+            <form action="/deleteLegeAftale" method="Post">
+                <input type="text" placeholder="RegistreringsNummer" name="RegistreringsNummer"><br>
+                <br>
+                <button class="btn btn-primary"> Slet Lejeaftale</button>
+            </form>
+        </div>
     </div>
-</div>
-</div>
-<div class="col-2">
-    <br>
-    <br>
-    <h6 class="fw-bold">RegistreringsNummer Til Sletning</h6>
-    <form action="/deleteLegeAftale" method="Post">
-        <input type="text" placeholder="RegistreringsNummer" name="RegistreringsNummer"><br>
-        <br>
-        <button class="btn btn-primary"> Slet Lejeaftale</button>
-    </form>
-</div>
-</div>
 </div>
 
 <!--
