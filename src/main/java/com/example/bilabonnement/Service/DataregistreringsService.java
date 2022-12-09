@@ -42,6 +42,8 @@ public class DataregistreringsService {
   public List<LejeAftaleModel> getLejeAftaleById(String registreringsnummer){
     return LejeAftaleRepo.getLejeAftaleById(registreringsnummer);
   }
+
+
   public List<LejeAftaleModel> getAlleLejeAftaler(){
     return LejeAftaleRepo.getAlleLejeAftaler();
   }

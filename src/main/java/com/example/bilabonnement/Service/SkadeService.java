@@ -95,6 +95,22 @@ public class SkadeService {
         }
     }
 
+    public String adresse(String RegNr) {
+        try {
+            return findEnLejekontrakt(RegNr).getAdresse();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String email(String RegNr) {
+        try {
+            return findEnLejekontrakt(RegNr).getEmail();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     //retunerer prisen på skader
     public double skadeRegning(String RegNr) {
         return skadeRepo.getPriceOnSkader(RegNr);

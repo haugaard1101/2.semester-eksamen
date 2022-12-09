@@ -17,6 +17,22 @@ public class ForretningsudviklerService {
     return repo.getPriceOfAllRentedCars();
   }
 
+  public String maerke(String RegNr){
+    try {
+      return repo.findEnBil(RegNr).getMaerke();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public String model(String RegNr){
+    try {
+      return repo.findEnBil(RegNr).getModel();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   public int getCO2RentedCars(){
     return repo.getCO2OfAllRentedCars();
   }

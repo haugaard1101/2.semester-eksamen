@@ -32,6 +32,11 @@ public class BilModel {
   public BilModel() {
   }
 
+  public BilModel(String maerke, String model) {
+    this.maerke = maerke;
+    this.model =model;
+  }
+
   public int getIdNumber() {
     return idNumber;
   }

@@ -2,6 +2,7 @@ package com.example.bilabonnement.Repositories;
 
 import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Model.GearEnum;
+import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Model.UdlejningsStatusEnum;
 import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
 
@@ -76,5 +77,25 @@ public class ForretningsudviklerRepository {
             sum = sum + price;
         }
         return sum;
+    }
+
+
+
+    public BilModel findEnBil(String RegNr) throws Exception {
+        BilModel bilModel = null;
+        try {
+            PreparedStatement psts = conn.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
+            psts.setString(1, RegNr);
+            ResultSet resultSet = psts.executeQuery();
+
+            while (resultSet.next()) {
+                bilModel = new BilModel(
+                        resultSet.getString("Mærke"),
+                        resultSet.getString("Model"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bilModel;
     }
 }
