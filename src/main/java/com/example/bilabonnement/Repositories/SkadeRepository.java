@@ -8,10 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class SkadeRepository {
+
     private Connection connection = DatabaseConnectionManager.getConnection();
 
     //retunerer alle skader fra databasen
@@ -36,36 +36,8 @@ public class SkadeRepository {
         return skadeListe;
     }
 
-    //retunerer og lægger prisen af skader sammen på et bestemt registreringsnummer
-    public int getPriceOnSkader(String RegNr) {
-        int skadeRegning = 0;
-        List<SkadeModel> skader = new ArrayList<>();
-        try {
-            PreparedStatement psts = connection.prepareStatement("SELECT * FROM skader WHERE RegistreringsNummer = ?");
-            psts.setString(1, RegNr);
-            ResultSet resultSet = psts.executeQuery();
-
-            while (resultSet.next()) {
-                skader.add(new SkadeModel(
-                        resultSet.getInt("SkadeID"),
-                        resultSet.getString("RegistreringsNummer"),
-                        resultSet.getString("SkadeNavn"),
-                        resultSet.getString("SkadePris")
-                ));
-            }
-
-            for (SkadeModel skadeModel : skader) {
-                skadeRegning += Integer.parseInt(String.valueOf(skadeModel.getSkadePris()));
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return skadeRegning;
-    }
-
     //retunerer og viser en lejeaftale udfra RegNr
-    public LejeAftaleModel findEnLejekontrakt(String RegNr) throws Exception {
+    public LejeAftaleModel findEnLejekontrakt(String RegNr) {
         LejeAftaleModel lejeaftale = null;
         try {
             PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale where RegistreringsNummer = ?");
@@ -100,7 +72,7 @@ public class SkadeRepository {
     }
 
     //retunerer og viser en bil udfra RegNr
-    public BilModel findEnBil(String RegNr) throws Exception {
+    public BilModel findEnBil(String RegNr) {
         BilModel bil = null;
         try {
             PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
@@ -127,6 +99,34 @@ public class SkadeRepository {
             e.printStackTrace();
         }
         return bil;
+    }
+
+    //retunerer og lægger prisen af skader sammen på et bestemt registreringsnummer
+    public int getPriceOnSkader(String RegNr) {
+        int skadeRegning = 0;
+        List<SkadeModel> skader = new ArrayList<>();
+        try {
+            PreparedStatement psts = connection.prepareStatement("SELECT * FROM skader WHERE RegistreringsNummer = ?");
+            psts.setString(1, RegNr);
+            ResultSet resultSet = psts.executeQuery();
+
+            while (resultSet.next()) {
+                skader.add(new SkadeModel(
+                        resultSet.getInt("SkadeID"),
+                        resultSet.getString("RegistreringsNummer"),
+                        resultSet.getString("SkadeNavn"),
+                        resultSet.getString("SkadePris")
+                ));
+            }
+
+            for (SkadeModel skadeModel : skader) {
+                skadeRegning += Integer.parseInt(String.valueOf(skadeModel.getSkadePris()));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return skadeRegning;
     }
 
     //sletter en skader udfra skadeID
@@ -218,7 +218,7 @@ public class SkadeRepository {
             throw new RuntimeException(e);
         }
     }
-/*
+  /*
   // retunerer alle 'Afleveret biler' fra databasen
   public List<BilModel> getAllReturnedCars() {
     List<BilModel> returnedCars = new ArrayList<>();
