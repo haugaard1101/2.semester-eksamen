@@ -1,15 +1,15 @@
 package com.example.bilabonnement.Repositories;
 
-    import com.example.bilabonnement.Model.*;
-    import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
+import com.example.bilabonnement.Model.*;
+import com.example.bilabonnement.Repositories.Util.DatabaseConnectionManager;
 
-    import java.sql.Connection;
-    import java.sql.PreparedStatement;
-    import java.sql.ResultSet;
-    import java.sql.SQLException;
-    import java.util.ArrayList;
-    import java.util.LinkedList;
-    import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class SkadeRepository {
   private Connection connection = DatabaseConnectionManager.getConnection();
@@ -65,7 +65,7 @@ public class SkadeRepository {
   }
 
   //finder og viser en lejeaftale udfra RegNr
-  public LejeAftaleModel findEnLejekontrakt(String RegNr) throws Exception{
+  public LejeAftaleModel findEnLejekontrakt(String RegNr) throws Exception {
     LejeAftaleModel lejeaftale = null;
     try {
       PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale where RegistreringsNummer = ?");
@@ -133,6 +133,7 @@ public class SkadeRepository {
   public void deleteSkade(int ID) {
     PreparedStatement psts;
     String RegNr = null;
+
     for (SkadeModel s : getSkadeListe()) {
       if (s.getSkadeID() == ID) {
         RegNr = s.getRegistreringsNummer();
@@ -146,15 +147,33 @@ public class SkadeRepository {
       throw new RuntimeException(e);
     }
 
-    for (int i = 0; i < getSkadeListe().size(); i++) {
-      if (!getSkadeListe().contains(RegNr)) {
-        try {
-          psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
-          psts.setString(1, RegNr);
-          psts.execute();
-        } catch (SQLException e) {
-          throw new RuntimeException(e);
-        }
+    List<SkadeModel> skadeListeMedRegNr = new ArrayList<>();
+    try {
+      PreparedStatement psts2 = connection.prepareStatement("SELECT * FROM skader where RegistreringsNummer = ?");
+      psts2.setString(1, RegNr);
+      ResultSet resultSet = psts2.executeQuery();
+
+      while (resultSet.next()) {
+        skadeListeMedRegNr.add(new SkadeModel(
+            resultSet.getInt("SkadeID"),
+            resultSet.getString("RegistreringsNummer"),
+            resultSet.getString("SkadeNavn"),
+            resultSet.getString("SkadePris")
+        ));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+
+    if (skadeListeMedRegNr.size() == 0) {
+      try {
+        psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
+        psts.setString(1, RegNr);
+        psts.execute();
+
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
       }
     }
   }
@@ -200,7 +219,7 @@ public class SkadeRepository {
     }
   }
 
-  public List<BilModel> getAllReturnedCars()   {
+  public List<BilModel> getAllReturnedCars() {
     List<BilModel> returnedCars = new ArrayList<>();
 
     try {
