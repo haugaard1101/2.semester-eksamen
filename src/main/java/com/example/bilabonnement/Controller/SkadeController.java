@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
-
 
 @Controller
 public class SkadeController {
@@ -27,10 +25,16 @@ public class SkadeController {
 
     //viser siden til indtastRegNr.html
     @GetMapping("/indtastregistreringsnummer")
-    public String SkadeRegNr(Model model) {
+    public String SkadeRegNr() {
         return "/skade/indtastRegNr";
     }
 
+    //viser siden til seOgRedigerSkader.html
+    @GetMapping("/skadeliste")
+    public String visSkadeListe(Model model) {
+        model.addAttribute("SkadeListe", skadeService.getAllSkader());
+        return "/skade/seOgRedigerSkader";
+    }
 
     //postmapping til indtastRegNr.html
     @PostMapping("/registrerskade")
@@ -71,13 +75,6 @@ public class SkadeController {
         }
 
         return "/skade/visregning";
-    }
-
-    //viser siden til seOgRedigerSkader.html
-    @GetMapping("/skadeliste")
-    public String visSkadeListe(Model model) {
-        model.addAttribute("SkadeListe", skadeService.getAllSkader());
-        return "/skade/seOgRedigerSkader";
     }
 
     //postmapping til seOgRedigerSkader.html

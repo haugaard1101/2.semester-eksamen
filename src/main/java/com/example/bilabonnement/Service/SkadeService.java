@@ -5,7 +5,6 @@ import com.example.bilabonnement.Model.LejeAftaleModel;
 import com.example.bilabonnement.Model.SkadeModel;
 import com.example.bilabonnement.Repositories.SkadeRepository;
 
-import java.util.Collection;
 import java.util.List;
 
 public class SkadeService {
@@ -26,6 +25,13 @@ public class SkadeService {
     public List<SkadeModel> getAllSkader() {
         return skadeRepo.getSkadeListe();
     }
+
+    /*
+    // retunerer alle 'Afleveret biler' fra databasen
+    public List<BilModel> getAllReturnedCars() {
+        return skadeRepo.getAllReturnedCars();
+    }
+    */
 
     //sletter en skader udfra skadeID
     public void deleteSkade(int ID) {
@@ -54,12 +60,6 @@ public class SkadeService {
         System.out.println("her printer vi fra showbill i service" + regning);
         return (int) regning;
     }
-/*
-    // retunerer alle 'Afleveret biler' fra databasen
-    public List<BilModel> getAllReturnedCars() {
-        return skadeRepo.getAllReturnedCars();
-    }
- */
 
     //retunerer KM ved indlevering
     public double kmVedIndlevering(String RegNr) {
@@ -81,8 +81,9 @@ public class SkadeService {
 
     //retunerer prisen på overkørte KM
     public double kmRegning(String RegNr) {
-
-        return ((kmVedIndlevering(RegNr) - kmVedAflevering(RegNr)) - aftaleKM(RegNr)) * 0.75;
+        if (kmVedIndlevering(RegNr) - kmVedAflevering(RegNr) > aftaleKM(RegNr)) {
+            return ((kmVedIndlevering(RegNr) - kmVedAflevering(RegNr)) - aftaleKM(RegNr)) * 0.75;
+        } else return 0;
     }
 
     //retunerer aftalte KM
