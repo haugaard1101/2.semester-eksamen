@@ -25,7 +25,6 @@ public class SkadeController {
         return "skade/fejlsideskade";
     }
 
-
     //viser siden til indtastRegNr.html
     @GetMapping("/indtastregistreringsnummer")
     public String SkadeRegNr() {
@@ -126,6 +125,5 @@ public class SkadeController {
         System.out.println("skadeliste wtf");
         return "redirect:/skadeliste";
     }
-
 
 }

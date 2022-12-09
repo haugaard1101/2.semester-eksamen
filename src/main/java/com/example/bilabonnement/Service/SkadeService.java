@@ -46,7 +46,7 @@ public class SkadeService {
     }
 
     //udregner og retunerer hvad kunden skal betale
-    public int showBill(String RegNr) {
+    public double showBill(String RegNr) {
         System.out.println("her tjekker vi om regnnr kommer med op i service" + RegNr);
         double regning;
 
@@ -58,7 +58,7 @@ public class SkadeService {
             regning = skadeRegning(RegNr);
         }
         System.out.println("her printer vi fra showbill i service" + regning);
-        return (int) regning;
+        return regning;
     }
 
     //retunerer KM ved indlevering
@@ -95,6 +95,7 @@ public class SkadeService {
         }
     }
 
+    //retunerer adresse udfra RegNr
     public String adresse(String RegNr) {
         try {
             return findEnLejekontrakt(RegNr).getAdresse();
@@ -103,6 +104,7 @@ public class SkadeService {
         }
     }
 
+    //retunerer email udfra RegNr
     public String email(String RegNr) {
         try {
             return findEnLejekontrakt(RegNr).getEmail();
