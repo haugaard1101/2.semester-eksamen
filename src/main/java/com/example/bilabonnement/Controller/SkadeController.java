@@ -74,6 +74,11 @@ public class SkadeController {
   public String showBill(HttpSession session, Model model) throws Exception {
     String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
     model.addAttribute("regning", skadeService.showBill(RegNr));
+    model.addAttribute("kmVedIndlevering", skadeService.kmVedIndlevering(RegNr));
+    model.addAttribute("kmVedAflevering", skadeService.kmVedAflevering(RegNr));
+    model.addAttribute("kmRegning", skadeService.kmRegning(RegNr));
+    model.addAttribute("aftaleKM", skadeService.aftaleKM(RegNr));
+    model.addAttribute("skadeRegning", skadeService.skadeRegning(RegNr));
     return "/skade/visregning";
   }
 

@@ -7,6 +7,11 @@
 </head>
 <body>
 <h1> her er din regning biatch
+    <p th:text=" ${kmVedAflevering} + ' kr.'"> KM ved aflevering </p>
+    <p th:text=" ${kmVedIndlevering} + ' kr.'"> KM ved indlevering </p>
+    <p th:text=" ${kmRegning} + ' kr.'"> prisen på overkørte KM </p>
+    <p th:text=" ${aftaleKM} + ' kr.'"> aftalte KM</p>
+    <p th:text=" ${skadeRegning} + ' kr.'"> prisen på skader </p>
     <p th:text=" ${regning} + ' kr.'"> Regningen på skader og overkørte KM</p>
 </h1>
 
