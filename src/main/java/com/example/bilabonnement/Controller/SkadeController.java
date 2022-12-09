@@ -24,17 +24,13 @@ public class SkadeController {
         return "skade/fejlsideskade";
     }
 
-    /*
+
     //viser siden til indtastRegNr.html
     @GetMapping("/indtastregistreringsnummer")
     public String SkadeRegNr(Model model) {
-
-        model.addAttribute("ReturnedCars", skadeService.getAllReturnedCars());
-        model.addAttribute("amountOfReturnedCars", skadeService.getAllReturnedCars().size());
-
         return "/skade/indtastRegNr";
     }
-     */
+
 
     //postmapping til indtastRegNr.html
     @PostMapping("/registrerskade")
