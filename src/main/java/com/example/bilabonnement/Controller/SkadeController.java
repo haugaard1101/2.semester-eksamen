@@ -18,6 +18,7 @@ public class SkadeController {
 
     SkadeService skadeService = new SkadeService();
 
+    //viser fejlside til fejlsideskade
     @GetMapping("/fejlsideskade")
     public String fejlsideskade() {
         return "skade/fejlsideskade";
@@ -51,7 +52,7 @@ public class SkadeController {
         return "/skade/registrerskade";
     }
 
-    //postmapping til registrerskade.html
+    //postmapping til visregning.html
     @PostMapping("/registrerskade2")
     public String registrerSkade(HttpSession session, WebRequest request, Model model) {
         try {
@@ -62,30 +63,15 @@ public class SkadeController {
             String nyForrude = request.getParameter("Ny forrude");
             skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
             model.addAttribute("regning", skadeService.showBill(RegNr));
-        } catch (Exception e) {
-            return "redirect:fejlsideskade";
-        }
-
-        return "/skade/visregning";
-    }
-
-    //viser siden til visregning.html
-    @GetMapping("/visregning")
-    public String showBill(HttpSession session, Model model) {
-        try {
-            String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
-            model.addAttribute("regning", skadeService.showBill(RegNr));
             model.addAttribute("kmVedIndlevering", skadeService.kmVedIndlevering(RegNr));
             model.addAttribute("kmVedAflevering", skadeService.kmVedAflevering(RegNr));
             model.addAttribute("kmRegning", skadeService.kmRegning(RegNr));
             model.addAttribute("aftaleKM", skadeService.aftaleKM(RegNr));
             model.addAttribute("skadeRegning", skadeService.skadeRegning(RegNr));
-
-            model.addAttribute("RegNr", RegNr);
-            model.addAttribute("lejeAftaleNavn", skadeService.findEnLejekontrakt(RegNr).getNavn());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            return "redirect:fejlsideskade";
         }
+
         return "/skade/visregning";
     }
 
