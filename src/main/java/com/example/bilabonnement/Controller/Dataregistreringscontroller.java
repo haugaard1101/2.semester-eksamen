@@ -24,6 +24,9 @@ public class Dataregistreringscontroller {
   //Getmapping til standard dataregistreringssiden
   @GetMapping("/dataregistrering")
   public String dataregistrering() {
+   // model.addAttribute("ArrayMedLedigeBilersRegNr", metodeDerGiverArrayMedLedigeBilersRegNr();
+    //lav en metode der kalder alle biler med 'LEDIG', og store deres regnr i et array
+    //lav derefter et forloop, der tager hver af regnr, og lægger dem ind i dropdown-menuen så de bliver muligheder på hjemmesiden
     return "dataregistrering/dataregistrering";
   }
 
