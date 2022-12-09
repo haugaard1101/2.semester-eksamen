@@ -59,7 +59,7 @@ public class SkadeService {
         return skadeRepo.getAllReturnedCars();
     }
 
-
+    //KM ved indlevering
     public double kmVedIndlevering(String RegNr) {
         try {
             return Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getKmVedIndlevering());
@@ -68,6 +68,7 @@ public class SkadeService {
         }
     }
 
+    //KM ved aflevering
     public double kmVedAflevering(String RegNr) {
         try {
             return Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getKmVedAfhentning());
@@ -76,11 +77,13 @@ public class SkadeService {
         }
     }
 
+    //prisen på overkørte KM
     public double kmRegning(String RegNr) {
 
         return ((kmVedIndlevering(RegNr) - kmVedAflevering(RegNr)) - aftaleKM(RegNr)) * 0.75;
     }
 
+    //aftalte KM
     public double aftaleKM(String RegNr) {
         try {
             return Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getAftaleKM());
@@ -89,10 +92,9 @@ public class SkadeService {
         }
     }
 
+    //prisen på skader
     public double skadeRegning(String RegNr) {
-       return skadeRepo.getPriceOnSkader(RegNr);
+        return skadeRepo.getPriceOnSkader(RegNr);
     }
-
-
-
+    
 }
