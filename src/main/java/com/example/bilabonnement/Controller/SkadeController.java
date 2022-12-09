@@ -24,6 +24,7 @@ public class SkadeController {
         return "skade/fejlsideskade";
     }
 
+    /*
     //viser siden til indtastRegNr.html
     @GetMapping("/indtastregistreringsnummer")
     public String SkadeRegNr(Model model) {
@@ -33,6 +34,7 @@ public class SkadeController {
 
         return "/skade/indtastRegNr";
     }
+     */
 
     //postmapping til indtastRegNr.html
     @PostMapping("/registrerskade")
