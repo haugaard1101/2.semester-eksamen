@@ -225,11 +225,22 @@ public class SkadeRepository {
         }
     }
 
-  /*
-  //Kasper
-  // retunerer alle 'Afleveret biler' fra databasen
-  public List<BilModel> getAllReturnedCars() {
-    List<BilModel> returnedCars = new ArrayList<>();
-  */
+    public BilModel findEnBil(String RegNr) throws Exception {
+        BilModel bilModel = null;
+        try {
+            PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
+            psts.setString(1, RegNr);
+            ResultSet resultSet = psts.executeQuery();
+
+            while (resultSet.next()) {
+                bilModel = new BilModel(
+                        resultSet.getString("Mærke"),
+                        resultSet.getString("Model"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bilModel;
+    }
 
 }

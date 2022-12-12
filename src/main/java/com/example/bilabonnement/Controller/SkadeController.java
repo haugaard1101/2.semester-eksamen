@@ -83,10 +83,9 @@ public class SkadeController {
             model.addAttribute("RegNr", RegNr);
             model.addAttribute("Adresse", skadeService.adresse(RegNr));
             model.addAttribute("Email", skadeService.email(RegNr));
-            model.addAttribute("Maerke", forretningsudviklerService.maerke(RegNr));
-            model.addAttribute("Model", forretningsudviklerService.model(RegNr));
+            model.addAttribute("Maerke", skadeService.maerke(RegNr));
+            model.addAttribute("Model", skadeService.model(RegNr));
             model.addAttribute("lejeAftaleNavn", skadeService.getLejeaftale(RegNr).getNavn());
-            System.out.println("kmVedIndlevering i controller = " + skadeService.kmVedIndlevering(RegNr));
 
             skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
             model.addAttribute("regning", skadeService.showBill(RegNr));

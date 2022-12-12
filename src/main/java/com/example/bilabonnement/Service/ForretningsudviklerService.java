@@ -5,32 +5,18 @@ import com.example.bilabonnement.Repositories.ForretningsudviklerRepository;
 
 import java.util.List;
 
+//Benjamin
 public class ForretningsudviklerService {
 
   ForretningsudviklerRepository repo = new ForretningsudviklerRepository();
 
+  // Her går vi ned i repo og henter alle biler med 'AKTIV'
   public List<BilModel> getAllRentedCars(){
     return repo.getAllRentedCars();
   }
-
+  // Her går vi ned i repo og henter alle bilers samlede pris pr måned
   public int getPriceRentedCars(){
     return repo.getPriceOfAllRentedCars();
-  }
-
-  public String maerke(String RegNr){
-    try {
-      return repo.findEnBil(RegNr).getMaerke();
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  public String model(String RegNr){
-    try {
-      return repo.findEnBil(RegNr).getModel();
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
   }
 
   public int getCO2RentedCars(){

@@ -115,4 +115,20 @@ public class SkadeService {
         return skadeRepo.getPriceOnSkader(RegNr);
     }
 
+    public String maerke(String RegNr){
+        try {
+            return skadeRepo.findEnBil(RegNr).getMaerke();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String model(String RegNr){
+        try {
+            return skadeRepo.findEnBil(RegNr).getModel();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

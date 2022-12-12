@@ -81,21 +81,4 @@ public class ForretningsudviklerRepository {
 
 
 
-    public BilModel findEnBil(String RegNr) throws Exception {
-        BilModel bilModel = null;
-        try {
-            PreparedStatement psts = conn.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
-            psts.setString(1, RegNr);
-            ResultSet resultSet = psts.executeQuery();
-
-            while (resultSet.next()) {
-                bilModel = new BilModel(
-                        resultSet.getString("Mærke"),
-                        resultSet.getString("Model"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return bilModel;
-    }
 }
