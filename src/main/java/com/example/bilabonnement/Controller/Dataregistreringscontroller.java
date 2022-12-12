@@ -100,7 +100,7 @@ public class Dataregistreringscontroller {
   @PostMapping("/lejeaftaleliste")
   public String sendlejekontrakt(WebRequest request, Model model) {
     try {
-      dataregistreringsService.createLejeAftale(request, "create");
+      dataregistreringsService.createLejeAftale(request);
       model.addAttribute("LejeAftale", dataregistreringsService.getAlleLejeAftaler());
 
     } catch (Exception e) {
@@ -110,17 +110,17 @@ public class Dataregistreringscontroller {
   }
 
   // Mathias, Benjamin
-  @PostMapping("/opdaterlejeaftale")
+ /* @PostMapping("/opdaterlejeaftale")
   public String opdaterlejeaftale(WebRequest request, Model model) {
     try {
-      dataregistreringsService.createLejeAftale(request, "");
+      dataregistreringsService.createLejeAftale(request);
       model.addAttribute("LejeAftale", dataregistreringsService.getAlleLejeAftaler());
     } catch (Exception e) {
       return "redirect:fejlsidedata";
     }
 
     return "dataregistrering/opdaterlejeaftale";
-  }
+  }*/
 
   // Benjamin
   @GetMapping("/seledigebiler")
