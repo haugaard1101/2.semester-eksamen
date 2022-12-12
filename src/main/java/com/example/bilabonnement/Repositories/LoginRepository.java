@@ -13,12 +13,9 @@ import java.util.List;
 
 public class LoginRepository {
 
-
     private Connection connection = DatabaseConnectionManager.getConnection();
 
-
-
-
+    //Marcus
     public List<UserModel> getDataFromDatabaseIntoArraylist(String userName, String userPassword){
         ArrayList<UserModel> UserArraylist = new ArrayList<>();
 

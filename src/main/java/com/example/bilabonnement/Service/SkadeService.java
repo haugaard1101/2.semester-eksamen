@@ -117,7 +117,7 @@ public class SkadeService {
 
     public String maerke(String RegNr){
         try {
-            return skadeRepo.FindACar(RegNr).getMaerke();
+            return skadeRepo.findACar(RegNr).getMaerke();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -125,7 +125,7 @@ public class SkadeService {
 
     public String model(String RegNr){
         try {
-            return skadeRepo.FindACar(RegNr).getModel();
+            return skadeRepo.findACar(RegNr).getModel();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

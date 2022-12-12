@@ -1,5 +1,7 @@
 package com.example.bilabonnement.Model;
 
+
+// Kasper, Mathias, Marcus
 public class LejeAftaleModel {
 
   private int aftaleId;

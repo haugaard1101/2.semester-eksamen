@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+// Mathias
 public class BilRepository {
     private Connection connection = DatabaseConnectionManager.getConnection();
 
@@ -22,6 +23,8 @@ public class BilRepository {
             throw new RuntimeException(e);
         }
     }
+
+    // Mathias
     public  void updateLejeStatus(String registreringnummer){
         try {
             PreparedStatement psts = connection.prepareStatement("UPDATE Biler SET UdlejningsStatus = 'AKTIV' where RegistreringsNummer = ?");
