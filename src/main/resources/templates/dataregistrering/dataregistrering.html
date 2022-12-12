@@ -1,6 +1,6 @@
 <!-- Benjamin -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>Dataregistrering</title>
@@ -19,21 +19,23 @@
 <br>
 
 
-<h3 align="center">Registrer en lejekontrakt</h3>
+<h3 align="center">Registrer en lejeaftale</h3>
 <br>
 
 <form action="/lejeaftaleliste" method="Post">
 
-    <!--  <input type="text" name="RegistreringsNummer"> -->
     <div class="container">
-        <div class="row">
-
-            <div class="input-group col-12">
-                <label for="RegistreringsNummer"></label>
-                <input type="text" placeholder="Registreringsnummer" maxlength="7" class="form-control"
-                       name="RegistreringsNummer">
+        <div class="row">'
+            <div class="col-3">
+                <select class="form-select" name="RegistreringsNummer">
+                    <option selected>Vælg registreringsnummer</option>
+                    <option th:each="BilModel : ${BilListe}" th:value="${BilModel.RegistreringsNummer}"
+                            th:text="${BilModel.RegistreringsNummer}"></option>
+                </select>
             </div>
+            <div class="9">
 
+            </div>
 
             <div class="col-6">
                 <label for="Navn"></label>
@@ -69,7 +71,8 @@
 
                 <div class="col-4">
                     <label for="Postnummer"></label>
-                    <input type="text" placeholder="Postnummer" maxlength="4" class="form-control" name="Postnummer">
+                    <input type="text" placeholder="Postnummer" maxlength="4" class="form-control"
+                           name="Postnummer">
                 </div>
 
 
@@ -81,7 +84,8 @@
 
                 <div class="col-6">
                     <label for="LejeperiodeFra"></label>
-                    <input type="text" class="form-control" placeholder="Lejeperiode begynder" name="LejeperiodeFra">
+                    <input type="text" class="form-control" maxlength="6" placeholder="Lejeperiode begynder"
+                           name="LejeperiodeFra">
                 </div>
 
                 <div class="col-6">
@@ -108,7 +112,8 @@
                 <div class="col-6">
 
                     <label for="KmVedAfhentning"></label> <br>
-                    <input type="text" class="form-control" placeholder="Km ved afhentning" name="KmVedAfhentning"><br>
+                    <input type="text" class="form-control" placeholder="Km ved afhentning"
+                           name="KmVedAfhentning"><br>
                 </div>
                 <div class="col-6">
 
@@ -126,7 +131,7 @@
         <div class="row">
             <div class="col-sm">
                 <!--<button type="button" class="btn btn-primary">Registrer lejekontrakt</button>-->
-                <button class="btn btn-primary"> registrer lejekontrakt</button>
+                <button class="btn btn-primary"> Registrer lejeaftale</button>
 
 
             </div>

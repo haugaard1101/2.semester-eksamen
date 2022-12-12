@@ -1,12 +1,17 @@
 package com.example.bilabonnement.Controller;
 
+import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Service.DataregistreringsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -25,10 +30,17 @@ public class Dataregistreringscontroller {
   //Benjamin, Marcus, Mathias
   //Getmapping til standard dataregistreringssiden
   @GetMapping("/dataregistrering")
-  public String dataregistrering() {
+  public String dataregistrering(Model model) {
    // model.addAttribute("ArrayMedLedigeBilersRegNr", metodeDerGiverArrayMedLedigeBilersRegNr();
     //lav en metode der kalder alle biler med 'LEDIG', og store deres regnr i et array
     //lav derefter et forloop, der tager hver af regnr, og lægger dem ind i dropdown-menuen så de bliver muligheder på hjemmesiden
+    List<BilModel> ledigeBiler = dataregistreringsService.getAllLedigeBiler();
+//    List<String> ledigeBilerRegNr = new ArrayList<>();
+//    for (BilModel bil: ledigeBiler){
+//      ledigeBilerRegNr.add(bil.getRegistreringsNummer());
+//    }
+//    System.out.println(ledigeBilerRegNr);
+    model.addAttribute("BilListe", ledigeBiler);
     return "dataregistrering/dataregistrering";
   }
 
@@ -128,5 +140,12 @@ public class Dataregistreringscontroller {
     model.addAttribute("LedigeBiler", dataregistreringsService.getAllLedigeBiler());
     return "dataregistrering/seledigebiler";
   }
+
+
+//  @RequestMapping(value = "/populateDropDownList", method = RequestMethod.GET)
+//  public String populateList(Model model) {
+//
+//    return "dropDownList/dropDownList.html";
+//  }
 
 }
