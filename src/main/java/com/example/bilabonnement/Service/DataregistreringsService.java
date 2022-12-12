@@ -40,8 +40,6 @@ public class DataregistreringsService {
         request.getParameter("KmVedIndlevering"),
         request.getParameter("RegistreringsNummer"));
 
-
-
     LejeAftaleRepo.createLejeAftale(lejeAftale);
   }
 
@@ -64,6 +62,8 @@ public class DataregistreringsService {
   public List<BilModel> getAllLedigeBiler(){
     return LejeAftaleRepo.getAllLedigeBiler();
   }
+
+
 
 
 }
