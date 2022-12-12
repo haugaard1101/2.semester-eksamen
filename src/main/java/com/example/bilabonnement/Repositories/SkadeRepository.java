@@ -13,7 +13,7 @@ import java.util.List;
 public class SkadeRepository {
 
     private Connection connection = DatabaseConnectionManager.getConnection();
-
+    //Kasper
     //retunerer alle skader fra databasen
     public List<SkadeModel> getSkadeListe() {
         List<SkadeModel> skadeListe = new ArrayList<>();
@@ -35,7 +35,7 @@ public class SkadeRepository {
         }
         return skadeListe;
     }
-
+    //Kasper
     //retunerer og viser en lejeaftale udfra RegNr
     public LejeAftaleModel findEnLejekontrakt(String RegNr) {
         LejeAftaleModel lejeaftale = null;
@@ -70,7 +70,7 @@ public class SkadeRepository {
         }
         return lejeaftale;
     }
-
+    //Kasper
     //retunerer og viser en bil udfra RegNr
     public BilModel findEnBil(String RegNr) {
         BilModel bil = null;
@@ -100,7 +100,7 @@ public class SkadeRepository {
         }
         return bil;
     }
-
+    //Kasper
     //retunerer og lægger prisen af skader sammen på et bestemt registreringsnummer
     public int getPriceOnSkader(String RegNr) {
         int skadeRegning = 0;
@@ -118,7 +118,7 @@ public class SkadeRepository {
                         resultSet.getString("SkadePris")
                 ));
             }
-
+            //lægger prisen sammen for alle skaderne
             for (SkadeModel skadeModel : skader) {
                 skadeRegning += Integer.parseInt(String.valueOf(skadeModel.getSkadePris()));
             }
@@ -129,16 +129,18 @@ public class SkadeRepository {
         return skadeRegning;
     }
 
+    //Kasper, Mathias, Benjamin, Marcus
     //sletter en skade udfra skadeID, derefter sætter den automatisk bilens status til 'Ledig', hvis det var den sidste skade på bilen
     public void deleteSkade(int ID) {
         PreparedStatement psts;
         String RegNr = null;
-
+        //kører igennem alle registreret skader og finder Registeringsnummeret udfra skadeID
         for (SkadeModel s : getSkadeListe()) {
             if (s.getSkadeID() == ID) {
                 RegNr = s.getRegistreringsNummer();
             }
         }
+        //sletter skaden fra databasen
         try {
             psts = connection.prepareStatement("DELETE FROM skader where SkadeID = ?");
             psts.setInt(1, ID);
@@ -146,7 +148,7 @@ public class SkadeRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
+        //opretter en ny arraylist, med alle skaderne fra registeringsnummeret
         List<SkadeModel> skadeListeMedRegNr = new ArrayList<>();
         try {
             PreparedStatement psts2 = connection.prepareStatement("SELECT * FROM skader where RegistreringsNummer = ?");
@@ -164,8 +166,7 @@ public class SkadeRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
+        //hvis arraylisten er tom, updateres bilens udlejningsStatus til LEDIG
         if (skadeListeMedRegNr.size() == 0) {
             try {
                 psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
@@ -177,11 +178,12 @@ public class SkadeRepository {
             }
         }
     }
-
-    //opretter en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet
-    public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælgerequest, String nyForrude) {
+    //Kasper
+    //opretter en skade og ændre KM ved indlevering på en bil og sætter bilen som skadet/ledig
+    public void createSkade(String RegNr, String aflæstKm, String lakfelt, String ridsetAlufælge, String nyForrude) {
         PreparedStatement psts;
 
+        //hvis aflæstKm er lig med alt andet end ingenting, updateres værdien inde på lejeaftalen
         try {
             if (!aflæstKm.equals("")) {
                 psts = connection.prepareStatement("UPDATE lejeaftale SET KmVedIndlevering = ? where RegistreringsNummer = ?");
@@ -189,22 +191,26 @@ public class SkadeRepository {
                 psts.setString(2, RegNr);
                 psts.executeUpdate();
             }
+            //hvis lakfelt ikke er lig med null, indsættes værdien inde på skader
             if (!(lakfelt == null)) {
                 psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'lakfelt', 1500)");
                 psts.setString(1, RegNr);
                 psts.execute();
             }
-            if (!(ridsetAlufælgerequest == null)) {
+            //hvis ridsetAlufælge ikke er lig med null, indsættes værdien inde på skader
+            if (!(ridsetAlufælge == null)) {
                 psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'ridset alufælge', 400)");
                 psts.setString(1, RegNr);
                 psts.execute();
             }
+            //hvis nyForrude ikke er lig med null, indsættes værdien inde på skader
             if (!(nyForrude == null)) {
                 psts = connection.prepareStatement("INSERT INTO skader (RegistreringsNummer, SkadeNavn, SkadePris) VALUES (?, 'ny forrude', 3000)");
                 psts.setString(1, RegNr);
                 psts.execute();
             }
-            if (!(lakfelt == null) || !(ridsetAlufælgerequest == null) || !(nyForrude == null)) {
+            //hvis mindst en af skaderne ikke er lig null, updateres udlejningsStatus til SKADET. Ellers updateres den til LEDIG
+            if (!(lakfelt == null) || !(ridsetAlufælge == null) || !(nyForrude == null)) {
                 psts = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'SKADET' where registreringsNummer = ?");
                 psts.setString(1, RegNr);
                 psts.execute();
@@ -220,6 +226,7 @@ public class SkadeRepository {
     }
 
   /*
+  //Kasper
   // retunerer alle 'Afleveret biler' fra databasen
   public List<BilModel> getAllReturnedCars() {
     List<BilModel> returnedCars = new ArrayList<>();
