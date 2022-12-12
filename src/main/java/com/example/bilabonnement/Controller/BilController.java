@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 
+// Marcus, Mathias
 @Controller
 public class BilController {
 //Instantiering af bilservice, så den kan kaldes op i controlleren
@@ -18,17 +19,20 @@ public class BilController {
     return "biler/fejlsidebil";
   }
 //Getmapping til login siden
+  // Marcus
     @GetMapping("/login")
   public String trylogin(){
     return "Login";
   }
 //Getmapping til selve bilstatussiden
+  // Mathias
   @GetMapping("/opdaterbilstatus")
   public String opdaterbilstatus(){
     return "biler/opdaterbilstatus";
   }
   //Postmapping det kalder på metoden til at opdatere en bils udlejningsstatus
   //Postmapping har try catch til at redirect til en fejl-informationsside, hvis en error eller exception skulle ske
+  // Mathias
   @PostMapping("/opdatererbilstatus")
   public String opdatererbilstatus(WebRequest request){
       try{
@@ -40,6 +44,7 @@ public class BilController {
   }
 
   //Metode der kaldes for at automatisk opdaterer bilens udlejningsstatus til AKTIV
+  // Mathias
   @PostMapping("/opdatererautobilstatus")
   public String opdatererautobilstatus(WebRequest request){
     try {

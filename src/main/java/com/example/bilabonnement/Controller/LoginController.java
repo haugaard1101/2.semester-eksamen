@@ -15,7 +15,7 @@ public class LoginController {
     LoginService loginService = new LoginService();
 
 
-    //Marcus
+    //Marcus, Mathias
     @PostMapping("/login")
     public String login(HttpSession session, WebRequest webRequest){
          //Get info fra username og password felt fra html siden
