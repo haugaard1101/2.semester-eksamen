@@ -77,13 +77,25 @@ public class DataregistreringsRepository {
 
   // Mathias
   public void deleteLejeAftaleListe(String registreringnummer){
+    PreparedStatement preparedStatement;
+    String RegNr = null;
    try{
-     PreparedStatement psts = connection.prepareStatement("DELETE FROM LejeAftale where RegistreringsNummer = ?");
-     psts.setString(1, registreringnummer);
-     psts.execute();
+     preparedStatement = connection.prepareStatement("DELETE FROM LejeAftale where RegistreringsNummer = ?");
+     preparedStatement.setString(1, registreringnummer);
+     preparedStatement.execute();
+     RegNr = registreringnummer;
    }
   catch (SQLException e) {
     throw new RuntimeException(e);
+    }
+    try {
+      preparedStatement = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
+      preparedStatement.setString(1, RegNr);
+      preparedStatement.execute();
+      System.out.println("Repo RegNr, når den skal slette lejeaftalen: " + RegNr);
+
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
     }
   }
 
