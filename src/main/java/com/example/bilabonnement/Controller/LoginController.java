@@ -19,7 +19,6 @@ public class LoginController {
     public String login(HttpSession session, WebRequest webRequest){
          //Get info fra username og password felt fra html siden
     UserModel userModel = new UserModel(webRequest.getParameter("userName"),webRequest.getParameter("userPassword"));
-        System.out.println(userModel);
     int userId = loginService.login(userModel);
 
     if(userId == -1){

@@ -17,12 +17,10 @@ public class LoginService {
 
 
         List<UserModel> liste1 = loginRepository.getDataFromDatabaseIntoArraylist(user.getUserName(),user.getUserPassword());
-        System.out.println("liste " + liste1.toString());
 
         for (UserModel i : liste1){
 
             if(user.getUserName().equals(i.getUserName()) && user.getUserPassword().equals(i.getUserPassword())){
-                System.out.println(i.getUserId());
                 return i.getUserId();
 
             }
