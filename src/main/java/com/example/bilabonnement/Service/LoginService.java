@@ -24,7 +24,6 @@ public class LoginService {
     //Looper igennem arraylisten og sammenligner UserModel I med data fra databasen
     for (UserModel i : usersFromDatabase) {
       if (user.getUserName().equals(i.getUserName()) && user.getUserPassword().equals(i.getUserPassword())) {
-        System.out.println(i.getUserId());
         return i.getUserId();
 
       }
