@@ -134,6 +134,8 @@ public class SkadeRepository {
     public void deleteSkade(int ID) {
         PreparedStatement psts;
         String RegNr = null;
+        List<SkadeModel> skadeListeMedRegNr = new ArrayList<>();
+
         //kører igennem alle registreret skader og finder Registeringsnummeret udfra skadeID
         for (SkadeModel s : getSkadeList()) {
             if (s.getSkadeID() == ID) {
@@ -149,7 +151,6 @@ public class SkadeRepository {
             throw new RuntimeException(e);
         }
         //opretter en ny arraylist, med alle skaderne fra registeringsnummeret
-        List<SkadeModel> skadeListeMedRegNr = new ArrayList<>();
         try {
             PreparedStatement psts2 = connection.prepareStatement("SELECT * FROM skader where RegistreringsNummer = ?");
             psts2.setString(1, RegNr);

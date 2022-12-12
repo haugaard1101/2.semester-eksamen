@@ -21,7 +21,7 @@ public class DataregistreringsService {
   }
 
   // Mathias, Marcus
-  public void createLejeAftale(WebRequest request,String command) {
+  public void createLejeAftale(WebRequest request) {
     LejeAftaleModel lejeAftale = new LejeAftaleModel(
         request.getParameter("Navn"),
         request.getParameter("Adresse"),
@@ -42,7 +42,7 @@ public class DataregistreringsService {
 
 
 
-    LejeAftaleRepo.createLejeAftale(lejeAftale,command);
+    LejeAftaleRepo.createLejeAftale(lejeAftale);
   }
 
   //Mathias

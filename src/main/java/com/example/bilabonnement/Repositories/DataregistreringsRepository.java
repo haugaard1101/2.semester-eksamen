@@ -32,23 +32,16 @@ public class DataregistreringsRepository {
   }
 
   // Mathias, Marcus
-  public void createLejeAftale(LejeAftaleModel lejeAftaleModel,String command) {
+  public void createLejeAftale(LejeAftaleModel lejeAftaleModel) {
     String RegNr = null;
     PreparedStatement preparedStatement;
     try {
-      if (Objects.equals(command, "create")) {
         preparedStatement = connection.prepareStatement("insert into LejeAftale (RegistreringsNummer,Navn,Adresse,Postnummer,Kommune," +
             "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,AntalMaaneder,Afhentningssted," +
             "Afleveringssted,KmVedAfhentning,AftaleKM,KmVedIndlevering) " +
             "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-      } else {
-        preparedStatement = connection.prepareStatement("UPDATE LejeAftale (RegistreringsNummer,Navn,Adresse,Postnummer,Kommune," +
-            "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,AntalMaaneder,Afhentningssted,"+
-            "Afleveringssted,KmVedAfhentning,AftaleKM,KmVedIndlevering) " +
-            "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) where RegistreringsNummer = ?");
-        preparedStatement.setString(17, lejeAftaleModel.getRegistreringsNummer());
-      }
+
       preparedStatement.setString(1, lejeAftaleModel.getRegistreringsNummer());
       preparedStatement.setString(2, lejeAftaleModel.getNavn());
       preparedStatement.setString(3, lejeAftaleModel.getAdresse());
@@ -65,7 +58,8 @@ public class DataregistreringsRepository {
       preparedStatement.setString(14, lejeAftaleModel.getKmVedAfhentning());
       preparedStatement.setString(15, lejeAftaleModel.getAftaleKM());
       preparedStatement.setString(16, lejeAftaleModel.getKmVedIndlevering());
-
+      RegNr = lejeAftaleModel.getRegistreringsNummer();
+      System.out.println("Repo RegNr, når vi prøver at få værdien ind i den: " + RegNr);
       preparedStatement.executeUpdate();
     } catch (SQLException e) {
       throw new RuntimeException();
@@ -74,6 +68,7 @@ public class DataregistreringsRepository {
       preparedStatement = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'AKTIV' where registreringsNummer = ?");
       preparedStatement.setString(1, RegNr);
       preparedStatement.execute();
+      System.out.println("Repo RegNr, når den skal have opdateret udlejningsværdien: " + RegNr);
 
     } catch (SQLException e) {
       throw new RuntimeException(e);
