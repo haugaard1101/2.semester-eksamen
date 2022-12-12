@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class LejeAftaleRepository {
+public class DataregistreringsRepository {
   private Connection connection = DatabaseConnectionManager.getConnection();
 
   public void updateSingleValue(String registreringnummer, int kmVedIndlevering){
