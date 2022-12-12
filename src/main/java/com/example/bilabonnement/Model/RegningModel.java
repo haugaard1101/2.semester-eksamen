@@ -2,6 +2,7 @@ package com.example.bilabonnement.Model;
 
 import com.example.bilabonnement.Repositories.SkadeRepository;
 
+// Marcus
 public class RegningModel {
 
     SkadeRepository skadeRepository = new SkadeRepository();
@@ -12,7 +13,7 @@ public class RegningModel {
     private int kmRegning;
     private int skadeRegning;
 
-
+ // Marcus
     public RegningModel(int kmVedIndlevering, int kmVedAflevering, int aftaleKM, int kmRegning, int skadeRegning) {
         //this.kmVedIndlevering = skadeRepository.findEnLejekontrakt();
         this.kmVedAflevering = kmVedAflevering;

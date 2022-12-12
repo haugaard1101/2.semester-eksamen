@@ -70,7 +70,7 @@ public class SkadeRepository {
         }
         return lejeaftale;
     }
-    //Kasper
+    //Kasper, Benjamin
     //retunerer og viser en bil udfra RegNr
     public BilModel getBil(String RegNr) {
         BilModel bil = null;
@@ -101,7 +101,7 @@ public class SkadeRepository {
         return bil;
     }
     //Kasper
-    //retunerer og lægger prisen af skader sammen på et bestemt registreringsnummer
+    //returnerer og lægger prisen af skader sammen på et bestemt registreringsnummer
     public int getPriceOnSkader(String RegNr) {
         int skadeRegning = 0;
         List<SkadeModel> skader = new ArrayList<>();
@@ -225,23 +225,14 @@ public class SkadeRepository {
         }
     }
 
-
-    //Marcus
-    //Metoden bliver brugt til at finde en bils Mærke og model -
-    //som vi returnere i et objekt som vi senere bruger til at fremvise på vores html side.
-    public BilModel FindACar(String RegNr) throws Exception {
+    // Marcus
+    public BilModel findEnBil(String RegNr) throws Exception {
         BilModel bilModel = null;
         try {
-            //Vælger alt fra databasen som matcher det registreringsnummer du skriver ind i html
             PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
-
-            //Sætter det første spørgsmåltegn(parameterindex) til at være RegNr, som vi tager med fra parameteren.
             psts.setString(1, RegNr);
-
-            //eksekvere SQL kommandoen
             ResultSet resultSet = psts.executeQuery();
 
-            //Putter Mærke og model ned i et objekt som vi bruger til at fremvise på vores invoice side
             while (resultSet.next()) {
                 bilModel = new BilModel(
                         resultSet.getString("Mærke"),

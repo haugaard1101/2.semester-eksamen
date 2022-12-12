@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 public class SkadeController {
 
     SkadeService skadeService = new SkadeService();
-    ForretningsudviklerService forretningsudviklerService = new ForretningsudviklerService();
 
     //Mathias
     //viser fejlside til fejlsideskade.html
@@ -96,7 +95,7 @@ public class SkadeController {
         return "/skade/visregning";
     }
 
-    //Kasper, Marcus
+    //Kasper, Marcus, Benjamin
     //viser siden til visregning.html
     @GetMapping("/visregning")
     public String showBill(HttpSession session, Model model) {

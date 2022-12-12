@@ -1,5 +1,6 @@
 package com.example.bilabonnement.Model;
 
+// Kasper, Mathias, Marcus
 public class UserModel {
 
   private int userId;

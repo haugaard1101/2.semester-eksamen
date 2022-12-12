@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+// Benjamin, Mathias, Marcus
 public class DataregistreringsRepository {
   private Connection connection = DatabaseConnectionManager.getConnection();
 
+  // Mathias
   public void updateSingleValue(String registreringnummer, int kmVedIndlevering){
 
       try {
@@ -28,6 +30,8 @@ public class DataregistreringsRepository {
         throw new RuntimeException(e);
       }
   }
+
+  // Mathias, Marcus
   public void createLejeAftale(LejeAftaleModel lejeAftaleModel,String command) {
 
     try {
@@ -68,7 +72,7 @@ public class DataregistreringsRepository {
     }
   }
 
-
+  // Mathias
   public void deleteLejeAftaleListe(String registreringnummer){
    try{
      PreparedStatement psts = connection.prepareStatement("DELETE FROM LejeAftale where RegistreringsNummer = ?");
@@ -79,6 +83,8 @@ public class DataregistreringsRepository {
     throw new RuntimeException(e);
     }
   }
+
+  // Mathias, Marcus
   public List<LejeAftaleModel> getLejeAftaleById(String registreringsnummer){
       List<LejeAftaleModel> LejeAftaleListe = new ArrayList<>();
 
@@ -113,6 +119,8 @@ public class DataregistreringsRepository {
       }
       return LejeAftaleListe;
     }
+
+    //Mathias, Marcus
   public List<LejeAftaleModel> getAlleLejeAftaler(){
     List<LejeAftaleModel> LejeAftaleListe = new ArrayList<>();
 
@@ -147,6 +155,7 @@ public class DataregistreringsRepository {
     return LejeAftaleListe;
   }
 
+  // Benjamin
   public List<BilModel> getAllLedigeBiler(){
 
     List<BilModel> ledigeBiler = new ArrayList<>();
@@ -178,5 +187,6 @@ public class DataregistreringsRepository {
     }
     return ledigeBiler;
   }
+
 }
 

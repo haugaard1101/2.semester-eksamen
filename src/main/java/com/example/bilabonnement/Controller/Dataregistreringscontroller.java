@@ -10,17 +10,19 @@ import org.springframework.web.context.request.WebRequest;
 import java.util.Objects;
 
 
+// Mathias, Benjamin, Marcus, Kasper
 @Controller
 public class Dataregistreringscontroller {
   //Instantiering af dataregistreringsservice, så den kan kaldes op i controlleren
   DataregistreringsService dataregistreringsService = new DataregistreringsService();
 
   //Getmapping til fejlsiden for data specifikt
+  // Mathias
   @GetMapping("/fejlsidedata")
   public String fejlsidedata() {
     return "dataregistrering/fejlsidedata";
   }
-
+  //Benjamin, Marcus, Mathias
   //Getmapping til standard dataregistreringssiden
   @GetMapping("/dataregistrering")
   public String dataregistrering() {
@@ -30,16 +32,19 @@ public class Dataregistreringscontroller {
     return "dataregistrering/dataregistrering";
   }
 
+  //Mathias
   @GetMapping("/lejeaftalefundet")
   public String lejeaftalefundet() {
     return "dataregistrering/lejeaftalefundet";
   }
 
+  //Mathias
   @GetMapping("/seogredigerlejeaftaler")
   public String seogredigerlejeaftaler() {
     return "dataregistrering/seogredigerlejeaftaler";
   }
 
+  //Mathias
   @GetMapping("/opdaterlejeaftale")
   public String opdaterlejeaftale() {
     return "dataregistrering/opdaterlejeaftale";
@@ -51,11 +56,13 @@ public class Dataregistreringscontroller {
     return "dataregistrering/lejeaftaleliste";
   }
 
+  //Mathias
   @GetMapping("/updatesinglevalue")
   public String updatesinglevalue() {
     return "dataregistrering/updatesinglevalue";
   }
 
+  // Mathias, Benjamin
   @PostMapping("/deleteLegeAftale")
   public String deleteLegeAftale(WebRequest request) {
     try {
@@ -66,6 +73,7 @@ public class Dataregistreringscontroller {
     return "redirect:lejeaftaleliste";
   }
 
+  // Mathias, Benjamin
   @PostMapping("/updatingsinglevalue")
   public String updatingsinglevalue(WebRequest request) {
     try {
@@ -77,6 +85,7 @@ public class Dataregistreringscontroller {
     return "dataregistrering/updatesinglevalue";
   }
 
+  //Mathias, Benjamin
   @PostMapping("/lejeaftalefundet")
   public String findLejeaftale(WebRequest request, Model model) {
     try {
@@ -87,6 +96,7 @@ public class Dataregistreringscontroller {
     return "dataregistrering/lejeaftalefundet";
   }
 
+  // Mathias, Benjamin
   @PostMapping("/lejeaftaleliste")
   public String sendlejekontrakt(WebRequest request, Model model) {
     try {
@@ -99,6 +109,7 @@ public class Dataregistreringscontroller {
     return "dataregistrering/lejeaftaleliste";
   }
 
+  // Mathias, Benjamin
   @PostMapping("/opdaterlejeaftale")
   public String opdaterlejeaftale(WebRequest request, Model model) {
     try {
@@ -110,9 +121,12 @@ public class Dataregistreringscontroller {
 
     return "dataregistrering/opdaterlejeaftale";
   }
+
+  // Benjamin
   @GetMapping("/seledigebiler")
   public String getAllLedigeBiler(Model model) {
     model.addAttribute("LedigeBiler", dataregistreringsService.getAllLedigeBiler());
     return "dataregistrering/seledigebiler";
   }
+
 }
