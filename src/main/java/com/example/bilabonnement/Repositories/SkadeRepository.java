@@ -15,7 +15,7 @@ public class SkadeRepository {
     private Connection connection = DatabaseConnectionManager.getConnection();
     //Kasper
     //retunerer alle skader fra databasen
-    public List<SkadeModel> getSkadeListe() {
+    public List<SkadeModel> getSkadeList() {
         List<SkadeModel> skadeListe = new ArrayList<>();
 
         try {
@@ -37,7 +37,7 @@ public class SkadeRepository {
     }
     //Kasper
     //retunerer og viser en lejeaftale udfra RegNr
-    public LejeAftaleModel findEnLejekontrakt(String RegNr) {
+    public LejeAftaleModel getLejeaftale(String RegNr) {
         LejeAftaleModel lejeaftale = null;
         try {
             PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale where RegistreringsNummer = ?");
@@ -72,7 +72,7 @@ public class SkadeRepository {
     }
     //Kasper
     //retunerer og viser en bil udfra RegNr
-    public BilModel findEnBil(String RegNr) {
+    public BilModel getBil(String RegNr) {
         BilModel bil = null;
         try {
             PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
@@ -135,7 +135,7 @@ public class SkadeRepository {
         PreparedStatement psts;
         String RegNr = null;
         //kører igennem alle registreret skader og finder Registeringsnummeret udfra skadeID
-        for (SkadeModel s : getSkadeListe()) {
+        for (SkadeModel s : getSkadeList()) {
             if (s.getSkadeID() == ID) {
                 RegNr = s.getRegistreringsNummer();
             }

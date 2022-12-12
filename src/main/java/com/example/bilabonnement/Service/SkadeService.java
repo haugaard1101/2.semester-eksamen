@@ -12,18 +12,18 @@ public class SkadeService {
     SkadeRepository skadeRepo = new SkadeRepository();
     //Kasper
     //retunerer og viser en lejeaftale udfra RegNr
-    public LejeAftaleModel findEnLejekontrakt(String RegNr) {
-        return skadeRepo.findEnLejekontrakt(RegNr);
+    public LejeAftaleModel getLejeaftale(String RegNr) {
+        return skadeRepo.getLejeaftale(RegNr);
     }
     //Kasper
     //retunerer og viser en bil udfra RegNr
-    public BilModel findEnBil(String RegNr) {
-        return skadeRepo.findEnBil(RegNr);
+    public BilModel getBil(String RegNr) {
+        return skadeRepo.getBil(RegNr);
     }
     //Kasper
     //retunerer alle skader fra databasen
     public List<SkadeModel> getAllSkader() {
-        return skadeRepo.getSkadeListe();
+        return skadeRepo.getSkadeList();
     }
     /*
     //Kasper
@@ -61,7 +61,7 @@ public class SkadeService {
     //retunerer KM ved indlevering
     public double kmVedIndlevering(String RegNr) {
         try {
-            return Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getKmVedIndlevering());
+            return Double.parseDouble(skadeRepo.getLejeaftale(RegNr).getKmVedIndlevering());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -70,7 +70,7 @@ public class SkadeService {
     //retunerer KM ved aflevering
     public double kmVedAflevering(String RegNr) {
         try {
-            return Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getKmVedAfhentning());
+            return Double.parseDouble(skadeRepo.getLejeaftale(RegNr).getKmVedAfhentning());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -86,7 +86,7 @@ public class SkadeService {
     //retunerer aftalte KM
     public double aftaleKM(String RegNr) {
         try {
-            return Double.parseDouble(skadeRepo.findEnLejekontrakt(RegNr).getAftaleKM());
+            return Double.parseDouble(skadeRepo.getLejeaftale(RegNr).getAftaleKM());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -95,7 +95,7 @@ public class SkadeService {
     //retunerer adresse udfra RegNr
     public String adresse(String RegNr) {
         try {
-            return findEnLejekontrakt(RegNr).getAdresse();
+            return getLejeaftale(RegNr).getAdresse();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -104,7 +104,7 @@ public class SkadeService {
     //retunerer email udfra RegNr
     public String email(String RegNr) {
         try {
-            return findEnLejekontrakt(RegNr).getEmail();
+            return getLejeaftale(RegNr).getEmail();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

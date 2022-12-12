@@ -2,7 +2,6 @@ package com.example.bilabonnement.Controller;
 
 import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Model.LejeAftaleModel;
-import com.example.bilabonnement.Service.DataregistreringsService;
 import com.example.bilabonnement.Service.ForretningsudviklerService;
 import com.example.bilabonnement.Service.SkadeService;
 import org.springframework.stereotype.Controller;
@@ -19,18 +18,21 @@ public class SkadeController {
     SkadeService skadeService = new SkadeService();
     ForretningsudviklerService forretningsudviklerService = new ForretningsudviklerService();
 
+    //Mathias
     //viser fejlside til fejlsideskade.html
     @GetMapping("/fejlsideskade")
     public String fejlsideskade() {
         return "skade/fejlsideskade";
     }
 
+    //Kasper
     //viser siden til indtastRegNr.html
     @GetMapping("/indtastregistreringsnummer")
     public String SkadeRegNr() {
         return "/skade/indtastRegNr";
     }
 
+    //Kasper
     //viser siden til seOgRedigerSkader.html
     @GetMapping("/skadeliste")
     public String visSkadeListe(Model model) {
@@ -38,12 +40,13 @@ public class SkadeController {
         return "/skade/seOgRedigerSkader";
     }
 
+    //Kasper, Mathias, Marcus, Benjamin
     //postmapping til indtastRegNr.html
     @PostMapping("/registrerskade")
     public String showContract(WebRequest req, Model model, HttpSession session) {
         try {
-            LejeAftaleModel lejeaftale = skadeService.findEnLejekontrakt(req.getParameter("RegNr"));
-            BilModel bil = skadeService.findEnBil(req.getParameter("RegNr"));
+            LejeAftaleModel lejeaftale = skadeService.getLejeaftale(req.getParameter("RegNr"));
+            BilModel bil = skadeService.getBil(req.getParameter("RegNr"));
             String RegNr = bil.getRegistreringsNummer();
 
             session.setAttribute("registreringsnummerPåBil", RegNr);
@@ -56,6 +59,7 @@ public class SkadeController {
         return "/skade/registrerskade";
     }
 
+    //Kasper, Mathias, Marcus, Benjamin
     //postmapping til visregning.html
     @PostMapping("/registrerskade2")
     public String registrerSkade(HttpSession session, WebRequest request, Model model) {
@@ -81,7 +85,7 @@ public class SkadeController {
             model.addAttribute("Email", skadeService.email(RegNr));
             model.addAttribute("Maerke", forretningsudviklerService.maerke(RegNr));
             model.addAttribute("Model", forretningsudviklerService.model(RegNr));
-            model.addAttribute("lejeAftaleNavn", skadeService.findEnLejekontrakt(RegNr).getNavn());
+            model.addAttribute("lejeAftaleNavn", skadeService.getLejeaftale(RegNr).getNavn());
             System.out.println("kmVedIndlevering i controller = " + skadeService.kmVedIndlevering(RegNr));
 
             skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
@@ -93,6 +97,7 @@ public class SkadeController {
         return "/skade/visregning";
     }
 
+    //Kasper, Marcus
     //viser siden til visregning.html
     @GetMapping("/visregning")
     public String showBill(HttpSession session, Model model) {
@@ -106,13 +111,14 @@ public class SkadeController {
             model.addAttribute("skadeRegning", skadeService.skadeRegning(RegNr));
 
             model.addAttribute("RegNr", RegNr);
-            model.addAttribute("lejeAftaleNavn", skadeService.findEnLejekontrakt(RegNr).getNavn());
+            model.addAttribute("lejeAftaleNavn", skadeService.getLejeaftale(RegNr).getNavn());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return "/skade/visregning";
     }
 
+    //Kasper, Mathias, Benjamin
     //postmapping til seOgRedigerSkader.html
     @PostMapping("/sletskade")
     public String deleteSkade(WebRequest request) {
