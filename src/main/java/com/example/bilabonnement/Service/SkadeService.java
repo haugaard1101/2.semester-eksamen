@@ -79,6 +79,7 @@ public class SkadeService {
     //retunerer prisen på overkørte KM, og sætter prisen til 0, hvis aftalte KM ikke er overskredet
     public double kmRegning(String RegNr) {
         if (kmVedIndlevering(RegNr) - kmVedAflevering(RegNr) > aftaleKM(RegNr)) {
+
             return ((kmVedIndlevering(RegNr) - kmVedAflevering(RegNr)) - aftaleKM(RegNr)) * 0.75;
         } else return 0;
     }

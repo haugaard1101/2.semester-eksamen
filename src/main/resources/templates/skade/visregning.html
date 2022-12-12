@@ -123,10 +123,10 @@
 
                             <div class="row text-black">
                                 <hr style="border: 2px solid black;">
-                                <div class="col-xl-10">
+                                <div class="col-xl-8">
                                     <p>Total: </p>
                                 </div>
-                                <div class="col-xl-2">
+                                <div class="col-xl-4">
                                     <p class="float-end fw-bold" th:text="${regning} + ' kr.'"></p>
 
                                 </div>
@@ -140,6 +140,12 @@
             </div>
         </section>
 
+
+        <div align="center">
+        <a href="indtastregistreringsnummer">
+        <button type="button" class="btn btn-primary btn-lg">Tilbage</button>
+        </a>
+        </div>
         <footer th:insert="fragments/BilabonnementFooter.html"></footer>
 
 

@@ -88,16 +88,12 @@
                                 <td class="border" th:text="${lejeAftale.Afleveringssted}"></td>
                             </tr>
                             <tr class="border">
-                                <td class="border">Km ved afhentning:</td>
-                                <td class="border" th:text="${lejeAftale.KmVedAfhentning}"></td>
+                                <td class="border">Km kørt før udlejning:</td>
+                                <td class="border" th:text="${lejeAftale.KmVedAfhentning} + ' km'"></td>
                             </tr>
                             <tr class="border">
                                 <td class="border">Aftalte Km:</td>
-                                <td class="border" th:text="${lejeAftale.AftaleKM}"></td>
-                            </tr>
-                            <tr class="border">
-                                <td class="border">Km ved indlevering:</td>
-                                <td class="border" th:text="${lejeAftale.KmVedIndlevering}"></td>
+                                <td class="border" th:text="${lejeAftale.AftaleKM} + ' km'"></td>
                             </tr>
                         </table>
                     </div>

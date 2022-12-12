@@ -71,6 +71,7 @@ public class SkadeController {
 
 
             //----------------------------
+            skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
 
             //Regning Attributter bliver sendt videre til html-filen
             model.addAttribute("regning", skadeService.showBill(RegNr));
@@ -86,8 +87,6 @@ public class SkadeController {
             model.addAttribute("Model", skadeService.model(RegNr));
             model.addAttribute("lejeAftaleNavn", skadeService.getLejeaftale(RegNr).getNavn());
 
-            skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
-            model.addAttribute("regning", skadeService.showBill(RegNr));
         } catch (Exception e) {
             return "redirect:fejlsideskade";
         }
@@ -95,26 +94,6 @@ public class SkadeController {
         return "/skade/visregning";
     }
 
-    //Kasper, Marcus, Benjamin
-    //viser siden til visregning.html
-    @GetMapping("/visregning")
-    public String showBill(HttpSession session, Model model) {
-        try {
-            String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
-            model.addAttribute("regning", skadeService.showBill(RegNr));
-            model.addAttribute("kmVedIndlevering", skadeService.kmVedIndlevering(RegNr));
-            model.addAttribute("kmVedAflevering", skadeService.kmVedAflevering(RegNr));
-            model.addAttribute("kmRegning", skadeService.kmRegning(RegNr));
-            model.addAttribute("aftaleKM", skadeService.aftaleKM(RegNr));
-            model.addAttribute("skadeRegning", skadeService.skadeRegning(RegNr));
-
-            model.addAttribute("RegNr", RegNr);
-            model.addAttribute("lejeAftaleNavn", skadeService.getLejeaftale(RegNr).getNavn());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return "/skade/visregning";
-    }
 
     //Kasper, Mathias, Benjamin
     //postmapping til seOgRedigerSkader.html
@@ -126,7 +105,7 @@ public class SkadeController {
         } catch (Exception e) {
             return "redirect:fejlsideskade";
         }
-        System.out.println("skadeliste wtf");
+
         return "redirect:/skadeliste";
     }
 
