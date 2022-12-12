@@ -96,7 +96,7 @@ public class SkadeController {
         return "/skade/visregning";
     }
 
-    //Kasper, Marcus
+    //Kasper, Marcus, Benjamin
     //viser siden til visregning.html
     @GetMapping("/visregning")
     public String showBill(HttpSession session, Model model) {

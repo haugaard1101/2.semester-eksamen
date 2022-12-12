@@ -70,7 +70,7 @@ public class SkadeRepository {
         }
         return lejeaftale;
     }
-    //Kasper
+    //Kasper, Benjamin
     //retunerer og viser en bil udfra RegNr
     public BilModel getBil(String RegNr) {
         BilModel bil = null;
@@ -101,7 +101,7 @@ public class SkadeRepository {
         return bil;
     }
     //Kasper
-    //retunerer og lægger prisen af skader sammen på et bestemt registreringsnummer
+    //returnerer og lægger prisen af skader sammen på et bestemt registreringsnummer
     public int getPriceOnSkader(String RegNr) {
         int skadeRegning = 0;
         List<SkadeModel> skader = new ArrayList<>();
@@ -225,6 +225,7 @@ public class SkadeRepository {
         }
     }
 
+    // Marcus
     public BilModel findEnBil(String RegNr) throws Exception {
         BilModel bilModel = null;
         try {
