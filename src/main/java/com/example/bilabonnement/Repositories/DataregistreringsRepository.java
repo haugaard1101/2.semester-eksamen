@@ -33,9 +33,9 @@ public class DataregistreringsRepository {
 
   // Mathias, Marcus
   public void createLejeAftale(LejeAftaleModel lejeAftaleModel,String command) {
-
+    String RegNr = null;
+    PreparedStatement preparedStatement;
     try {
-      PreparedStatement preparedStatement;
       if (Objects.equals(command, "create")) {
         preparedStatement = connection.prepareStatement("insert into LejeAftale (RegistreringsNummer,Navn,Adresse,Postnummer,Kommune," +
             "TelefonNr,CPR,Email,LejeperiodeFra,LejeperiodeTil,AntalMaaneder,Afhentningssted," +
@@ -69,6 +69,14 @@ public class DataregistreringsRepository {
       preparedStatement.executeUpdate();
     } catch (SQLException e) {
       throw new RuntimeException();
+    }
+    try {
+      preparedStatement = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'AKTIV' where registreringsNummer = ?");
+      preparedStatement.setString(1, RegNr);
+      preparedStatement.execute();
+
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
     }
   }
 
