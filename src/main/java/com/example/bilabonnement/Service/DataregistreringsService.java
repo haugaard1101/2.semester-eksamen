@@ -2,14 +2,14 @@ package com.example.bilabonnement.Service;
 
 import com.example.bilabonnement.Model.BilModel;
 import com.example.bilabonnement.Model.LejeAftaleModel;
-import com.example.bilabonnement.Repositories.LejeAftaleRepository;
+import com.example.bilabonnement.Repositories.DataregistreringsRepository;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 
 public class DataregistreringsService {
 
-  LejeAftaleRepository LejeAftaleRepo = new LejeAftaleRepository();
+  DataregistreringsRepository LejeAftaleRepo = new DataregistreringsRepository();
 
 
   public String updateSingleValue(String registreringsnummer, int kmVedIndlevering){
