@@ -225,13 +225,23 @@ public class SkadeRepository {
         }
     }
 
-    public BilModel findEnBil(String RegNr) throws Exception {
+
+    //Marcus
+    //Metoden bliver brugt til at finde en bils Mærke og model -
+    //som vi returnere i et objekt som vi senere bruger til at fremvise på vores html side.
+    public BilModel FindACar(String RegNr) throws Exception {
         BilModel bilModel = null;
         try {
+            //Vælger alt fra databasen som matcher det registreringsnummer du skriver ind i html
             PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
+
+            //Sætter det første spørgsmåltegn(parameterindex) til at være RegNr, som vi tager med fra parameteren.
             psts.setString(1, RegNr);
+
+            //eksekvere SQL kommandoen
             ResultSet resultSet = psts.executeQuery();
 
+            //Putter Mærke og model ned i et objekt som vi bruger til at fremvise på vores invoice side
             while (resultSet.next()) {
                 bilModel = new BilModel(
                         resultSet.getString("Mærke"),

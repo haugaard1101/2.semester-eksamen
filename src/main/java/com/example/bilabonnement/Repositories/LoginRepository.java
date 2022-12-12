@@ -34,7 +34,7 @@ public class LoginRepository {
 
             while(rs.next()){
 
-                //lav et bruger objekt og tilføj den til arraylisten
+                //laver et bruger objekt og tilføjer den til arraylisten
                 UserArraylist.add(new UserModel(
                         rs.getInt("userID"),
                         rs.getString("userName"),
@@ -50,18 +50,6 @@ public class LoginRepository {
 
 
     }
-/*
-    public int loggedin(UserModel userModel){
-        getDataFromDatabaseIntoArraylist();
-    for (UserModel i: UserArraylist){
-        if (userModel.getUserName().equals(i.getUserId())&& userModel.getUserPassword().equals(i.getUserPassword())){
-            return i.getUserId();
-        }
-    }
-return -1;
-    }
 
-
- */
 
 }
