@@ -22,4 +22,15 @@ public class BilRepository {
             throw new RuntimeException(e);
         }
     }
+    public  void updateLejeStatus(String registreringnummer){
+        try {
+            PreparedStatement psts = connection.prepareStatement("UPDATE Biler SET UdlejningsStatus = 'AKTIV' where RegistreringsNummer = ?");
+            psts.setString(1,registreringnummer);
+            System.out.println("registreringsnummer i repo af opdatering af udlejningsstatus " + registreringnummer);
+            psts.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

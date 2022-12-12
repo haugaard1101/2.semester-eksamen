@@ -7,15 +7,20 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 
+
+// Mathias, Benjamin, Marcus
 public class DataregistreringsService {
 
   DataregistreringsRepository LejeAftaleRepo = new DataregistreringsRepository();
 
 
+  // Mathias
   public String updateSingleValue(String registreringsnummer, int kmVedIndlevering){
      LejeAftaleRepo.updateSingleValue(registreringsnummer, kmVedIndlevering);
      return registreringsnummer;
   }
+
+  // Mathias, Marcus
   public void createLejeAftale(WebRequest request,String command) {
     LejeAftaleModel lejeAftale = new LejeAftaleModel(
         request.getParameter("Navn"),
@@ -39,18 +44,23 @@ public class DataregistreringsService {
 
     LejeAftaleRepo.createLejeAftale(lejeAftale,command);
   }
+
+  //Mathias
   public List<LejeAftaleModel> getLejeAftaleById(String registreringsnummer){
     return LejeAftaleRepo.getLejeAftaleById(registreringsnummer);
   }
 
-
+  // Mathias
   public List<LejeAftaleModel> getAlleLejeAftaler(){
     return LejeAftaleRepo.getAlleLejeAftaler();
   }
+
+  // Mathias
   public void deleteLejeAftale(String registreringnummer){
       LejeAftaleRepo.deleteLejeAftaleListe(registreringnummer);
   }
 
+  // Benjamin
   public List<BilModel> getAllLedigeBiler(){
     return LejeAftaleRepo.getAllLedigeBiler();
   }

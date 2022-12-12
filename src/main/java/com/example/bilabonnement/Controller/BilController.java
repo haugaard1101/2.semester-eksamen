@@ -38,4 +38,15 @@ public class BilController {
       }
     return "biler/opdaterbilstatus";
   }
+
+  //Metode der kaldes for at automatisk opdaterer bilens udlejningsstatus til AKTIV
+  @PostMapping("/opdatererautobilstatus")
+  public String opdatererautobilstatus(WebRequest request){
+    try {
+      bilService.updateUpdateUdlejningsStatus(request.getParameter("RegistreringsNummer"));
+    } catch (Exception e){
+      return "redirect:fejlsidebil";
+    }
+    return "biler/opdatererautobilstatus";
+  }
 }

@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 public class SkadeController {
 
     SkadeService skadeService = new SkadeService();
-    ForretningsudviklerService forretningsudviklerService = new ForretningsudviklerService();
 
     //Mathias
     //viser fejlside til fejlsideskade.html
