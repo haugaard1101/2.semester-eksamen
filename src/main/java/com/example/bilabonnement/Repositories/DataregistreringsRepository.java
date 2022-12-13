@@ -21,9 +21,7 @@ public class DataregistreringsRepository {
       try {
         PreparedStatement psts = connection.prepareStatement("UPDATE LejeAftale SET KmVedIndlevering = ? where RegistreringsNummer = ?");
         psts.setInt(1,kmVedIndlevering);
-        System.out.println("kmvedindlevering i repo " +kmVedIndlevering);
         psts.setString(2,registreringnummer);
-        System.out.println("registreringsnummer i repo " + registreringnummer);
         psts.execute();
 
       } catch (SQLException e) {
@@ -68,7 +66,6 @@ public class DataregistreringsRepository {
       preparedStatement = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'AKTIV' where registreringsNummer = ?");
       preparedStatement.setString(1, RegNr);
       preparedStatement.execute();
-      System.out.println("Repo RegNr, når den skal have opdateret udlejningsværdien: " + RegNr);
 
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -92,7 +89,6 @@ public class DataregistreringsRepository {
       preparedStatement = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'LEDIG' where registreringsNummer = ?");
       preparedStatement.setString(1, RegNr);
       preparedStatement.execute();
-      System.out.println("Repo RegNr, når den skal slette lejeaftalen: " + RegNr);
 
     } catch (SQLException e) {
       throw new RuntimeException(e);

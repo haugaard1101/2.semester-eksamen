@@ -18,6 +18,8 @@ public class SkadeRepository {
     public List<SkadeModel> getSkadeList() {
         List<SkadeModel> skadeListe = new ArrayList<>();
 
+
+
         try {
             PreparedStatement psts = connection.prepareStatement("SELECT * FROM skader");
             ResultSet resultSet = psts.executeQuery();

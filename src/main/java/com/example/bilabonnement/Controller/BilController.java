@@ -26,6 +26,7 @@ public class BilController {
     return "Login";
   }
 //Getmapping til selve bilstatussiden
+
   // Mathias
   @GetMapping("/opdaterbilstatus")
   public String opdaterbilstatus(){
