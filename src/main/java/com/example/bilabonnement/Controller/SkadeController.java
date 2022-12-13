@@ -52,7 +52,6 @@ public class SkadeController {
             model.addAttribute("lejeAftale", lejeaftale);
             model.addAttribute("Bil", bil);
         } catch (Exception e) {
-            System.out.println("wtf controller");
             return "redirect:fejlsideskade";
         }
         return "/skade/registrerskade";

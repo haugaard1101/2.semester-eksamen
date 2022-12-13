@@ -71,7 +71,7 @@ INSERT into Biler (RegistreringsNummer, Stelnummer, Mærke, Model, UdstyrsNiveau
 values ('AT45634', 123412, 'Ford', 'Power', 'Premium', 'LEDIG', 'MANUELT', 'Diesel', 20, 100, 2999);
 INSERT into Biler (RegistreringsNummer, Stelnummer, Mærke, Model, UdstyrsNiveau, UdlejningsStatus, Gear, BrændstofType, KmL, CO2_Udledning,
                    PrisPrMåned)
-values ('AB12345',199434, 'Porche', 'Classic', 'Premium', 'AKTIV', 'MANUELT', 'Diesel', 35, 50, 9999);
+values ('AB12345',199434, 'Porsche', 'Classic', 'Premium', 'AKTIV', 'MANUELT', 'Diesel', 35, 50, 9999);
 INSERT into Biler (RegistreringsNummer, Stelnummer, Mærke, Model, UdstyrsNiveau, UdlejningsStatus, Gear, BrændstofType, KmL, CO2_Udledning,
                    PrisPrMåned)
 values ('HF73287',153823, 'Toyota', 'Ultra', 'Premium', 'AFLEVERET', 'AUTOMATISK', 'Diesel', 45, 70, 3999);

@@ -21,9 +21,10 @@ public  class DatabaseConnectionManager {
       return connection;
     }
 
-    hostname = "jdbc:mysql://myfirstdatabase.mysql.database.azure.com/bilabonnement";
-    username = "Mathias";
-    password = "Kalvin123";
+    hostname = System.getenv("db.url");
+    username = System.getenv("db.username");
+    password = System.getenv("db.password");
+
 
     try {
       connection = DriverManager.getConnection(hostname,username,password);
