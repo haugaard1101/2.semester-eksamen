@@ -32,6 +32,7 @@ public class DataregistreringsRepository {
   // Mathias, Marcus
   public void createLejeAftale(LejeAftaleModel lejeAftaleModel) {
     String RegNr = null;
+    int check = 0;
     PreparedStatement preparedStatement;
     try {
         preparedStatement = connection.prepareStatement("insert into LejeAftale (RegistreringsNummer,Navn,Adresse,Postnummer,Kommune," +
@@ -60,16 +61,20 @@ public class DataregistreringsRepository {
       System.out.println("Repo RegNr, når vi prøver at få værdien ind i den: " + RegNr);
       preparedStatement.executeUpdate();
     } catch (SQLException e) {
-      System.out.println("Registreringen fejlede");
+      check = 1;
+      System.out.println("Registreringen fejlede. Check er nu lig med: " + check);
       e.printStackTrace();
     }
-    try {
-      preparedStatement = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'AKTIV' where registreringsNummer = ?");
-      preparedStatement.setString(1, RegNr);
-      preparedStatement.execute();
+    if(check == 0){
+      try {
+        System.out.println("hvis vi når her til burde check være: " + check);
+        preparedStatement = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'AKTIV' where registreringsNummer = ?");
+        preparedStatement.setString(1, RegNr);
+        preparedStatement.execute();
 
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
     }
   }
 
