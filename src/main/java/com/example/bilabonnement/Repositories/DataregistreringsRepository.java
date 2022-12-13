@@ -60,7 +60,8 @@ public class DataregistreringsRepository {
       System.out.println("Repo RegNr, når vi prøver at få værdien ind i den: " + RegNr);
       preparedStatement.executeUpdate();
     } catch (SQLException e) {
-      throw new RuntimeException();
+      System.out.println("Registreringen fejlede");
+      e.printStackTrace();
     }
     try {
       preparedStatement = connection.prepareStatement("UPDATE Biler SET udlejningsStatus = 'AKTIV' where registreringsNummer = ?");

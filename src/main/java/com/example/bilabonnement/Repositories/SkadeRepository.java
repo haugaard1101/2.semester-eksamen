@@ -39,7 +39,7 @@ public class SkadeRepository {
     }
     //Kasper
     //retunerer og viser en lejeaftale udfra RegNr
-    public LejeAftaleModel getLejeaftale(String RegNr) {
+    public LejeAftaleModel getLejeaftale(String RegNr){
         LejeAftaleModel lejeaftale = null;
         try {
             PreparedStatement psts = connection.prepareStatement("SELECT * FROM lejeaftale where RegistreringsNummer = ?");
@@ -69,7 +69,7 @@ public class SkadeRepository {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+         }
         return lejeaftale;
     }
     //Kasper, Benjamin
