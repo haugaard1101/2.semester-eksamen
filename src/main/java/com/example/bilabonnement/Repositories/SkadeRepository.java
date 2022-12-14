@@ -229,7 +229,7 @@ public class SkadeRepository {
     }
 
     // Marcus
-    public BilModel findACar(String RegNr) throws Exception {
+    public BilModel findACar(String RegNr) {
         BilModel bilModel = null;
         try {
             PreparedStatement psts = connection.prepareStatement("SELECT * FROM biler where RegistreringsNummer = ?");
