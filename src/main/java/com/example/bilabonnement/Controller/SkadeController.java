@@ -65,12 +65,12 @@ public class SkadeController {
             String RegNr = (String) session.getAttribute("registreringsnummerPåBil");
             String aflæstKm = request.getParameter("KmVedIndlevering");
             String lakfelt = request.getParameter("Lakfelt");
-            String ridsetAlufælgerequest = request.getParameter("Ridset alufælge");
+            String ridsetAlufælge = request.getParameter("Ridset alufælge");
             String nyForrude = request.getParameter("Ny forrude");
 
 
             //----------------------------
-            skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælgerequest, nyForrude);
+            skadeService.createSkade(RegNr, aflæstKm, lakfelt, ridsetAlufælge, nyForrude);
 
             //Regning Attributter bliver sendt videre til html-filen
             model.addAttribute("regning", skadeService.showBill(RegNr));
