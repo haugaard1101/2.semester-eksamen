@@ -39,7 +39,7 @@ public class Dataregistreringscontroller {
     model.addAttribute("BilListe", ledigeBiler);
     return "dataregistrering/dataregistrering";
   }
-
+/*
   //Mathias
   @GetMapping("/lejeaftalefundet")
   public String lejeaftalefundet() {
@@ -57,7 +57,7 @@ public class Dataregistreringscontroller {
   public String opdaterlejeaftale() {
     return "dataregistrering/opdaterlejeaftale";
   }
-
+*/
   @GetMapping("/lejeaftaleliste")
   public String lejeaftaleliste(Model model) {
     model.addAttribute("LejeAftale", dataregistreringsService.getAlleLejeAftaler());
